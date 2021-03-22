@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../css/MyStyle.css";
+import "../stylesheets/MyStyle.css";
 
 export class Contact extends Component {
   constructor(props) {

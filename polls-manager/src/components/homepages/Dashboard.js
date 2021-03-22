@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import "../css/Dashboard.css";
+import "../stylesheets/Dashboard.css";
 import NavbarDash from "../dashboardpages/NavbarDash";
 import HomeDash from "../dashboardpages/HomeDash";
 import Createform from "../dashboardpages/Createform";

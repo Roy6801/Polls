@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as BiIcon from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
-import "../css/NavbarDash.css";
+import "../stylesheets/NavbarDash.css";
 import { IconContext } from "react-icons";
 
 function NavbarDash() {
