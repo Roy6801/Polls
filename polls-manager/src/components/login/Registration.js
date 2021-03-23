@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Service from "./Service";
 // import axios from "axios";
 
 class Registration extends Component {
@@ -96,6 +97,15 @@ class Registration extends Component {
       emailError: "",
       mobileNoError: "",
     });
+
+    let userName = "Roy";
+    let firstName = "Roy";
+    let lastName = "Roy";
+    let password = "Roy";
+    let email = "Roy";
+    let mobileNo = "Roy";
+
+    Service.register(userName, password, firstName, lastName, email, mobileNo);
 
     let isValid = this.validate();
     if (!isValid) {
