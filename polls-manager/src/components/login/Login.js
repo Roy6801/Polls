@@ -2,6 +2,7 @@ import React, { Component } from "react";
 //import { Redirect } from 'react-router-dom';
 //import Home from './Home';
 import { NavLink, Link } from "react-router-dom";
+import Service from "../Service";
 //import { Button } from "reactstrap";
 //import Navbar from "../layout/Navbar";
 
@@ -38,6 +39,13 @@ class Login extends React.Component {
     } else {
       alert("Login Fail");
     }
+
+    let user = {
+      userName: this.state.userName,
+      password: this.state.password,
+    };
+
+    Service.login({ ...user });
   };
 
   handleChange = (event) => {

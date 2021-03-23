@@ -12,12 +12,21 @@ def home():
     return {"Note": "Howdy!!"}
 
 
-@app.route("/registerUser", methods=["GET", "POST"])
+@app.route("/LoginUser", methods=["GET", "POST"])
+def login():
+    global userName
+    if request.method == "POST":
+        userData = request.json
+        userName = userData
+    return userName
+
+
+@app.route("/RegisterUser", methods=["GET", "POST"])
 def register():
     global userName
     if request.method == "POST":
         userData = request.json
-        userName = userData['userName']
+        userName = userData
     return userName
 
 
