@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Service from "./Service";
+import Service from "../Service";
 // import axios from "axios";
 
 class Registration extends Component {
@@ -89,6 +89,7 @@ class Registration extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
 
+
     this.setState({
       firstNameError: "",
       lastNameError: "",
@@ -98,15 +99,6 @@ class Registration extends Component {
       mobileNoError: "",
     });
 
-    let userName = "Roy";
-    let firstName = "Roy";
-    let lastName = "Roy";
-    let password = "Roy";
-    let email = "Roy";
-    let mobileNo = "Roy";
-
-    Service.register(userName, password, firstName, lastName, email, mobileNo);
-
     let isValid = this.validate();
     if (!isValid) {
       return false;
@@ -114,15 +106,17 @@ class Registration extends Component {
       alert("Register Successfully");
     }
 
-    // let user = {
-    //   firstName: this.state.firstName,
-    //   lastName: this.state.lastName,
-    //   password: this.state.password,
-    //   confirmPassword:this.state.confirmPassword,
-    //   email: this.state.email,
-    //   mobileNo: this.state.mobileNo,
+    let user = {
+      userName: this.state.userName,
+      password: this.state.password,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      mobileNo: this.state.mobileNo,
+    };
 
-    // };
+     Service.register({ ...user });
+
   };
 
   //**render*//
