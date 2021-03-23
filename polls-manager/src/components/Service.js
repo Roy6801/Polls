@@ -23,7 +23,19 @@ class Service {
       .catch((error) => console.error(error));
   }
 
-  getPassword(userName, password) {
+  getUsername(userName) {
+    axios
+      .get(API_BASE_URL + "CheckUsername", {
+        userName: userName,
+      })
+      .then((response) => {
+        console.log(response.status);
+      })
+      .catch((error) => console.error(error));
+  }
+
+  getPassword(user) {
+    const { userName, password } = user;
     axios
       .get(API_BASE_URL + { userName } + "/GetPassword", {
         userName: userName,
