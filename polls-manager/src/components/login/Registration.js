@@ -25,7 +25,12 @@ class Registration extends Component {
     let flag = true;
 
     //====================
-
+    if (this.state.userName === "") {
+      flag = false;
+      this.setState({ userName: "UserName Is Required" });
+    } else {
+      this.setState({ userNameError: "" });
+    }
     if (this.state.firstName === "") {
       flag = false;
       this.setState({ firstNameError: "First Name is Required" });
@@ -91,6 +96,7 @@ class Registration extends Component {
 
 
     this.setState({
+      userNameError:"",
       firstNameError: "",
       lastNameError: "",
       passwordError: "",
@@ -131,6 +137,36 @@ class Registration extends Component {
               </div> */}
           <br />
           <br />
+          <br />
+          <div
+            className="alert-danger"
+            style={{ marginLeft: "550px", marginRight: "600px" }}
+          >
+            {this.state.userNameError}
+          </div>
+          <div
+            class="form-inline"
+            align="center"
+            style={{ marginLeft: "400px" }}
+          >
+            <label>
+              <b>
+                User Name : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;
+              </b>{" "}
+            </label>
+            <input
+              style={{ borderRadius: "90px" }}
+              type="text"
+              className="form-control"
+              id="userName"
+              placeholder="Enter User Name"
+              value={this.state.userName}
+              onChange={(event) =>
+                this.setState({ userName: event.target.value })
+              }
+            />
+          </div>
           <br />
           <div
             className="alert-danger"
