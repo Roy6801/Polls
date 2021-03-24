@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+
 class Navbar extends Component {
   state = {};
   render() {
     return (
-      <html>
-        <body>
           <nav
             className="navbar navbar-expand-lg navbar-dark bg-dark"
             size="500"
@@ -22,12 +21,12 @@ class Navbar extends Component {
                     Dashboard
                   </NavLink>
                 </li>
-                <li class="nav-item">
+                <li className="nav-item">
                   <NavLink className="nav-link" exact to="/about">
                     About Us
                   </NavLink>
                 </li>
-                <li class="nav-item">
+                <li className="nav-item">
                   <NavLink className="nav-link" exact to="/contact">
                     Contacts Us
                   </NavLink>
@@ -35,8 +34,6 @@ class Navbar extends Component {
               </ul>
             </div>
           </nav>
-        </body>
-      </html>
     );
   }
 }
