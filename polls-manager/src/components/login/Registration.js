@@ -4,6 +4,7 @@ import Service from "../Service";
 
 class Registration extends Component {
   state = {
+    userName: "",
     firstName: "",
     lastName: "",
     password: "",
@@ -11,6 +12,7 @@ class Registration extends Component {
     email: "",
     mobileNo: "",
 
+    userNameError: "",
     firstNameError: "",
     lastNameError: "",
     passwordError: "",
@@ -108,8 +110,6 @@ class Registration extends Component {
     let isValid = this.validate();
     if (!isValid) {
       return false;
-    } else {
-      alert("Register Successfully");
     }
 
     let user = {
@@ -121,15 +121,13 @@ class Registration extends Component {
       mobileNo: this.state.mobileNo,
     };
 
-     Service.register({ ...user });
-
+     Service.register(user);
   };
 
   //**render*//
 
   render() {
     return (
-      // <html>
       <div>
         <form onSubmit={this.handleSubmit}>
           {/* <div class="text-center mt-2" align="center" style={{marginLeft:"50px"}}><br></br>
@@ -145,7 +143,7 @@ class Registration extends Component {
             {this.state.userNameError}
           </div>
           <div
-            class="form-inline"
+            className="form-inline"
             align="center"
             style={{ marginLeft: "400px" }}
           >
@@ -175,7 +173,7 @@ class Registration extends Component {
             {this.state.firstNameError}
           </div>
           <div
-            class="form-inline"
+            className="form-inline"
             align="center"
             style={{ marginLeft: "400px" }}
           >
@@ -200,7 +198,7 @@ class Registration extends Component {
           <br />
           {/* <div className="alert-danger"style={{marginLeft:"550px",marginRight:"600px"}}>{this.state.lastNameError}</div> */}
           <div
-            class="form-inline"
+            className="form-inline"
             align="center"
             style={{ marginLeft: "400px" }}
           >
@@ -231,7 +229,7 @@ class Registration extends Component {
             {this.state.passwordError}
           </div>
           <div
-            class="form-inline"
+            className="form-inline"
             align="center"
             style={{ marginLeft: "400px" }}
           >
@@ -262,7 +260,7 @@ class Registration extends Component {
             {this.state.confirmPasswordError}
           </div>
           <div
-            class="form-inline"
+            className="form-inline"
             align="center"
             style={{ marginLeft: "400px" }}
           >
@@ -290,7 +288,7 @@ class Registration extends Component {
             {this.state.emailError}
           </div>
           <div
-            class="form-inline"
+            className="form-inline"
             align="center"
             style={{ marginLeft: "400px" }}
           >
@@ -319,7 +317,7 @@ class Registration extends Component {
             {this.state.mobileNoError}
           </div>
           <div
-            class="form-inline"
+            className="form-inline"
             align="center"
             style={{ marginLeft: "400px" }}
           >
@@ -351,7 +349,6 @@ class Registration extends Component {
           </button>
         </form>
       </div>
-      // </html>
     );
   }
 }

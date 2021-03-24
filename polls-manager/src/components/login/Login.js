@@ -34,10 +34,8 @@ class Login extends React.Component {
       passwordError: "",
     });
 
-    if (this.validateUserName() && this.validatePassword()) {
-      alert("Login Successfuly");
-    } else {
-      alert("Login Fail");
+    if (!this.validateUserName() || !this.validatePassword()) {
+      alert("Login Error! Check Username and Password!!");
     }
 
     let user = {
@@ -45,7 +43,7 @@ class Login extends React.Component {
       password: this.state.password,
     };
 
-    Service.login({ ...user });
+    Service.login(user);
   };
 
   handleChange = (event) => {
@@ -83,15 +81,15 @@ class Login extends React.Component {
       <div>
         <div className="col-md-6 my-auto">
           <div className="row">
-            <div class="col-sm-11 signin text-center">
+            <div className="col-sm-11 signin text-center">
               <form>
                 <div
-                  class="text-center mt-2"
+                  className="text-center mt-2"
                   align="center"
                   style={{ marginLeft: "160px" }}
                 >
                   <div className="alert-danger">{this.state.userNameError}</div>
-                  <div class="form-inline" align="center">
+                  <div className="form-inline" align="center">
                     <label>
                       <b>UserName &nbsp; &nbsp;</b>
                     </label>
@@ -108,7 +106,7 @@ class Login extends React.Component {
                     />
                   </div>
                   <div className="alert-danger">{this.state.passwordError}</div>
-                  <div class="form-inline" align="center">
+                  <div className="form-inline" align="center">
                     <label>
                       <b> Password &nbsp; &nbsp;&nbsp;</b>{" "}
                     </label>
