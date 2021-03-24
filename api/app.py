@@ -1,8 +1,9 @@
+from db.Connector import Connection
 from flask import Flask, request
 from flask_cors import CORS
 
 userName = "Roy6801"
-
+conn = Connection()
 app = Flask(__name__)
 CORS(app)
 
