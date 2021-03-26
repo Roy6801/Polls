@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 //import Home from './Home';
 import { NavLink, Link } from "react-router-dom";
 import Service from "../Service";
@@ -14,6 +14,7 @@ class Login extends React.Component {
       password: "",
       userNameError: "",
       passwordError: "",
+      redirect: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
@@ -42,8 +43,14 @@ class Login extends React.Component {
       userName: this.state.userName,
       password: this.state.password,
     };
-
-    Service.login(user);
+    
+    Service.login(user).then((resp) => {
+      if (resp.data.response === 1) {
+        this.setState({ redirect: true });
+      } else {
+        alert("Check Username or Password!!");
+      }
+    });
   };
 
   handleChange = (event) => {
@@ -77,6 +84,19 @@ class Login extends React.Component {
   }
 
   render() {
+    const { redirect } = this.state;
+    if (redirect) {
+      return (
+        <Redirect
+          exact
+          to={{
+            pathname: "/dashboard",
+            state: { userName: this.state.userName },
+          }}
+        />
+      );
+    }
+
     return (
       <div>
         <div className="col-md-6 my-auto">
