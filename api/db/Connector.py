@@ -3,8 +3,12 @@ import pymysql
 
 class Connection:
     def __init__(self):
-        conn = pymysql.connect(user="root", password="", host="localhost",
-                               port=3308, database="polls_manager", autocommit=1)
+        try:
+            conn = pymysql.connect(user="root", password="", host="localhost",
+                                   port=3306, database="polls_manager", autocommit=1)
+        except:
+            conn = pymysql.connect(user="root", password="", host="localhost",
+                                   port=3308, database="polls_manager", autocommit=1)
         self.cur = conn.cursor()
 
     def exec(self, *args):
@@ -46,11 +50,17 @@ class Connection:
         self.exec(userName)
         return self.cur.fetchone()
 
+    def createPoll(self, *args):
+        pass
+
     def getPollListByAdmin(self, userName):
         pass
 
-    def getAdminByPollId(self, poll_Id):
+    def getAdminByPoll_Id(self, poll_Id):
         pass
 
-    def getRegistrantList(self, userName, poll_Id):
+    def getRegistrantList(self, poll_Id):
+        pass
+
+    def getParticipantList(self, poll_Id):
         pass
