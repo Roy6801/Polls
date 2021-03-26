@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import Service from "../Service";
 // import axios from "axios";
 
@@ -11,6 +12,7 @@ class Registration extends Component {
     confirmPassword: "",
     email: "",
     mobileNo: "",
+    redirect: false,
 
     userNameError: "",
     firstNameError: "",
@@ -96,9 +98,8 @@ class Registration extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
 
-
     this.setState({
-      userNameError:"",
+      userNameError: "",
       firstNameError: "",
       lastNameError: "",
       passwordError: "",
@@ -121,12 +122,32 @@ class Registration extends Component {
       mobileNo: this.state.mobileNo,
     };
 
-     Service.register(user);
+    Service.register(user).then((resp) => {
+      if (resp.data.response === 1) {
+        this.setState({ redirect: true });
+      } else {
+        alert("Try another Username!!");
+      }
+    });
   };
 
   //**render*//
 
   render() {
+    const {  redirect  } = this.state;
+
+    if (redirect) {
+      return (
+        <Redirect
+          exact
+          to={{
+            pathname: "/dashboard",
+            state: { userName: this.state.userName },
+          }}
+        />
+      );
+    }
+
     return (
       <div>
         <form onSubmit={this.handleSubmit}>

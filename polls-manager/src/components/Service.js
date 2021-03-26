@@ -2,44 +2,12 @@ import axios from "axios";
 
 const API_BASE_URL = "http://192.168.1.204:5000/";
 
-const login = (user) => {
-  axios
-    .post(API_BASE_URL + "LoginUser", { ...user })
-    .then((resp) => {
-      console.log(resp.status);
-      if (resp.status != 200) {
-        alert("Some error occurred!!");
-      } else {
-        axios
-          .get(API_BASE_URL + "LoginUser")
-          .then((resp) => resp)
-          .then((data) => {
-            console.log(data);
-          })
-          .catch((error) => console.error(error));
-      }
-    })
-    .catch((error) => console.error(error));
+const login = async (user) => {
+  return axios.post(API_BASE_URL + "LoginUser", { ...user });
 };
 
-const register = (user) => {
-  axios
-    .post(API_BASE_URL + "RegisterUser", { ...user })
-    .then((resp) => {
-      console.log(resp.status);
-      if (resp.status != 200) {
-        alert("Some error occurred!!");
-      } else {
-        axios
-          .get(API_BASE_URL + "RegisterUser")
-          .then((resp) => resp)
-          .then((data) => {
-            console.log(data);
-          })
-          .catch((error) => console.error(error));
-      }
-    })
-    .catch((error) => console.error(error));
+const register = async (user) => {
+  return axios.post(API_BASE_URL + "RegisterUser", { ...user });
 };
 
 const getPassword = (user) => {

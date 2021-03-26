@@ -1,9 +1,9 @@
-import React from "react";
+import { useState } from "react";
 
-function HomeDash() {
+function HomeDash(props) {
   return (
     <div className="home">
-      <h1>Home</h1>
+      <h1>{props.userName}</h1>
     </div>
   );
 }

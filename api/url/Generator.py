@@ -33,5 +33,4 @@ def pollCreate(scheduled=0, deadline=int(time.time())+3600):
         return (pollid, ts, pollurl, deadline, regurl)
 
 
-val = pollCreate(scheduled=1)
-print(val)
+print(pollCreate(scheduled=1, deadline=1616671293))
