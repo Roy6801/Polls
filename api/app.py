@@ -10,17 +10,12 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route("/home", methods=["GET"])
-def home():
-    return {"Note": "Howdy!!"}
-
-
 @app.route("/LoginUser", methods=["GET", "POST"])
 def login():
     global conn, response
     if request.method == "POST":
         userData = request.json
-        response = conn.verifyUser(userData['userName'], userData['password'])
+        response = conn.verifyUser(userData)
     return {"response": response}
 
 
@@ -29,8 +24,16 @@ def register():
     global conn, response
     if request.method == "POST":
         userData = request.json
-        response = conn.createUser(userData['userName'], userData['password'], userData['firstName'],
-                                   userData['lastName'], userData['email'], userData['mobileNo'])
+        response = conn.createUser(userData)
+    return {"response": response}
+
+
+@app.route("/CreatePoll", methods=["GET", "POST"])
+def create():
+    global conn, response
+    if request.method == "POST":
+        userData = request.json()
+        response = conn.createPoll(userData)
     return {"response": response}
 
 
