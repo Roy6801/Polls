@@ -48,7 +48,8 @@ class Connection:
     def getUserInfo(self, userName):
         self.query = 'select * from user where userName = %s'
         self.exec(userName)
-        return self.cur.fetchone()
+        val = self.cur.fetchone()
+        return {"userName": val[0], "password": val[1], "firstName": val[2], "lastName": val[3], "email": val[4], "mobileNo": val[5]}
 
     def createPoll(self, *args):
         pass
@@ -64,3 +65,8 @@ class Connection:
 
     def getParticipantList(self, poll_Id):
         pass
+
+
+conn = Connection()
+
+print(conn.getUserInfo("Raikiri"))

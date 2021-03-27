@@ -42,7 +42,7 @@ const getParticipatedUsers = async (user) => {
   return axios.post(API_BASE_URL + "GetParticipatedUsers", { ...user });
 };
 
-const getPollResults = async (users) => {
+const getPollResults = async (user) => {
   return axios.post(API_BASE_URL + "GetPollResults", { ...user });
 };
 
