@@ -1,0 +1,23 @@
+
+@media screen and (min-width:480px){
+.mainDiv{
+   
+    background-color: red;
+    margin: auto;
+    padding: 10px;
+}
+
+}@media screen and (min-width:480px ){
+.labels{
+    background-color: aqua;
+    float: left;
+}
+}
+
+@media screen and (min-width:480px ){
+.textField{
+    background-color: green;
+    margin-left: 15%;
+
+    
+}}
