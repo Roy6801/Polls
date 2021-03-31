@@ -151,9 +151,130 @@ class Registration extends Component {
 
     return (
       <div className="mainDiv">
-        
-  
-        
+        <form onSubmit={this.handleSubmit}>
+          <div className="labels">
+            <label className="label-input">
+              <b>Username :</b>
+            </label>
+            <label className="label-input">
+              <b>First Name:</b>
+            </label>
+            <label className="label-input">
+              <b>Last Name:</b>
+            </label>
+            <label className="label-input">
+              <b>Password:</b>
+            </label>
+            <label className="label-input">
+              <b>Confirm Password:</b>
+            </label>
+            <label className="label-input">
+              <b>Email:</b>
+            </label>
+            <label className="label-input">
+              <b>Mobile No.:</b>
+            </label>
+          </div>
+          <div className="textField">
+            <username>
+              <input
+                type="text"
+                className="input-control"
+                id="userName"
+                placeholder="Enter Username"
+                value={this.state.userName}
+                onChange={(event) =>
+                  this.setState({ userName: event.target.value })
+                }
+              />
+              {this.state.userNameError}
+            </username>
+            <firstname>
+              <input
+                type="text"
+                className="input-control"
+                id="firstName"
+                placeholder="Enter First Name"
+                value={this.state.firstName}
+                onChange={(event) =>
+                  this.setState({ firstName: event.target.value })
+                }
+              />
+              {this.state.firstNameError}
+            </firstname>
+            <lastname>
+              <input
+                type="text"
+                className="input-control"
+                id="lastName"
+                placeholder="Enter Last Name"
+                value={this.state.lastName}
+                onChange={(event) =>
+                  this.setState({ lastName: event.target.value })
+                }
+              />
+            </lastname>
+            <password>
+              <input
+                type="password"
+                className="input-control"
+                id="password"
+                placeholder="Enter your Password"
+                value={this.state.password}
+                onChange={(event) =>
+                  this.setState({ password: event.target.value })
+                }
+              />
+              {this.state.passwordError}
+            </password>
+            <confirmpassword>
+              <input
+                type="password"
+                className="input-control"
+                id="password"
+                placeholder="Enter your Password"
+                value={this.state.confirmPassword}
+                onChange={(event) =>
+                  this.setState({ confirmPassword: event.target.value })
+                }
+              />
+              {this.state.confirmPasswordError}
+            </confirmpassword>
+            <email>
+              <input
+                type="email"
+                className="input-control"
+                id="email"
+                placeholder="Enter your Email Id"
+                value={this.state.email}
+                onChange={(event) =>
+                  this.setState({ email: event.target.value })
+                }
+              />
+              {this.state.emailError}
+            </email>
+            <mobileno>
+              <input
+                type="text"
+                className="input-control"
+                id="mobileNo"
+                placeholder="Enter your Mobile No"
+                value={this.state.mobileNo}
+                onChange={(event) =>
+                  this.setState({ mobileNo: event.target.value })
+                }
+              />
+              {this.state.mobileNoError}
+            </mobileno>
+            <button
+              type="submit"
+              className="btn btn-success"
+              style={{ marginLeft: "560px" }}
+            >
+              <b>Save</b>
+            </button>
+          </div>
+        </form>
       </div>
     );
   }

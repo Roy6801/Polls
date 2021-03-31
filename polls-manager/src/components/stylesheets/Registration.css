@@ -1,23 +1,47 @@
-/* 
+
 @media screen and (min-width:480px){
 .mainDiv{
    
     background-color: red;
     margin: auto;
     padding: 10px;
-}
+    height: 577px;
+    width: 1366px;
+    display: flex;
+    
+   
+}}
 
-}@media screen and (min-width:480px ){
+@media screen and (min-width:480px ){
 .labels{
-    background-color: aqua;
-    float: left;
+ background-color: aqua;
+  
 }
 }
 
 @media screen and (min-width:480px ){
 .textField{
-    background-color: green;
-    margin-left: 15%;
-
     
-}} */
+    background-color: green;
+}}
+
+@media screen and (min-width:480px ){
+.input-control{
+    float: right;
+   border-radius: 25px;
+  border: 1px solid black;
+  padding: 20px; 
+  width: 250px;
+  height: 10px;  
+}}
+
+@media screen and (min-width:480px ){
+.label-input{
+    float: left;
+margin: 10px;
+
+}
+}
+
+
+
