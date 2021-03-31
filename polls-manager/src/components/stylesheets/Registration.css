@@ -4,44 +4,45 @@
    
     background-color: red;
     margin: auto;
-    padding: 10px;
+    /* padding: 10px;
     height: 577px;
     width: 1366px;
-    display: flex;
+    display: flex; */
     
    
 }}
 
 @media screen and (min-width:480px ){
 .labels{
+    padding-top: 10px;
  background-color: aqua;
-  
+ float: left;
+height: 290px;
 }
 }
 
 @media screen and (min-width:480px ){
 .textField{
-    
     background-color: green;
 }}
 
 @media screen and (min-width:480px ){
 .input-control{
-    float: right;
    border-radius: 25px;
   border: 1px solid black;
   padding: 20px; 
   width: 250px;
   height: 10px;  
 }}
-
 @media screen and (min-width:480px ){
 .label-input{
-    float: left;
-margin: 10px;
+    
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 20px;
+  
+}}
 
-}
-}
 
 
 

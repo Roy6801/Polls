@@ -153,27 +153,35 @@ class Registration extends Component {
       <div className="mainDiv">
         <form onSubmit={this.handleSubmit}>
           <div className="labels">
+            
             <label className="label-input">
               <b>Username :</b>
             </label>
+            <br />
             <label className="label-input">
               <b>First Name:</b>
             </label>
+            <br />
             <label className="label-input">
               <b>Last Name:</b>
             </label>
+            <br />
             <label className="label-input">
               <b>Password:</b>
             </label>
+            <br />
             <label className="label-input">
               <b>Confirm Password:</b>
             </label>
+            <br />
             <label className="label-input">
               <b>Email:</b>
             </label>
+            <br />
             <label className="label-input">
               <b>Mobile No.:</b>
             </label>
+            <br />
           </div>
           <div className="textField">
             <username>
@@ -189,6 +197,7 @@ class Registration extends Component {
               />
               {this.state.userNameError}
             </username>
+            <br />
             <firstname>
               <input
                 type="text"
@@ -202,6 +211,7 @@ class Registration extends Component {
               />
               {this.state.firstNameError}
             </firstname>
+            <br />
             <lastname>
               <input
                 type="text"
@@ -214,6 +224,7 @@ class Registration extends Component {
                 }
               />
             </lastname>
+            <br />
             <password>
               <input
                 type="password"
@@ -227,6 +238,7 @@ class Registration extends Component {
               />
               {this.state.passwordError}
             </password>
+            <br />
             <confirmpassword>
               <input
                 type="password"
@@ -240,6 +252,7 @@ class Registration extends Component {
               />
               {this.state.confirmPasswordError}
             </confirmpassword>
+            <br />
             <email>
               <input
                 type="email"
@@ -253,6 +266,7 @@ class Registration extends Component {
               />
               {this.state.emailError}
             </email>
+            <br />
             <mobileno>
               <input
                 type="text"
@@ -266,6 +280,8 @@ class Registration extends Component {
               />
               {this.state.mobileNoError}
             </mobileno>
+            <br />
+            <br />
             <button
               type="submit"
               className="btn btn-success"
