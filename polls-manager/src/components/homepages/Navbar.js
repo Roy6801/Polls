@@ -13,7 +13,7 @@ class Navbar extends Component {
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
                   <NavLink className="nav-brand" exact to="/">
-                    Polls Manager
+                    
                   </NavLink>
                 </li>
                 <li className="nav-item">

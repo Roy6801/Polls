@@ -111,12 +111,12 @@ class Login extends React.Component {
                   <div className="alert-danger">{this.state.userNameError}</div>
                   <div className="form-inline" align="center">
                     <label>
-                      <b>UserName &nbsp; &nbsp;</b>
+                      <b>Username: &nbsp; &nbsp;</b>
                     </label>
                     <input
-                      style={{ borderRadius: "40px" }}
+                      style={{  borderRadius: "40px" }}
                       type="text"
-                      placeholder="User Name"
+                      placeholder="Username"
                       name="userName"
                       value={this.state.userName}
                       onChange={this.handleChange}
@@ -128,7 +128,7 @@ class Login extends React.Component {
                   <div className="alert-danger">{this.state.passwordError}</div>
                   <div className="form-inline" align="center">
                     <label>
-                      <b> Password &nbsp; &nbsp;&nbsp;</b>{" "}
+                      <b> Password: &nbsp; &nbsp;&nbsp;</b>{" "}
                     </label>
                     <input
                       style={{ borderRadius: "40px" }}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import Service from "../Service";
+import "../stylesheets/Registration.css"
 // import axios from "axios";
 
 class Registration extends Component {
@@ -149,225 +150,146 @@ class Registration extends Component {
     }
 
     return (
-      <div>
+      <div className="mainDiv">
         <form onSubmit={this.handleSubmit}>
-          {/* <div class="text-center mt-2" align="center" style={{marginLeft:"50px"}}><br></br>
-              <h4>Enter your details:</h4>
-              </div> */}
-          <br />
-          <br />
-          <br />
-          <div
-            className="alert-danger"
-            style={{ marginLeft: "550px", marginRight: "600px" }}
-          >
-            {this.state.userNameError}
-          </div>
-          <div
-            className="form-inline"
-            align="center"
-            style={{ marginLeft: "400px" }}
-          >
-            <label>
-              <b>
-                User Name : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;
-              </b>{" "}
+          <div className="labels">
+            
+            <label className="label-input">
+              <b>Username :</b>
             </label>
-            <input
-              style={{ borderRadius: "90px" }}
-              type="text"
-              className="form-control"
-              id="userName"
-              placeholder="Enter User Name"
-              value={this.state.userName}
-              onChange={(event) =>
-                this.setState({ userName: event.target.value })
-              }
-            />
-          </div>
-          <br />
-          <div
-            className="alert-danger"
-            style={{ marginLeft: "550px", marginRight: "600px" }}
-          >
-            {this.state.firstNameError}
-          </div>
-          <div
-            className="form-inline"
-            align="center"
-            style={{ marginLeft: "400px" }}
-          >
-            <label>
-              <b>
-                First Name : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;
-              </b>{" "}
+            <br />
+            <label className="label-input">
+              <b>First Name:</b>
             </label>
-            <input
-              style={{ borderRadius: "90px" }}
-              type="text"
-              className="form-control"
-              id="firstName"
-              placeholder="Enter First Name"
-              value={this.state.firstName}
-              onChange={(event) =>
-                this.setState({ firstName: event.target.value })
-              }
-            />
-          </div>
-          <br />
-          {/* <div className="alert-danger"style={{marginLeft:"550px",marginRight:"600px"}}>{this.state.lastNameError}</div> */}
-          <div
-            className="form-inline"
-            align="center"
-            style={{ marginLeft: "400px" }}
-          >
-            {/* <div className="alert-danger">{this.state.lastNameError}</div><br/><br/> */}
-            <label>
-              <b>
-                Last Name : &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-                &nbsp;
-              </b>
+            <br />
+            <label className="label-input">
+              <b>Last Name:</b>
             </label>
-            <input
-              style={{ borderRadius: "60px" }}
-              type="text"
-              className="form-control"
-              id="lastName"
-              placeholder="Enter Last Name"
-              value={this.state.lastName}
-              onChange={(event) =>
-                this.setState({ lastName: event.target.value })
-              }
-            />
-          </div>
-          <br />
-          <div
-            className="alert-danger"
-            style={{ marginLeft: "550px", marginRight: "600px" }}
-          >
-            {this.state.passwordError}
-          </div>
-          <div
-            className="form-inline"
-            align="center"
-            style={{ marginLeft: "400px" }}
-          >
-            {/* <div className="alert-danger">{this.state.passwordError}</div><br/><br/> */}
-            <label>
-              <b>
-                Password : &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              </b>{" "}
+            <br />
+            <label className="label-input">
+              <b>Password:</b>
             </label>
-            <input
-              style={{ borderRadius: "60px" }}
-              type="password"
-              className="form-control"
-              id="password"
-              placeholder="Enter your Password"
-              value={this.state.password}
-              onChange={(event) =>
-                this.setState({ password: event.target.value })
-              }
-            />
-          </div>
-          <br />
-          <div
-            className="alert-danger"
-            style={{ marginLeft: "550px", marginRight: "600px" }}
-          >
-            {this.state.confirmPasswordError}
-          </div>
-          <div
-            className="form-inline"
-            align="center"
-            style={{ marginLeft: "400px" }}
-          >
-            {/* <div className="alert-danger">{this.state.confirmPasswordError}</div><br/><br/> */}
-            <label>
-              <b> Confirm Password : &nbsp; </b>{" "}
+            <br />
+            <label className="label-input">
+              <b>Confirm Password:</b>
             </label>
-            <input
-              style={{ borderRadius: "40px" }}
-              type="password"
-              className="form-control"
-              id="password"
-              placeholder="Enter your Password"
-              value={this.state.confirmPassword}
-              onChange={(event) =>
-                this.setState({ confirmPassword: event.target.value })
-              }
-            />
-          </div>
-          <br />
-          <div
-            className="alert-danger"
-            style={{ marginLeft: "550px", marginRight: "600px" }}
-          >
-            {this.state.emailError}
-          </div>
-          <div
-            className="form-inline"
-            align="center"
-            style={{ marginLeft: "400px" }}
-          >
-            {/* <div className="alert-danger">{this.state.emailError}</div> */}
-            <label>
-              <b>
-                Email : &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;{" "}
-              </b>
+            <br />
+            <label className="label-input">
+              <b>Email:</b>
             </label>
-            <input
-              style={{ borderRadius: "60px" }}
-              type="email"
-              className="form-control"
-              id="email"
-              placeholder="Enter your Email Id"
-              value={this.state.email}
-              onChange={(event) => this.setState({ email: event.target.value })}
-            />
-          </div>
-          <br />
-          <div
-            className="alert-danger"
-            style={{ marginLeft: "550px", marginRight: "600px" }}
-          >
-            {this.state.mobileNoError}
-          </div>
-          <div
-            className="form-inline"
-            align="center"
-            style={{ marginLeft: "400px" }}
-          >
-            {/* <div className="alert-danger">{this.state.mobileNoError}</div><br/><br/> */}
-            <label>
-              <b>
-                Mobile No : &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-              </b>{" "}
+            <br />
+            <label className="label-input">
+              <b>Mobile No.:</b>
             </label>
-            <input
-              style={{ borderRadius: "60px" }}
-              type="text"
-              className="form-control"
-              id="mobileNo"
-              placeholder="Enter your mobile No"
-              value={this.state.mobileNo}
-              onChange={(event) =>
-                this.setState({ mobileNo: event.target.value })
-              }
-            />
+            <br />
           </div>
-          <br />
-          <button
-            type="submit"
-            className="btn btn-success"
-            style={{ marginLeft: "560px" }}
-          >
-            <b>Save</b>
-          </button>
+          <div className="textField">
+            <username>
+              <input
+                type="text"
+                className="input-control"
+                id="userName"
+                placeholder="Enter Username"
+                value={this.state.userName}
+                onChange={(event) =>
+                  this.setState({ userName: event.target.value })
+                }
+              />
+              {this.state.userNameError}
+            </username>
+            <br />
+            <firstname>
+              <input
+                type="text"
+                className="input-control"
+                id="firstName"
+                placeholder="Enter First Name"
+                value={this.state.firstName}
+                onChange={(event) =>
+                  this.setState({ firstName: event.target.value })
+                }
+              />
+              {this.state.firstNameError}
+            </firstname>
+            <br />
+            <lastname>
+              <input
+                type="text"
+                className="input-control"
+                id="lastName"
+                placeholder="Enter Last Name"
+                value={this.state.lastName}
+                onChange={(event) =>
+                  this.setState({ lastName: event.target.value })
+                }
+              />
+            </lastname>
+            <br />
+            <password>
+              <input
+                type="password"
+                className="input-control"
+                id="password"
+                placeholder="Enter your Password"
+                value={this.state.password}
+                onChange={(event) =>
+                  this.setState({ password: event.target.value })
+                }
+              />
+              {this.state.passwordError}
+            </password>
+            <br />
+            <confirmpassword>
+              <input
+                type="password"
+                className="input-control"
+                id="password"
+                placeholder="Enter your Password"
+                value={this.state.confirmPassword}
+                onChange={(event) =>
+                  this.setState({ confirmPassword: event.target.value })
+                }
+              />
+              {this.state.confirmPasswordError}
+            </confirmpassword>
+            <br />
+            <email>
+              <input
+                type="email"
+                className="input-control"
+                id="email"
+                placeholder="Enter your Email Id"
+                value={this.state.email}
+                onChange={(event) =>
+                  this.setState({ email: event.target.value })
+                }
+              />
+              {this.state.emailError}
+            </email>
+            <br />
+            <mobileno>
+              <input
+                type="text"
+                className="input-control"
+                id="mobileNo"
+                placeholder="Enter your Mobile No"
+                value={this.state.mobileNo}
+                onChange={(event) =>
+                  this.setState({ mobileNo: event.target.value })
+                }
+              />
+              {this.state.mobileNoError}
+            </mobileno>
+            <br />
+            <br />
+            <button
+              type="submit"
+              className="btn btn-success"
+              // style={{ marginLeft: "560px" }}
+            >
+              <b>Save</b>
+            </button>
+          </div>
         </form>
       </div>
     );

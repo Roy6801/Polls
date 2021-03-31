@@ -9,9 +9,7 @@ class Home extends Component {
     return (
       <div>
         <br />
-        <h3 align="center" style={{ color: "red" }}>
-          <marquee>Welcome to Polls Management System</marquee>
-        </h3>
+        <br/>
         <br />
         <br />
         <br />
