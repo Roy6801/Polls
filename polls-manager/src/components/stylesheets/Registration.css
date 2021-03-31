@@ -23,6 +23,7 @@ height: 290px;
 
 @media screen and (min-width:480px ){
 .textField{
+    /* margin-right: 900px; */
     background-color: green;
 }}
 

@@ -285,7 +285,7 @@ class Registration extends Component {
             <button
               type="submit"
               className="btn btn-success"
-              style={{ marginLeft: "560px" }}
+              // style={{ marginLeft: "560px" }}
             >
               <b>Save</b>
             </button>
