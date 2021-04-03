@@ -10,6 +10,15 @@ app = Flask(__name__)
 CORS(app)
 
 
+@app.route("/VerifyToken", methods=["GET", "POST"])
+def verifyToken():
+    global conn, response
+    if request.method == "POST":
+        userData = request.json
+        response = conn.token(userData)
+    return {"response": response}
+
+
 @app.route("/LoginUser", methods=["GET", "POST"])
 def login():
     global conn, response
