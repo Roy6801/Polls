@@ -45,8 +45,16 @@ class Login extends React.Component {
     };
     
     Service.login(user).then((resp) => {
-      if (resp.data.response === 1) {
-        this.setState({ redirect: true });
+      if (
+        resp.data.response !== 0 &&
+        resp.data.response !== undefined &&
+        resp.data.response !== null
+      ) {
+        window.localStorage.setItem(
+          "polls-manager-system-G22",
+          resp.data.response
+        );
+        //this.setState({ redirect: true });
       } else {
         alert("Check Username or Password!!");
       }
@@ -160,9 +168,7 @@ class Login extends React.Component {
                   >
                     Login
                   </button>
-                  <button className="btn btn-dark mt-3 mr-5 xs ">
-                    <Link to="/Register">Register </Link>
-                  </button>
+                  <button className="btn btn-dark mt-3 mr-5 xs "></button>
                   <br></br>
                 </div>
               </form>

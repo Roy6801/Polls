@@ -2,6 +2,10 @@ import axios from "axios";
 
 const API_BASE_URL = "http://192.168.1.204:5000/";
 
+const verifyToken = async (user) => {
+  return axios.post(API_BASE_URL + "VerifyToken", { ...user });
+};
+
 const login = async (user) => {
   return axios.post(API_BASE_URL + "LoginUser", { ...user });
 };
@@ -47,6 +51,7 @@ const getPollResults = async (user) => {
 };
 
 export default {
+  verifyToken,
   login,
   register,
   updateUserName,
