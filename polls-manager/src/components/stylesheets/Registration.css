@@ -2,12 +2,9 @@
 @media screen and (min-width:480px){
 .mainDiv{
    
-    background-color: red;
+    background-color: rgb(176, 233, 233);
     margin: auto;
-    /* padding: 10px;
-    height: 577px;
-    width: 1366px;
-    display: flex; */
+    
     
    
 }}
@@ -15,7 +12,7 @@
 @media screen and (min-width:480px ){
 .labels{
     padding-top: 10px;
- background-color: aqua;
+ /* background-color: rgb(176, 233, 233); */
  float: left;
 height: 290px;
 }
@@ -24,21 +21,25 @@ height: 290px;
 @media screen and (min-width:480px ){
 .textField{
     /* margin-right: 900px; */
-    background-color: green;
+    /* background-color: green; */
+    padding-top: 10px;
 }}
 
 @media screen and (min-width:480px ){
 .input-control{
+    
    border-radius: 25px;
   border: 1px solid black;
   padding: 20px; 
   width: 250px;
   height: 10px;  
+  margin-bottom: 3px;
+  outline: none;
 }}
 @media screen and (min-width:480px ){
 .label-input{
     
-    padding-bottom: 10px;
+    padding-bottom: 14.5px;
     padding-left: 10px;
     padding-right: 20px;
   

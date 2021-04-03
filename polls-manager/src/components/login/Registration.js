@@ -32,7 +32,7 @@ class Registration extends Component {
     //====================
     if (this.state.userName === "") {
       flag = false;
-      this.setState({ userName: "UserName Is Required" });
+      this.setState({ userName: "Username is Required" });
     } else {
       this.setState({ userNameError: "" });
     }
@@ -198,6 +198,7 @@ class Registration extends Component {
               {this.state.userNameError}
             </username>
             <br />
+
             <firstname>
               <input
                 type="text"
