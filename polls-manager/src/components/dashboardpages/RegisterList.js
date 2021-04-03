@@ -8,14 +8,22 @@ import "../stylesheets/Home.css"
     return (
         <div className='reg'>
            <CardColumns>
-               <Card syle={{width:'18rem'}}>
+               <Card style={{width:'18rem'}}>
                    <Card.Title>Regsitered Polls</Card.Title>
-                   <ListGroup Variant='flush'>
-                       <ListGroup.Item>Poll for School</ListGroup.Item>
-                       <ListGroup.Item>Poll for society</ListGroup.Item>
-                       <ListGroup.Item>Poll for NMMC</ListGroup.Item>
-
-                   </ListGroup>
+                   <ul  className='list'>
+                        <li>text</li>
+                        <li>text</li>
+                        <li>text</li>
+                        <li>text</li>
+                        <li>text</li>
+                        <li>text</li>
+                        <li>text</li>
+                        <li>text</li>
+                        <li>text</li>
+                        <li>text</li>
+                        <li>text</li>
+                        <li>text</li>
+                   </ul>
 
                </Card>
            </CardColumns>

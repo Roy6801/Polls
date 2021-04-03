@@ -26,9 +26,17 @@
   }
 
   .reg{
-    align-content: center;
-    align-items: center;
-    justify-content: center;
+    
     float:right
 
+  }
+
+ .list {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    white-space: nowrap;
+ }
+    li {
+      display: inline-block;
+    
   }
