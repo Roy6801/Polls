@@ -15,7 +15,7 @@ const App = () => {
   }
 
   if (user !== null) {
-    return <h1>Hello</h1>;
+    return <h1>{user}</h1>;
   } else {
     return <Login />;
   }

@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "../stylesheets/Dashboard.css";
 import NavbarDash from "./NavbarDash";
-import HomeDash from "./HomeDash";
+import User from "./User";
 import Createform from "./Createform";
 import Report from "./Report";
 
@@ -15,7 +15,7 @@ function Dashboard(props) {
         <Route
           exact
           path="/dashboard"
-          render={(props) => <HomeDash userName={uName} />}
+          render={(props) => <User userName={uName} />}
         />
         <Route exact path="/dashboard/report" component={Report} />
         <Route exact path="/dashboard/createform" component={Createform} />
