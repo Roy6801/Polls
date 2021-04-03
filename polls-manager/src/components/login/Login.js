@@ -114,7 +114,12 @@ class Login extends React.Component {
                       <b>Username: &nbsp; &nbsp;</b>
                     </label>
                     <input
-                      style={{  borderRadius: "40px" }}
+                      style={{
+                        borderRadius: "40px",
+                        borderWidth: "1px",
+                        borderStyle: "solid",
+                        borderColor: "black",
+                      }}
                       type="text"
                       placeholder="Username"
                       name="userName"
@@ -131,7 +136,12 @@ class Login extends React.Component {
                       <b> Password: &nbsp; &nbsp;&nbsp;</b>{" "}
                     </label>
                     <input
-                      style={{ borderRadius: "40px" }}
+                      style={{
+                        borderRadius: "40px",
+                        borderWidth: "1px",
+                        borderStyle: "solid",
+                        borderColor: "black",
+                      }}
                       placeholder="Password"
                       type="Password"
                       name="password"
