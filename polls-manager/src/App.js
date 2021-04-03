@@ -1,31 +1,24 @@
-import React, { Component } from "react";
+import { useState } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Navbar from "./components/homepages/Navbar";
-import Home from "./components/homepages/Home";
-import Dashboard from "./components/homepages/Dashboard";
-import Contact from "./components/homepages/Contact";
-import About from "./components/homepages/About";
-import Registration from "./components/login/Registration";
+import Dashboard from "./components/dashboardpages/Dashboard";
+import Login from "./components/login/Login";
+import Service from "./components/Service";
 
-class App extends Component {
-  state = {};
-  render() {
-    return (
-      <div>
-        <Router>
-          <Navbar />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/contact" component={Contact} />
-            <Route exact path="/register" component={Registration} />
-          </Switch>
-        </Router>
-      </div>
-    );
+const App = () => {
+  const [user, setuser] = useState(null);
+
+  const val = window.localStorage.getItem("polls-manager-system-G22");
+  if (val !== null && val !== undefined) {
+    Service.verifyToken({ userToken: val }).then((resp) => {
+      setuser(resp.data.response.userName);
+    });
   }
-}
+
+  if (user !== null) {
+    return <h1>Hello</h1>;
+  } else {
+    return <Login />;
+  }
+};
 
 export default App;

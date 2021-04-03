@@ -1,3 +1,4 @@
+
 import React from 'react'
 
 import "../stylesheets/MyStyle.css";
@@ -6,13 +7,16 @@ import "../stylesheets/MyStyle.css";
     return (
         <div
             style={{
+
           backgroundImage: `url("https://png.pngtree.com/thumb_back/fw800/back_our/20190620/ourmid/pngtree-business-finance-hd-background-image_145887.jpg")`,
           background_position: "center",
           background_repeat: "no_repeat",
         }}
       >
         <p>
+
           <h1 style={{ color: "black" }} align="center">
+
             About Us...
           </h1>
           <br></br>
@@ -44,7 +48,7 @@ import "../stylesheets/MyStyle.css";
           </div>
         </p>
         </div>
-    )
+    );
 }
 
 export default About;

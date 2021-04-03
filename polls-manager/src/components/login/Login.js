@@ -45,8 +45,16 @@ class Login extends React.Component {
     };
     
     Service.login(user).then((resp) => {
-      if (resp.data.response === 1) {
-        this.setState({ redirect: true });
+      if (
+        resp.data.response !== 0 &&
+        resp.data.response !== undefined &&
+        resp.data.response !== null
+      ) {
+        window.localStorage.setItem(
+          "polls-manager-system-G22",
+          resp.data.response
+        );
+        //this.setState({ redirect: true });
       } else {
         alert("Check Username or Password!!");
       }
@@ -111,12 +119,17 @@ class Login extends React.Component {
                   <div className="alert-danger">{this.state.userNameError}</div>
                   <div className="form-inline" align="center">
                     <label>
-                      <b>UserName &nbsp; &nbsp;</b>
+                      <b>Username: &nbsp; &nbsp;</b>
                     </label>
                     <input
-                      style={{ borderRadius: "40px" }}
+                      style={{
+                        borderRadius: "40px",
+                        borderWidth: "1px",
+                        borderStyle: "solid",
+                        borderColor: "black",
+                      }}
                       type="text"
-                      placeholder="User Name"
+                      placeholder="Username"
                       name="userName"
                       value={this.state.userName}
                       onChange={this.handleChange}
@@ -128,10 +141,15 @@ class Login extends React.Component {
                   <div className="alert-danger">{this.state.passwordError}</div>
                   <div className="form-inline" align="center">
                     <label>
-                      <b> Password &nbsp; &nbsp;&nbsp;</b>{" "}
+                      <b> Password: &nbsp; &nbsp;&nbsp;</b>{" "}
                     </label>
                     <input
-                      style={{ borderRadius: "40px" }}
+                      style={{
+                        borderRadius: "40px",
+                        borderWidth: "1px",
+                        borderStyle: "solid",
+                        borderColor: "black",
+                      }}
                       placeholder="Password"
                       type="Password"
                       name="password"
@@ -150,9 +168,7 @@ class Login extends React.Component {
                   >
                     Login
                   </button>
-                  <button className="btn btn-dark mt-3 mr-5 xs ">
-                    <Link to="/Register">Register </Link>
-                  </button>
+                  <button className="btn btn-dark mt-3 mr-5 xs "></button>
                   <br></br>
                 </div>
               </form>
