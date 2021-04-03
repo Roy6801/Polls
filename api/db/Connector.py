@@ -120,7 +120,7 @@ class Connection:
         flag = self.exec(tuple(pollData.values()))
         if flag == 1:
             self.query = 'create table ' + \
-                val[0]+' (sr_no int(1) not null primary key auto_increment)'
+                val[0]+' (sr_no int(1) not null primary key auto_increment) engine="InnoDB"'
             if self.exec() == 1:
                 for i in range(len(data['options'])):
                     self.query = 'alter table ' + \
@@ -130,6 +130,23 @@ class Connection:
             else:
                 return 0
         return flag
+
+    def getPollInfo(self, data):
+        if data[0:3] == "REG":
+            self.query = 'select * from poll where registerURL = %s'
+        else:
+            self.query = 'select * from poll where pollURL = %s'
+        flag = self.exec(data)
+        if flag == 1:
+            val = self.cur.fetchone()
+            response = {"poll_Id": val[0], "adminUserName": val[1], "verificationCriteria": val[2], "registerURL": val[3], "pollURL": val[4],
+                        "anonymity": val[5], "timestamp": val[6], "deadline": val[7], "scheduled": val[8], "radio": val[9], "optionsCount": val[10]}
+            return response
+        else:
+            return 0
+
+    def registerForPoll(self, data):
+        pass
 
     def getPollListByAdmin(self, userName):
         pass
@@ -144,15 +161,17 @@ class Connection:
         pass
 
 
-#conn = Connection()
+conn = Connection()
 
-#userData = {"userName": "Bose", "password": "Mondal06$", "firstName": "Sonu",
-#            "lastName": "Mondal", "email": "m@g", "mobileNo": "7900122097"}
+userData = {"userName": "Bose", "password": "Mondal06$", "firstName": "Sonu",
+            "lastName": "Mondal", "email": "m@g", "mobileNo": "7900122097"}
 
-#pollForm = {"userName": "Raikiri", "verificationCriteria": "Aadhar", "deadline": "1616866213",
-#            "anonymity": 0, "scheduled": 0, "radio": 1, "optionsCount": 4, "options": ["Maths", "History", "Science", "Civics"]}
+pollForm = {"userName": "Kaara", "verificationCriteria": "Aadhar", "deadline": "1616866213",
+            "anonymity": 0, "scheduled": 0, "radio": 1, "optionsCount": 4, "options": ["Maths", "History", "Science", "Civics"]}
 
 
 # print(conn.verifyUser(userData))
-#print(conn.createPoll(pollForm))
+print(conn.createPoll(pollForm))
 # print(conn.checkRegisterURL("REGNQ1V02hdojVEJnCbswvgCgMPHovlOb6r8OPXaqzOek7Bk3TYF9"))
+#print(conn.getPollInfo(
+#    "trbORxo5tuBIwVgD3moQ3T4EDQilpIPXWp52N5cUgfvsXkKdrh"))
