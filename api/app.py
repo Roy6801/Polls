@@ -37,5 +37,10 @@ def create():
     return {"response": response}
 
 
+@app.route("/RegisterForPoll/<user>/<url>", methods=["GET", "POST"])
+def registerForPoll(user, url):
+    return user + " " + url
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', threaded=True)
