@@ -1,24 +1,43 @@
-import { useState } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
-import Dashboard from "./components/dashboardpages/Dashboard";
+import { Route, Switch } from "react-router-dom";
 import Login from "./components/login/Login";
-import Service from "./components/Service";
+import NavbarDash from "./components/dashboardpages/NavbarDash";
+import Createform from "./components/dashboardpages/Createform";
+import Report from "./components/dashboardpages/Report";
+import User from "./components/dashboardpages/User";
+import useToken from "./components/useToken";
 
 const App = () => {
-  const [user, setuser] = useState(null);
+  //window.localStorage.removeItem("polls-manager-system-G22");
 
-  const val = window.localStorage.getItem("polls-manager-system-G22");
-  if (val !== null && val !== undefined) {
-    Service.verifyToken({ userToken: val }).then((resp) => {
-      setuser(resp.data.response.userName);
-    });
+  const { token, setToken } = useToken();
+  console.log(token);
+
+  if (!token) {
+    return <Login setToken={setToken} />;
   }
 
-  if (user !== null) {
-    return <h1>{user}</h1>;
-  } else {
-    return <Login />;
-  }
+  return (
+    <div>
+      <div>
+        <NavbarDash />
+      </div>
+      <div
+        style={{
+          width: "auto",
+          height: "auto",
+          backgroundColor: "red",
+          float: "right",
+        }}
+      >
+        <Switch>
+          <Route exact path="/" component={User} />
+          <Route exact path="/report" component={Report} />
+          <Route exact path="/createform" component={Createform} />
+        </Switch>
+      </div>
+    </div>
+  );
 };
 
 export default App;

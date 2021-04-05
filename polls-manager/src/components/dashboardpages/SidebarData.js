@@ -7,39 +7,38 @@ import * as BsIcon from "react-icons/bs";
 export const SidebarData = [
   {
     title: "User",
-    path: "/dashboard/user",
+    path: "/",
     icon: <FaIcon.FaUserCircle />,
     cName: "nav-text",
   },
   {
     title: "Create Form",
-    path: "/dashboard/createform",
+    path: "/createform",
     icon: <IoIcon.IoMdCreate />,
     cName: "nav-text",
   },
   {
     title: "Reports",
-    path: "/dashboard/report",
+    path: "/report",
     icon: <IoIcon.IoIosPaper />,
     cName: "nav-text",
   },
   {
     title: "Help",
-    path: "/dashboard/help",
+    path: "/help",
     icon: <IoIcon.IoIosHelpCircle />,
     cName: "nav-text",
   },
   {
     title: "About US",
-    path: "/dashboard/about",
+    path: "/about",
     icon: <FaIcon.FaInfoCircle />,
     cName: "nav-text",
   },
   {
     title: "Contact Us",
-    path: "/dashboard/contact",
-    icon: <FaIcon.FaPhone/>,
+    path: "/contact",
+    icon: <FaIcon.FaPhone />,
     cName: "nav-text",
   },
-  
 ];
