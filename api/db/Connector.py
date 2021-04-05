@@ -77,6 +77,7 @@ class Connection:
             return 0
 
     def userNameExist(self, userName):
+        print(userName)
         self.query = 'select count(*) from user where userName = %s'
         flag = self.exec(userName)
         if self.cur.fetchone()[0] == 1 and flag == 1:
@@ -93,7 +94,7 @@ class Connection:
             return 0
 
     def verifyUser(self, data):
-        if self.userNameExist(data['userName']):
+        if self.userNameExist(data['userName']) == 1:
             self.query = 'select password from user where userName = %s'
             flag = self.exec(data['userName'])
             if self.cur.fetchone()[0] == data['password'] and flag == 1:
@@ -173,16 +174,16 @@ class Connection:
         pass
 
 
-conn = Connection()
+#conn = Connection()
 
-userData = {"userName": "Bose", "password": "Mondal06$", "firstName": "Sonu",
-            "lastName": "Mondal", "email": "m@g", "mobileNo": "7900122097"}
+#userData = {"userName": "Kaara", "password": "Mondal06$", "firstName": "Sonu",
+#            "lastName": "Mondal", "email": "m@g", "mobileNo": "7900122097"}
 
-pollForm = {"userName": "Kaara", "pollName": "FirstPoll", "verificationCriteria": "Aadhar", "deadline": "1616866213",
-            "anonymity": 0, "scheduled": 0, "radio": 1, "optionsCount": 4, "options": ["Maths", "History", "Science", "Civics"]}
+#pollForm = {"userName": "Kaara", "pollName": "FirstPoll", "verificationCriteria": "Aadhar", "deadline": "1616866213",
+#            "anonymity": 0, "scheduled": 0, "radio": 1, "optionsCount": 4, "options": ["Maths", "History", "Science", "Civics"]}
 
 
-# print(conn.verifyUser(userData))
+#print(conn.verifyUser(userData))
 #print(conn.createPoll(pollForm))
 # print(conn.checkRegisterURL("REGNQ1V02hdojVEJnCbswvgCgMPHovlOb6r8OPXaqzOek7Bk3TYF9"))
 #print(conn.getPollInfo(
