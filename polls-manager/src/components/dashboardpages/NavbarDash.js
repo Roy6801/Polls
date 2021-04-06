@@ -1,14 +1,20 @@
 import { useState } from "react";
+import propTypes from "prop-types";
 import * as BiIcon from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "../stylesheets/NavbarDash.css";
 import { IconContext } from "react-icons";
 
-const NavbarDash = () => {
+const NavbarDash = ({ setToken }) => {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
+
+  const handleClick = () => {
+    window.localStorage.removeItem("polls-manager-system-G22");
+    setToken();
+  };
 
   return (
     <>
@@ -27,10 +33,17 @@ const NavbarDash = () => {
               </li>
             );
           })}
+          <button type="submit" onClick={handleClick}>
+            LogOut
+          </button>
         </ul>
       </nav>
     </>
   );
+};
+
+NavbarDash.protoTypes = {
+  setToken: propTypes.func.isRequired,
 };
 
 export default NavbarDash;

@@ -15,7 +15,7 @@ const User = () => {
   });
   return (
     <div>
-      <Info userName = {userName} />
+      <Info userName={userName} />
       <ChartPoll />
       <RegisterList />
     </div>
