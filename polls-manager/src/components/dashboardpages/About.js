@@ -13,7 +13,6 @@ import "../stylesheets/MyStyle.css";
           background_repeat: "no_repeat",
         }}
       >
-        <p>
 
           <h1 style={{ color: "black" }} align="center">
 
@@ -46,7 +45,6 @@ import "../stylesheets/MyStyle.css";
             <br></br>
             <h7>Group22@gmail.com</h7>
           </div>
-        </p>
         </div>
     );
 }

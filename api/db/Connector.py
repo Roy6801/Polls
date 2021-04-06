@@ -87,7 +87,7 @@ class Connection:
 
     def createUser(self, data):
         if not self.userNameExist(data['userName']):
-            self.query = 'insert into user values (%s, %s, %s, %s, %s, %s)'
+            self.query = 'insert into user values (%s, %s, %s, %s, %s, %s, %s)'
             flag = self.exec(tuple(data.values()))
             return flag
         else:

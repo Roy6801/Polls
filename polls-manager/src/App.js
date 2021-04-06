@@ -1,9 +1,10 @@
-import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import { Route, Switch } from "react-router-dom";
 import Login from "./components/login/Login";
 import NavbarDash from "./components/dashboardpages/NavbarDash";
 import Createform from "./components/dashboardpages/Createform";
 import Report from "./components/dashboardpages/Report";
+import Contact from "./components/dashboardpages/Contact";
+import About from "./components/dashboardpages/About";
 import User from "./components/dashboardpages/User";
 import useToken from "./components/useToken";
 
@@ -14,7 +15,11 @@ const App = () => {
   console.log(token);
 
   if (!token) {
-    return <Login setToken={setToken} />;
+    return (
+      <div>
+        <Login setToken={setToken} />
+      </div>
+    );
   }
 
   return (
@@ -34,6 +39,8 @@ const App = () => {
           <Route exact path="/" component={User} />
           <Route exact path="/report" component={Report} />
           <Route exact path="/createform" component={Createform} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/contact" component={Contact} />
         </Switch>
       </div>
     </div>
