@@ -23,47 +23,42 @@ export class Contact extends Component {
       >
         <form>
           <div>
-            <p>
-              <h2>Contact Us...</h2>
-              <br></br>
-              <h4>Do you have any questions?</h4> <br></br>
+              <h2>Contact Us...</h2><br/>
+              <h4>Do you have any questions?</h4> <br/>
               <h5>
                 <i>
                   Please do not hesitate to contact us directly. Our team will
                   come back to you within an hours to help you.
                 </i>
-              </h5>{" "}
-              <br></br>
-              <div class="col-md-6">
-                <div class="md-form mb-0">
+              </h5><br/>
+              <div className="col-md-6">
+                <div className="md-form mb-0">
                   <label> Name:</label>
-                  <input type="text" class="form-control" required />
+                  <input type="text" className="form-control" required />
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="md-form mb-0">
-                  <label for="email" class="">
-                    {" "}
+              <div className="col-md-6">
+                <div className="md-form mb-0">
+                  <label htmlFor="email">
                     Email:
                   </label>
-                  <input type="Email" class="form-control" required />
+                  <input type="Email" className="form-control" required />
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="md-form mb-0">
-                  <label for="subject"> Subject:</label>
-                  <textarea class="form-control"></textarea>
+              <div className="col-md-6">
+                <div className="md-form mb-0">
+                  <label htmlFor="subject"> Subject:</label>
+                  <textarea className="form-control"></textarea>
                 </div>
               </div>
-              <div align="left">
-                <br></br>
-                <a class="btn btn-primary" onClick={this.OnSubmit}>
+              <div align="left">/<br/>
+                <a className="btn btn-primary" onClick={this.OnSubmit}>
                   Send
                 </a>
               </div>
-              <div class="status"></div>
+              <div className="status"></div>
               <div>
-                <ul class="list-unstyled mb-1">
+                <ul className="list-unstyled mb-1">
                   <li>
                     <h4>Address: Pillai College Of Engineering </h4>
                     <h6> New Panvel</h6>
@@ -72,7 +67,6 @@ export class Contact extends Component {
                   </li>
                 </ul>
               </div>
-            </p>
           </div>
         </form>
       </div>
