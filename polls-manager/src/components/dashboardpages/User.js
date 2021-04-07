@@ -19,7 +19,7 @@ const User = () => {
   });
   return (
     <div>
-      <Info userName={userName} />
+      
       <ChartPoll />
       <RegisterList />
       <CreatedPoll/>
