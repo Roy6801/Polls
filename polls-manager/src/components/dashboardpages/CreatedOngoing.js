@@ -1,15 +1,17 @@
-import React from 'react'
+import React from 'react';
+import "../stylesheets/Home.css";
 import Card from 'react-bootstrap/Card';
 import CardColumns from 'react-bootstrap/CardColumns'
-import "../stylesheets/Home.css"
 
- function RegisterList() {
+
+
+function CreatedOngoing() {
     return (
         <div className='reg'>
            <CardColumns>
                <Card style={{width:'400px',
-            backgroundColor: "brown",}}>
-                   <Card.Title>Regsitered Polls</Card.Title>
+            backgroundColor: "green",}}>
+                   <Card.Title>Created Ongoing Polls</Card.Title>
                    <ul  className='list'>
                         <li>text</li>
                         <li>text</li>
@@ -31,4 +33,4 @@ import "../stylesheets/Home.css"
         </div>
     )
 }
-export default RegisterList;
+export default CreatedOngoing;
