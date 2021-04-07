@@ -23,6 +23,7 @@ const App = () => {
   }
 
   return (
+
     <div
      
     >
@@ -31,6 +32,7 @@ const App = () => {
       </div>
       <div
         
+
       >
         <Switch>
           <Route exact path="/" component={User} />
