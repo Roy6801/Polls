@@ -10,11 +10,11 @@ import useToken from "./components/useToken";
 const App = () => {
   //window.localStorage.removeItem("polls-manager-system-G22");
 
-  const { token, setToken } = useToken();
+  const { token, setToken } = useToken("$$$NULL$$$");
 
   console.log(token);
 
-  if (!token) {
+  if (token === "$$$NULL$$$") {
     return (
       <div>
         <Login setToken={setToken} />
@@ -23,17 +23,11 @@ const App = () => {
   }
 
   return (
-
-    <div
-     
-    >
+    <div>
       <div>
-        <NavbarDash setToken={setToken}  />
+        <NavbarDash setToken={setToken} />
       </div>
-      <div
-        
-
-      >
+      <div>
         <Switch>
           <Route exact path="/" component={User} />
           <Route exact path="/createform" component={Createform} />

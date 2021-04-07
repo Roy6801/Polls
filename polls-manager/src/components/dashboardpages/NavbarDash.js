@@ -5,9 +5,7 @@ import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "../stylesheets/NavbarDash.css";
 import { IconContext } from "react-icons";
-import Info from "./Info";
 import Service from "../Service";
-
 
 const NavbarDash = ({ setToken }) => {
   const [sidebar, setSidebar] = useState(false);
@@ -15,41 +13,39 @@ const NavbarDash = ({ setToken }) => {
   const showSidebar = () => setSidebar(!sidebar);
 
   const handleClick = () => {
-    window.localStorage.removeItem("polls-manager-system-G22");
-    setToken();
+    window.localStorage.setItem("polls-manager-system-G22", "$$$NULL$$$");
+    window.localStorage.setItem("polls-manager-system-G22-user", "$$$NULL$$$");
+    setToken("$$$NULL$$$");
   };
-  
-
 
   return (
     <>
-      <IconContext.Provider value={{color:'#fff'}}>
-          <div className="navbar">
-                    <Link to='#' className='menu-bars'>
-                    <BiIcon.BiLayer onClick={showSidebar} /> 
-                    <h2 onClick={showSidebar} >hello </h2>
-                    </Link>
-                    
-                </div>
-        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-     
-        <ul className="nav-menu-items" onClick={showSidebar} >
-         
-          {SidebarData.map((items, index) => {
-            return (
-              <li key={index} className={items.cName}>
-                <Link to={items.path}>
-                  {items.icon}
-                  <span>{items.title}</span>
-                </Link>
-              </li>
-            );
-          })}
-          <button type="submit" onClick={handleClick}>
-            LogOut
-          </button>
-        </ul>
-      </nav>
+      <IconContext.Provider value={{ color: "#fff" }}>
+        <div className="navbar">
+          <Link to="#" className="menu-bars">
+            <BiIcon.BiLayer onClick={showSidebar} />
+            <h2 onClick={showSidebar}>
+              {window.localStorage.getItem("polls-manager-system-G22-user")}
+            </h2>
+          </Link>
+        </div>
+        <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
+          <ul className="nav-menu-items" onClick={showSidebar}>
+            {SidebarData.map((items, index) => {
+              return (
+                <li key={index} className={items.cName}>
+                  <Link to={items.path}>
+                    {items.icon}
+                    <span>{items.title}</span>
+                  </Link>
+                </li>
+              );
+            })}
+            <button type="submit" onClick={handleClick}>
+              LogOut
+            </button>
+          </ul>
+        </nav>
       </IconContext.Provider>
     </>
   );
