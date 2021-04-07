@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "../stylesheets/NavbarDash.css";
 import { IconContext } from "react-icons";
+import Info from "./Info";
+import Service from "../Service";
+
 
 const NavbarDash = ({ setToken }) => {
   const [sidebar, setSidebar] = useState(false);
@@ -15,14 +18,23 @@ const NavbarDash = ({ setToken }) => {
     window.localStorage.removeItem("polls-manager-system-G22");
     setToken();
   };
+  
+
 
   return (
     <>
-      <nav className={  "nav-menu"}>
-        <ul className="nav-menu-items" >
-          <li className="navbar-toggle">
-            <Link to="#" className="menu-bars"></Link>
-          </li>
+      <IconContext.Provider value={{color:'#fff'}}>
+          <div className="navbar">
+                    <Link to='#' className='menu-bars'>
+                    <BiIcon.BiLayer onClick={showSidebar} /> 
+                    <h2 onClick={showSidebar} >hello </h2>
+                    </Link>
+                    
+                </div>
+        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+     
+        <ul className="nav-menu-items" onClick={showSidebar} >
+         
           {SidebarData.map((items, index) => {
             return (
               <li key={index} className={items.cName}>
@@ -38,6 +50,7 @@ const NavbarDash = ({ setToken }) => {
           </button>
         </ul>
       </nav>
+      </IconContext.Provider>
     </>
   );
 };

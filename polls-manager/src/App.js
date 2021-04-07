@@ -24,18 +24,13 @@ const App = () => {
 
   return (
     <div
-      style={{ backgroundColor: "yellow", width: "1000px"}}
+     
     >
       <div>
-        <NavbarDash setToken={setToken} />
+        <NavbarDash setToken={setToken}  />
       </div>
       <div
-        style={{
-          width: "500px",
-          backgroundColor: "red",
-          float: "right",
-          height:"100px"
-        }}
+        
       >
         <Switch>
           <Route exact path="/" component={User} />
