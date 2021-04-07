@@ -27,7 +27,10 @@ const Login = ({ setToken }) => {
         resp.data.response !== undefined &&
         resp.data.response !== null
       ) {
-        console.log(resp.data.response);
+        window.localStorage.setItem(
+          "polls-manager-system-G22-user",
+          user.userName
+        );
         setToken(resp.data.response);
       } else {
         alert("Check Username or Password!!");
