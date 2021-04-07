@@ -24,7 +24,7 @@ const App = () => {
 
   return (
     <div>
-      <div>
+      <div style={{  backgroundColor:"green", marginRight:"auto", width:"500px"}}>
         <NavbarDash setToken={setToken} />
       </div>
       <div
@@ -32,7 +32,10 @@ const App = () => {
           width: "auto",
           height: "auto",
           backgroundColor: "red",
-          float: "right",
+      
+          marginLeft:"auto"
+         
+
         }}
       >
         <Switch>

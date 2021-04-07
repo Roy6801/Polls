@@ -18,8 +18,8 @@ const NavbarDash = ({ setToken }) => {
 
   return (
     <>
-      <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
-        <ul className="nav-menu-items" onClick={showSidebar}>
+      <nav className={  "nav-menu"}>
+        <ul className="nav-menu-items" >
           <li className="navbar-toggle">
             <Link to="#" className="menu-bars"></Link>
           </li>
