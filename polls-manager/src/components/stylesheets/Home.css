@@ -25,18 +25,15 @@
 
   }
 
-  .reg{
-    
-    float:right
-
-  }
+  
 
  .list {
     overflow-y: scroll;
     overflow-x: hidden;
-    white-space: nowrap;
+  /*white-space:normal;*/
  }
     li {
-      display: inline-block;
+      display:table-cell;
+      
     
   }
