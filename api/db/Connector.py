@@ -48,13 +48,30 @@ def pollCreate(scheduled=0, deadline=int(time.time())+3600):
 
 class Connection:
     def __init__(self):
+        flag = False
+        conn = None
         try:
             conn = pymysql.connect(user="root", password="", host="localhost",
                                    port=3306, database="polls_manager", autocommit=1)
+            flag = True
         except:
-            conn = pymysql.connect(user="root", password="", host="localhost",
-                                   port=3308, database="polls_manager", autocommit=1)
-        self.cur = conn.cursor()
+            print("No connection at port 3306")
+
+        if not flag:
+            try:
+                conn = pymysql.connect(user="root", password="", host="localhost",
+                                       port=3308, database="polls_manager", autocommit=1)
+                flag = True
+            except:
+                print("No connection at port 3308")
+
+        if not flag:
+            try:
+                self.cur = conn.cursor()
+            except:
+                print("Connection could not be established!!")
+        else:
+            print("Connection could not be established!!")
 
     def exec(self, *args):
         try:
@@ -78,7 +95,7 @@ class Connection:
 
     def userNameExist(self, userName):
         print(userName)
-        self.query = 'select count(*) from user where userName = %s'
+        self.query = 'select count(*) from user where userName = BINARY %s'
         flag = self.exec(userName)
         if self.cur.fetchone()[0] == 1 and flag == 1:
             return 1
