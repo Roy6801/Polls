@@ -1,8 +1,10 @@
 import "../stylesheets/Home.css";
+import "../stylesheets/Register.css";
+
 
 function PartOngoing() {
   return (
-    <div className="reg">
+    <div className="mainDiv">
         <div style={{ width: "400px", backgroundColor: "orange" }}>
           <h4>Participated Ongoing Polls</h4>
           <ul className="list">

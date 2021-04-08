@@ -1,14 +1,16 @@
-import {useState} from "react";
+import{useState} from 'react';
+import ReactDOM from 'react-dom';
+import "../stylesheets/Home.css";
 
 
-const Createform = () => {
-  const [val, setval] = useState(4)
+function BasicForm() {
+    const [val, setval] = useState(4)
     const sliderange=(e)=>{
         setval(e.target.value);
     }
-  return (
-    <div className="createform" style={{height:"100%", backgroundColor:"green"}}>
-      
+   
+    return (
+        <div className='maindiv' style={{backgroundColor:""}}>
             <div className='titlepoll'>
                 <form>
                     <h2>Title</h2>
@@ -41,8 +43,8 @@ const Createform = () => {
             <div className='button-n'>
                 <input type="button" value="submit"/>
             </div>
-    </div>
-  );
-};
-
-export default Createform;
+            
+        </div>
+    );
+}
+export default BasicForm;
