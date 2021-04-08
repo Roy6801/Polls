@@ -24,7 +24,7 @@ const NavbarDash = ({ setToken }) => {
         <div className="navbar">
           <Link to="#" className="menu-bars">
             <BiIcon.BiLayer onClick={showSidebar} />
-            <h2 onClick={showSidebar}>
+            <h2 onClick={showSidebar} >
               {window.localStorage.getItem("polls-manager-system-G22-user")}
             </h2>
           </Link>
