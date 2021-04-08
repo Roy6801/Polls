@@ -1,0 +1,48 @@
+.figure{
+   float: right;
+    margin-right: 30px;
+    margin-top:10px;
+    margin-left: 100px;
+    text-decoration-color: lightcoral;
+    
+    
+    
+ }
+.media{
+   
+    margin-top: 50px;
+    margin-left: 300px;
+      
+  }
+
+  .list{
+    display:flex;
+    position:static;
+    margin-top: 50px;
+    background: none;
+    justify-content: center;
+
+
+  }
+
+  
+
+ .list {
+    overflow-y: scroll;
+    overflow-x: hidden;
+  /*white-space:normal;*/
+ }
+    li {
+      display:table-cell;
+      
+    
+  }
+
+ 
+
+
+
+
+  
+  
+  
