@@ -1,36 +1,26 @@
-import React from 'react';
-import Card from 'react-bootstrap/Card';
 import "../stylesheets/Home.css";
-import CardColumns from 'react-bootstrap/CardColumns'
-
-
 
 function PollToStart() {
-    return (
-        <div className='reg'>
-        <CardColumns>
-            <Card style={{width:'400px',
-        backgroundColor: "yellow",}}>
-                <Card.Title>Poll  About To Start</Card.Title>
-                <ul  className='list'>
-                     <li>text</li>
-                     <li>text</li>
-                     <li>text</li>
-                     <li>text</li>
-                     <li>text</li>
-                     <li>text</li>
-                     <li>text</li>
-                     <li>text</li>
-                     <li>text</li>
-                     <li>text</li>
-                     <li>text</li>
-                     <li>text</li>
-                </ul>
-
-            </Card>
-        </CardColumns>
-         
-     </div>
-    )
+  return (
+    <div className="reg">
+        <div style={{ width: "400px", backgroundColor: "yellow" }}>
+          <h4>Poll About To Start</h4>
+          <ul className="list">
+            <li>text</li>
+            <li>text</li>
+            <li>text</li>
+            <li>text</li>
+            <li>text</li>
+            <li>text</li>
+            <li>text</li>
+            <li>text</li>
+            <li>text</li>
+            <li>text</li>
+            <li>text</li>
+            <li>text</li>
+          </ul>
+        </div>
+    </div>
+  );
 }
 export default PollToStart;

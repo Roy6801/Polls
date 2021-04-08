@@ -1,37 +1,26 @@
-import React from 'react';
 import "../stylesheets/Home.css";
-import Card from 'react-bootstrap/Card';
-import CardColumns from 'react-bootstrap/CardColumns'
-
-
 
 function PartOngoing() {
-    return (
-        <div className='reg'>
-        <CardColumns>
-            <Card style={{width:'400px',
-                            backgroundColor: "orange",
-        }}>
-                <Card.Title>Participated Ongoing Polls</Card.Title>
-                <ul  className='list'>
-                     <li>text</li>
-                     <li>text</li>
-                     <li>text</li>
-                     <li>text</li>
-                     <li>text</li>
-                     <li>text</li>
-                     <li>text</li>
-                     <li>text</li>
-                     <li>text</li>
-                     <li>text</li>
-                     <li>text</li>
-                     <li>text</li>
-                </ul>
-
-            </Card>
-        </CardColumns>
-         
-     </div>
-    )
+  return (
+    <div className="reg">
+        <div style={{ width: "400px", backgroundColor: "orange" }}>
+          <h4>Participated Ongoing Polls</h4>
+          <ul className="list">
+            <li>text</li>
+            <li>text</li>
+            <li>text</li>
+            <li>text</li>
+            <li>text</li>
+            <li>text</li>
+            <li>text</li>
+            <li>text</li>
+            <li>text</li>
+            <li>text</li>
+            <li>text</li>
+            <li>text</li>
+          </ul>
+        </div>
+    </div>
+  );
 }
 export default PartOngoing;
