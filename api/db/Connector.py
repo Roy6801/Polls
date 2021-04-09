@@ -9,13 +9,15 @@ char = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
         '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
 
+domain = "http://localhost:3000/Poll/"
+
 def userToken(userName):
     return userName + "_" + "".join(random.choices(char, k=50))
 
 
 def registerURL():
     global char
-    url = "REG" + "".join(random.choices(char, k=50))
+    url = domain + "REG" + "".join(random.choices(char, k=50))
     if conn.checkRegisterURL(url) == 1:
         return url
     else:
@@ -24,21 +26,19 @@ def registerURL():
 
 def pollURL():
     global char
-    url = "".join(random.choices(char, k=50))
+    url = domain + "".join(random.choices(char, k=50))
     if conn.checkPollURL(url) == 1:
         return url
     else:
         pollURL()
 
 
-def pollCreate(scheduled=0, deadline=int(time.time())+3600):
-    ts = int(time.time())
-    if int(deadline) > ts:
-        pass
-    else:
-        deadline = ts + 3600
+def pollCreate(scheduled=0, ts=int(time.time()), deadline=int(time.time())+3600):
+    global domain
+    if int(deadline) < int(ts):
+        deadline = int(ts) + 3600
     pollurl = pollURL()
-    pollid = str(ts)+"_"+pollurl
+    pollid = pollurl.replace(domain, "")
     if scheduled == 0:
         return (pollid, str(ts), pollurl, str(deadline), "")
     elif scheduled == 1:
@@ -48,6 +48,8 @@ def pollCreate(scheduled=0, deadline=int(time.time())+3600):
 
 class Connection:
     def __init__(self):
+        flag = False
+        conn = None
         try:
             conn = pymysql.connect(user="root", password="", host="localhost",
                                    port=3306, database="polls_manager", autocommit=1)
@@ -78,7 +80,7 @@ class Connection:
 
     def userNameExist(self, userName):
         print(userName)
-        self.query = 'select count(*) from user where userName = %s'
+        self.query = 'select count(*) from user where userName = BINARY %s'
         flag = self.exec(userName)
         if self.cur.fetchone()[0] == 1 and flag == 1:
             return 1
@@ -126,9 +128,9 @@ class Connection:
             return 0
 
     def createPoll(self, data):
-        val = pollCreate(data['scheduled'], data['deadline'])
-        pollData = {"poll_Id": val[0], "pollName": data['pollName'], "adminUserName": data['userName'], "verificationCriteria": "Aadhar", "registerURL": val[4], "pollURL": val[2],
-                    "anonymity": 0, "timestamp": val[1], "deadline": val[3], "scheduled": 1, "radio": 1, "optionsCount": 4}
+        val = pollCreate(data['scheduled'], data['ts'], data['deadline'])
+        pollData = {"poll_Id": val[0], "pollName": data['pollName'], "adminUserName": data['userName'], "verificationCriteria": data['verificationCriteria'], "registerURL": val[4], "pollURL": val[2],
+                    "anonymity": data['anonymity'], "timestamp": val[1], "deadline": val[3], "scheduled": data['scheduled'], "radio": data['radio'], "optionsCount": data['optionsCount']}
         self.query = 'insert into poll values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
         flag = self.exec(tuple(pollData.values()))
         if flag == 1:
@@ -145,11 +147,13 @@ class Connection:
         return flag
 
     def getPollInfo(self, data):
+        global domain
+        data = data.replace(domain, "")
         if data[0:3] == "REG":
-            self.query = 'select * from poll where registerURL = %s'
+            self.query = 'select * from poll where registerURL = BINARY %s'
         else:
-            self.query = 'select * from poll where pollURL = %s'
-        flag = self.exec(data)
+            self.query = 'select * from poll where pollURL = BINARY %s'
+        flag = self.exec(domain+data)
         if flag == 1:
             val = self.cur.fetchone()
             response = {"poll_Id": val[0], "pollName": val[1], "adminUserName": val[2], "verificationCriteria": val[3], "registerURL": val[4], "pollURL": val[5],
@@ -179,8 +183,8 @@ class Connection:
 #userData = {"userName": "Kaara", "password": "Mondal06$", "firstName": "Sonu",
 #            "lastName": "Mondal", "email": "m@g", "mobileNo": "7900122097"}
 
-#pollForm = {"userName": "Kaara", "pollName": "FirstPoll", "verificationCriteria": "Aadhar", "deadline": "1616866213",
-#            "anonymity": 0, "scheduled": 0, "radio": 1, "optionsCount": 4, "options": ["Maths", "History", "Science", "Civics"]}
+#pollForm = {"userName": "Kaara", "pollName": "TrialReg", "verificationCriteria": "Aadhar", "ts": "1617906676", "deadline": "1616866213",
+#        "anonymity": 1, "scheduled": 1, "radio": 1, "optionsCount": 4, "options": ["Maths", "History", "Science", "Civics"]}
 
 
 #print(conn.verifyUser(userData))

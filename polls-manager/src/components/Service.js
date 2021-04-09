@@ -34,8 +34,8 @@ const getAdminByPoll_Id = async (user) => {
   return axios.post(API_BASE_URL + "GetAdminByPoll_Id", { ...user });
 };
 
-const getPollInfo = async (user) => {
-  return axios.post(API_BASE_URL + "GetPollInfo", { ...user });
+const getPollInfo = async (url) => {
+  return axios.get(API_BASE_URL + "PollInfo/" + url);
 };
 
 const getRegisteredUsers = async (user) => {
