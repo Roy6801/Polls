@@ -6,6 +6,7 @@ import Contact from "./components/dashboardpages/Contact";
 import About from "./components/dashboardpages/About";
 import User from "./components/dashboardpages/User";
 import useToken from "./components/useToken";
+import Poll from "./components/interface/Poll";
 
 const App = () => {
   //window.localStorage.removeItem("polls-manager-system-G22");
@@ -33,6 +34,7 @@ const App = () => {
           <Route exact path="/createform" component={CreateForm} />
           <Route exact path="/about" component={About} />
           <Route exact path="/contact" component={Contact} />
+          <Route exact path="/Poll/:userName/:pollURL" component={Poll} />
         </Switch>
       </div>
     </div>

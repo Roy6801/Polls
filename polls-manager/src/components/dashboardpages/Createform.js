@@ -19,7 +19,7 @@ const CreateForm = () => {
       <div className="checkbox-obuttons">
         <form>
           <input type="checkbox" name="choice" value="Anonymity" /> Anonymity
-          <input type="checkbox" name="choice" value="Schedule" /> schedule
+          <input type="checkbox" name="choice" value="Schedule" /> Scheduled
         </form>
       </div>
       <div className="date-in">

@@ -5,29 +5,28 @@ import CreatedPoll from "./CreatedPoll";
 import CreatedOngoing from "./CreatedOngoing";
 import PartOngoing from "./PartOngoing";
 import PollToStart from "./PollToStart";
+import Service from "../Service";
 
 const User = () => {
   return (
-    <div >
-      <div style={{margin:"20px"}}>
-      <ChartPoll />
+    <div>
+      <div style={{ margin: "20px" }}>
+        <ChartPoll />
       </div>
-      <div style={{margin:"20px"}}>
-      <RegisterList />
+      <div style={{ margin: "20px" }}>
+        <RegisterList />
       </div>
-      <div style={{margin:"20px"}}>
-      <CreatedPoll />
-      
+      <div style={{ margin: "20px" }}>
+        <CreatedPoll />
       </div>
-      <div style={{margin:"20px"}}>
-      <CreatedOngoing />
+      <div style={{ margin: "20px" }}>
+        <CreatedOngoing />
       </div>
-      <div style={{margin:"20px"}}>
-      <PartOngoing />
+      <div style={{ margin: "20px" }}>
+        <PartOngoing />
       </div>
-      <div style={{margin:"20px"}}>
-
-      <PollToStart />
+      <div style={{ margin: "20px" }}>
+        <PollToStart />
       </div>
     </div>
   );
