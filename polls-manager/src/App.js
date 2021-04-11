@@ -30,11 +30,11 @@ const App = () => {
       </div>
       <div>
         <Switch>
-          <Route exact path="/" component={User} />
           <Route exact path="/createform" component={CreateForm} />
           <Route exact path="/about" component={About} />
           <Route exact path="/contact" component={Contact} />
-          <Route exact path="/Poll/:userName/:pollURL" component={Poll} />
+          <Route exact path="/Poll/:pollURL" component={Poll} />
+          <Route path="*" component={User} />
         </Switch>
       </div>
     </div>

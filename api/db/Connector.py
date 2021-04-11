@@ -11,6 +11,7 @@ char = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
 
 domain = "http://localhost:3000/Poll/"
 
+
 def userToken(userName):
     return userName + "_" + "".join(random.choices(char, k=50))
 
@@ -148,7 +149,6 @@ class Connection:
 
     def getPollInfo(self, data):
         global domain
-        data = data.replace(domain, "")
         if data[0:3] == "REG":
             self.query = 'select * from poll where registerURL = BINARY %s'
         else:
@@ -162,8 +162,24 @@ class Connection:
         else:
             return 0
 
+    def userInPoll(self, data):
+        self.query = "select * from registrant where poll_Id = BINARY %s and userName = BINARY %s"
+        flag = self.exec(tuple(data.values()))
+        val = self.cur.fetchone()
+        if flag == 1 and val is None:
+            return 1
+        elif flag == 1 and val is not None:
+            if val[4] == 0:
+                return 2
+            else:
+                return 3
+        else:
+            return flag
+
     def registerForPoll(self, data):
-        pass
+        self.query = "insert into registrant(userName, poll_Id, verificationId) values (%s, %s, %s)"
+        flag = self.exec(tuple(data.values()))
+        return flag
 
     def getPollListByAdmin(self, userName):
         pass
@@ -178,18 +194,21 @@ class Connection:
         pass
 
 
-#conn = Connection()
+# conn = Connection()
 
-#userData = {"userName": "Kaara", "password": "Mondal06$", "firstName": "Sonu",
+# userData = {"userName": "Kaara", "password": "Mondal06$", "firstName": "Sonu",
 #            "lastName": "Mondal", "email": "m@g", "mobileNo": "7900122097"}
 
-#pollForm = {"userName": "Kaara", "pollName": "TrialReg", "verificationCriteria": "Aadhar", "ts": "1617906676", "deadline": "1616866213",
+# pollForm = {"userName": "Kaara", "pollName": "TrialReg", "verificationCriteria": "Aadhar", "ts": "1617906676", "deadline": "1616866213",
 #        "anonymity": 1, "scheduled": 1, "radio": 1, "optionsCount": 4, "options": ["Maths", "History", "Science", "Civics"]}
 
 
-#print(conn.verifyUser(userData))
-#print(conn.createPoll(pollForm))
+# print(conn.verifyUser(userData))
+# print(conn.createPoll(pollForm))
 # print(conn.checkRegisterURL("REGNQ1V02hdojVEJnCbswvgCgMPHovlOb6r8OPXaqzOek7Bk3TYF9"))
-#print(conn.getPollInfo(
+# print(conn.getPollInfo(
 #    "trbORxo5tuBIwVgD3moQ3T4EDQilpIPXWp52N5cUgfvsXkKdrh"))
-#print(conn.token({"userToken": "Kaara_DgRuaxS2s4Bi24xvdQrGpkn6HoB7YQR2a9g4RP7zMGtquTB0p1"}))
+# print(conn.token({"userToken": "Kaara_DgRuaxS2s4Bi24xvdQrGpkn6HoB7YQR2a9g4RP7zMGtquTB0p1"}))
+
+# print(conn.userInPoll({"poll_Id":  "wFzYjw2pqFr6sw1HNrZPZLBaLjEVaqw45GjhPlkVnBrjjmFLow",
+#                             "userName":  "Kaara"}))

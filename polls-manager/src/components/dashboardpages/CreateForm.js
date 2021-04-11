@@ -33,7 +33,7 @@ const CreateForm = () => {
           type="range"
           min="2"
           max="8"
-          class="slider"
+          className="slider"
           id="myRange"
           onChange={sliderange}
         />

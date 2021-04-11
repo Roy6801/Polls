@@ -38,6 +38,17 @@ const getPollInfo = async (url) => {
   return axios.get(API_BASE_URL + "PollInfo/" + url);
 };
 
+const userPresent = async (user) => {
+  return axios.post(API_BASE_URL + "UserPresent", { ...user });
+};
+
+const registerForPoll = async (user) => {
+  return axios.post(
+    API_BASE_URL + "Poll/" + user.userName + "/" + user.pollURL,
+    { ...user }
+  );
+};
+
 const getRegisteredUsers = async (user) => {
   return axios.post(API_BASE_URL + "GetRegisteredUsers", { ...user });
 };
@@ -57,6 +68,8 @@ export default {
   updateUserName,
   updatePassword,
   createPoll,
+  userPresent,
+  registerForPoll,
   getPollListByAdmin,
   getAdminByPoll_Id,
   getPollInfo,
