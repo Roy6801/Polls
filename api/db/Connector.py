@@ -11,17 +11,9 @@ char = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
 
 domain = "http://localhost:3000/Poll/"
 
+
 def userToken(userName):
     return userName + "_" + "".join(random.choices(char, k=50))
-
-
-def registerURL():
-    global char
-    url = domain + "REG" + "".join(random.choices(char, k=50))
-    if conn.checkRegisterURL(url) == 1:
-        return url
-    else:
-        registerURL()
 
 
 def pollURL():
@@ -33,17 +25,13 @@ def pollURL():
         pollURL()
 
 
-def pollCreate(scheduled=0, ts=int(time.time()), deadline=int(time.time())+3600):
+def pollCreate(ts=int(time.time()), deadline=int(time.time())+3600):
     global domain
     if int(deadline) < int(ts):
         deadline = int(ts) + 3600
     pollurl = pollURL()
     pollid = pollurl.replace(domain, "")
-    if scheduled == 0:
-        return (pollid, str(ts), pollurl, str(deadline), "")
-    elif scheduled == 1:
-        regurl = registerURL()
-        return (pollid, str(ts), pollurl, str(deadline), regurl)
+    return (pollid, str(ts), pollurl, str(deadline))
 
 
 class Connection:
@@ -119,19 +107,11 @@ class Connection:
         else:
             return 0
 
-    def checkRegisterURL(self, url):
-        self.query = 'select count(*) from poll where registerURL = %s'
-        flag = self.exec(url)
-        if self.cur.fetchall()[0][0] == 0 and flag == 1:
-            return 1
-        else:
-            return 0
-
     def createPoll(self, data):
-        val = pollCreate(data['scheduled'], data['ts'], data['deadline'])
-        pollData = {"poll_Id": val[0], "pollName": data['pollName'], "adminUserName": data['userName'], "verificationCriteria": data['verificationCriteria'], "registerURL": val[4], "pollURL": val[2],
+        val = pollCreate(data['ts'], data['deadline'])
+        pollData = {"poll_Id": val[0], "pollName": data['pollName'], "adminUserName": data['userName'], "verificationCriteria": data['verificationCriteria'], "pollURL": val[2],
                     "anonymity": data['anonymity'], "timestamp": val[1], "deadline": val[3], "scheduled": data['scheduled'], "radio": data['radio'], "optionsCount": data['optionsCount']}
-        self.query = 'insert into poll values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+        self.query = 'insert into poll values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
         flag = self.exec(tuple(pollData.values()))
         if flag == 1:
             self.query = 'create table ' + \
@@ -147,23 +127,35 @@ class Connection:
         return flag
 
     def getPollInfo(self, data):
-        global domain
-        data = data.replace(domain, "")
-        if data[0:3] == "REG":
-            self.query = 'select * from poll where registerURL = BINARY %s'
-        else:
-            self.query = 'select * from poll where pollURL = BINARY %s'
-        flag = self.exec(domain+data)
+        print(data)
+        self.query = 'select * from poll where poll_Id = BINARY %s'
+        flag = self.exec(data)
         if flag == 1:
             val = self.cur.fetchone()
-            response = {"poll_Id": val[0], "pollName": val[1], "adminUserName": val[2], "verificationCriteria": val[3], "registerURL": val[4], "pollURL": val[5],
-                        "anonymity": val[6], "timestamp": val[7], "deadline": val[8], "scheduled": val[9], "radio": val[10], "optionsCount": val[11]}
+            response = {"poll_Id": val[0], "pollName": val[1], "adminUserName": val[2], "verificationCriteria": val[3], "pollURL": val[4],
+                        "anonymity": val[5], "timestamp": val[6], "deadline": val[7], "scheduled": val[8], "radio": val[9], "optionsCount": val[10]}
             return response
         else:
             return 0
 
+    def userInPoll(self, data):
+        self.query = "select * from registrant where poll_Id = BINARY %s and userName = BINARY %s"
+        flag = self.exec(tuple(data.values()))
+        val = self.cur.fetchone()
+        if flag == 1 and val is None:
+            return 1
+        elif flag == 1 and val is not None:
+            if val[4] == 0:
+                return 2
+            else:
+                return 3
+        else:
+            return flag
+
     def registerForPoll(self, data):
-        pass
+        self.query = "insert into registrant(userName, poll_Id, verificationId) values (%s, %s, %s)"
+        flag = self.exec(tuple(data.values()))
+        return flag
 
     def getPollListByAdmin(self, userName):
         pass
@@ -176,20 +168,3 @@ class Connection:
 
     def getParticipantList(self, poll_Id):
         pass
-
-
-#conn = Connection()
-
-#userData = {"userName": "Kaara", "password": "Mondal06$", "firstName": "Sonu",
-#            "lastName": "Mondal", "email": "m@g", "mobileNo": "7900122097"}
-
-#pollForm = {"userName": "Kaara", "pollName": "TrialReg", "verificationCriteria": "Aadhar", "ts": "1617906676", "deadline": "1616866213",
-#        "anonymity": 1, "scheduled": 1, "radio": 1, "optionsCount": 4, "options": ["Maths", "History", "Science", "Civics"]}
-
-
-#print(conn.verifyUser(userData))
-#print(conn.createPoll(pollForm))
-# print(conn.checkRegisterURL("REGNQ1V02hdojVEJnCbswvgCgMPHovlOb6r8OPXaqzOek7Bk3TYF9"))
-#print(conn.getPollInfo(
-#    "trbORxo5tuBIwVgD3moQ3T4EDQilpIPXWp52N5cUgfvsXkKdrh"))
-#print(conn.token({"userToken": "Kaara_DgRuaxS2s4Bi24xvdQrGpkn6HoB7YQR2a9g4RP7zMGtquTB0p1"}))
