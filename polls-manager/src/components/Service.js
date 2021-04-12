@@ -61,7 +61,38 @@ const getPollResults = async (user) => {
   return axios.post(API_BASE_URL + "GetPollResults", { ...user });
 };
 
+const crypt = (str, flag) => {
+  const len = str.length;
+  var val = "";
+
+  if (flag) {
+    str = str.split("").reverse().join("");
+    for (var i = 0; i < len; i++) {
+      var temp = str.charCodeAt(i);
+      if (i % 2 === 0) {
+        temp = temp + len;
+      } else {
+        temp = temp - len;
+      }
+      val = val + String.fromCharCode(temp);
+    }
+  } else {
+    for (var i = 0; i < len; i++) {
+      var temp = str.charCodeAt(i);
+      if (i % 2 === 0) {
+        temp = temp - len;
+      } else {
+        temp = temp + len;
+      }
+      val = val + String.fromCharCode(temp);
+    }
+    val = val.split("").reverse().join("");
+  }
+  return val;
+};
+
 export default {
+  crypt,
   verifyToken,
   login,
   register,

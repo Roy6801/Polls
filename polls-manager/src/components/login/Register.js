@@ -53,11 +53,11 @@ const Register = ({ setToken }) => {
     if (validate() !== 0) {
       var user = {
         userName: userName,
-        password: password,
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        mobileNo: mobileNo,
+        password: Service.crypt(password, true),
+        firstName: Service.crypt(firstName, true),
+        lastName: Service.crypt(lastName, true),
+        email: Service.crypt(email, true),
+        mobileNo: Service.crypt(mobileNo, true),
         userToken: null,
       };
       console.log(user);
@@ -66,7 +66,7 @@ const Register = ({ setToken }) => {
         if (resp.data.response === 1) {
           user = {
             userName: userName,
-            password: password,
+            password: Service.crypt(password, true),
           };
           Service.login(user).then((resp) => {
             if (
@@ -128,7 +128,6 @@ const Register = ({ setToken }) => {
             type="text"
             id="lastName"
             placeholder="Enter Last Name"
-            required
             onChange={(e) => setLastName(e.target.value)}
             className="input-control"
           />

@@ -18,7 +18,7 @@ const Login = ({ setToken }) => {
     e.preventDefault();
     const user = {
       userName: userName,
-      password: password,
+      password: Service.crypt(password, true),
     };
 
     Service.login(user).then((resp) => {
