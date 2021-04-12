@@ -67,7 +67,6 @@ class Connection:
             return 0
 
     def userNameExist(self, userName):
-        print(userName)
         self.query = 'select count(*) from user where userName = BINARY %s'
         flag = self.exec(userName)
         if self.cur.fetchone()[0] == 1 and flag == 1:
@@ -127,7 +126,6 @@ class Connection:
         return flag
 
     def getPollInfo(self, data):
-        print(data)
         self.query = 'select * from poll where poll_Id = BINARY %s'
         flag = self.exec(data)
         if flag == 1:
