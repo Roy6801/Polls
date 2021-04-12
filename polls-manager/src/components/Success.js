@@ -4,15 +4,20 @@ import { Redirect } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./stylesheets/Register.css";
 
-const Success = ({ success, reg, part }) => {
+const Success = ({ success }) => {
   const [home, setHome] = useState(false);
 
   const handleClick = (e) => {
-    setHome(true);
+    if (success) {
+      setHome(true);
+    }
+    else{
+      window.location.reload();
+    }
   };
 
   if (home) {
-    return <Redirect exact to="/about" />;
+    return <Redirect exact to="/" />;
   }
 
   if (success) {
@@ -28,6 +33,9 @@ const Success = ({ success, reg, part }) => {
     return (
       <div className="mainDiv">
         <h1>Failed!!</h1>
+        <button type="submit" className="btn btn-fail" onClick={handleClick}>
+          Reload
+        </button>
       </div>
     );
   }

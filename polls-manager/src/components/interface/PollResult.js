@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 const PollResult = ({ pollURL }) => {
   return (
     <div>
-      <h1>Poll Results</h1>
+      <h1>Poll Results : {pollURL}</h1>
     </div>
   );
 };
