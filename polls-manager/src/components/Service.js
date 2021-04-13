@@ -43,10 +43,7 @@ const userPresent = async (user) => {
 };
 
 const registerForPoll = async (user) => {
-  return axios.post(
-    API_BASE_URL + "Poll/" + user.userName + "/" + user.pollURL,
-    { ...user }
-  );
+  return axios.post(API_BASE_URL + "Poll", { ...user });
 };
 
 const getRegisteredUsers = async (user) => {

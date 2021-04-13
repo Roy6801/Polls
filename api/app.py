@@ -3,6 +3,33 @@ from flask import Flask, request
 from flask_cors import CORS
 
 
+def crypt(text, flag):
+    if flag:
+        text = text[-1:]
+        val = ""
+        length = len(text)
+        for i in range(length):
+            temp = ord(text[i])
+            if i % 2 == 0:
+                temp = temp + length
+            else:
+                temp = temp - length
+            val = val + chr(temp)
+        return val
+    else:
+        val = ""
+        length = len(text)
+        for i in range(length):
+            temp = ord(text[i])
+            if i % 2 == 0:
+                temp = temp - length
+            else:
+                temp = temp + length
+            val = val + chr(temp)
+        val = val[-1:]
+        return val
+
+
 conn = Connection()
 response = 0
 
@@ -62,8 +89,8 @@ def userPresent():
     return {"response": response}
 
 
-@app.route("/Poll/<user>/<url>", methods=["GET", "POST"])
-def registerForPoll(user, url):
+@app.route("/Poll", methods=["GET", "POST"])
+def registerForPoll():
     global conn, response
     if request.method == "POST":
         userData = request.json

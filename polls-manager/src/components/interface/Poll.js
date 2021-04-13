@@ -87,7 +87,7 @@ const Poll = (props) => {
         if (ended) {
           return <PollResult pollURL={pollInfo.poll_Id} />;
         } else {
-          return <PollPart pollURL={pollInfo.poll_Id} vC={""} />;
+          return <PollPart pollInfo={pollInfo} vC={""} />;
         }
       } else {
         if (ended) {
@@ -107,7 +107,7 @@ const Poll = (props) => {
     if (!started) {
       return <PollWait reg={true} />;
     } else if (started && !ended) {
-      return <PollPart pollURL={pollInfo.poll_Id} vC={""} />;
+      return <PollPart pollInfo={pollInfo} vC={""} />;
     } else {
       return <PollResult pollURL={pollInfo.poll_Id} />;
     }
