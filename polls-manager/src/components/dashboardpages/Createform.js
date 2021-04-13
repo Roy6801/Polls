@@ -15,9 +15,7 @@ const Createform = () => {
                     <input 
                     type='text'
                     placeholder='Enter the poll title'
-                    
                     />
-                   
                 </form>
             </div>
             <div className='checkbox-obuttons'>
