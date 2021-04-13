@@ -73,6 +73,15 @@ class Connection:
             return 1
         else:
             return 0
+    
+    def getUserInfo(self, userName):
+        self.query = 'select * from user where userName = BINARY %s'
+        flag = self.exec(userName)
+        val = self.cur.fetchone()
+        if flag == 1 and val is not None:
+            return val
+        else:
+            return flag
 
     def createUser(self, data):
         if not self.userNameExist(data['userName']):
