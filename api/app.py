@@ -41,14 +41,34 @@ def register():
 def create():
     global conn, response
     if request.method == "POST":
-        userData = request.json()
+        userData = request.json
         response = conn.createPoll(userData)
+    return response
+
+
+@app.route("/PollInfo/<url>", methods=["GET"])
+def PollInfo(url):
+    global conn, response
+    response = conn.getPollInfo(url)
+    return response
+
+
+@app.route("/UserPresent", methods=["GET", "POST"])
+def userPresent():
+    global conn, response
+    if request.method == "POST":
+        userData = request.json
+        response = conn.userInPoll(userData)
     return {"response": response}
 
 
-@app.route("/RegisterForPoll/<user>/<url>", methods=["GET", "POST"])
+@app.route("/Poll/<user>/<url>", methods=["GET", "POST"])
 def registerForPoll(user, url):
-    return user + " " + url
+    global conn, response
+    if request.method == "POST":
+        userData = request.json
+        response = conn.registerForPoll(userData)
+    return {"response": response}
 
 
 if __name__ == "__main__":
