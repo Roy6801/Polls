@@ -8,15 +8,14 @@ function About() {
       style={{
         backgroundImage: `url("https://png.pngtree.com/thumb_back/fw800/back_our/20190620/ourmid/pngtree-business-finance-hd-background-image_145887.jpg")`,
         background_position: "center",
-        background_repeat: "no_repeat",
+        background_repeat: "no_repeat"
       }}
     >
-      <h1 style={{ color: "black" }} align="center">
-        About Us...
+      <h1 style={{ color: "white" }} align="center">
+        About Us
       </h1>
-      <br></br>
-
-      <i>
+      <br/>
+      <i style={{ color: "white", padding:"20px"}}>
         The Polls Management System is a python-based web-application. This can
         be used for holding Elections and collecting users’valuable opinion.
         This can be really helpful for giving a direction to a particular
@@ -32,14 +31,17 @@ function About() {
       <br />
       <br />
       <br />
-      <div style={{ color: "black" }} align="center">
-        <br></br>
+      <br />
+      <br />
+      <br />
+      <div style={{ color: "white" }} align="center">
+        <br />
+        <br />
         <h5>For more information, please visit</h5>
         <h6>Pillai College Of Engineering</h6>
-        <br></br>
         <h6>8767635949</h6>
-        <br></br>
         <h6>Group22@gmail.com</h6>
+        <br/>
       </div>
     </div>
   );

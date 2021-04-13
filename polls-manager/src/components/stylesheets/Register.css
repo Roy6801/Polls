@@ -2,6 +2,7 @@
   .mainDiv {
     width: fit-content;
     height: auto;
+    margin: 10px;
     background-color: papayawhip;
     padding: 20px;
     border-radius: 10px;

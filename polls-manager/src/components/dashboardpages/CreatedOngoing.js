@@ -1,11 +1,12 @@
 import "../stylesheets/Home.css";
 import "../stylesheets/Register.css";
+import "../stylesheets/User.css";
 
 
 function CreatedOngoing() {
   return (
     <div className="mainDiv">
-        <div style={{ width: "400px", backgroundColor: "green" }}>
+        <div className="created-ongoing">
           <h4>Created Ongoing Polls</h4>
           <ul className="list">
             <li>text</li>

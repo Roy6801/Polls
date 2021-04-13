@@ -18,7 +18,7 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
-    title: "About US",
+    title: "About Us",
     path: "/about",
     icon: <FaIcon.FaInfoCircle />,
     cName: "nav-text",
