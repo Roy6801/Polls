@@ -1,4 +1,46 @@
+
+
 .figure{
     position: relative;
     float:left;
+}
+
+.register-list{
+    width: 40vw;
+ background-color: brown; 
+}
+
+.chart-poll{
+     background-color:green; 
+     width: 100%;
+}
+
+.created-ongoing{
+    width: 40vw;
+    background-color: green;
+}
+
+.created-poll{
+    width: 40vw;
+    background-color: blue;
+   
+}
+
+.part-ongoing{
+    width: 40vw;
+    background-color: orange
+}
+
+.poll-to-start{
+      width: 40vw; 
+      background-color: yellow;
+}
+
+
+.flex-container{
+    display: flex;
+    /* background-color: blueviolet; */
+    flex-direction: row;
+     justify-content: space-evenly;
+    margin: 30px;
 }

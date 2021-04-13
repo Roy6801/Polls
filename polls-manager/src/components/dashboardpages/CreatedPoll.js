@@ -1,11 +1,12 @@
 import "../stylesheets/Home.css";
 import "../stylesheets/Register.css";
+import "../stylesheets/User.css";
 
 
 function CreatedPoll() {
   return (
     <div className="mainDiv">
-      <div style={{ width: "400px", backgroundColor: "blue" }}>
+      <div className= "created-poll">
         <h4>Create Polls</h4>
         <ul className="list">
           <li>text</li>

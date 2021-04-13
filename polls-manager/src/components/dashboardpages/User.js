@@ -10,22 +10,20 @@ import Service from "../Service";
 const User = () => {
   return (
     <div>
-      <div style={{ margin: "20px" }}>
+      <div className="flex-container">
         <ChartPoll />
       </div>
-      <div style={{ margin: "20px" }}>
-        <RegisterList />
+      <div className="flex-container">
+          <RegisterList />
+          <CreatedPoll />
+        
       </div>
-      <div style={{ margin: "20px" }}>
-        <CreatedPoll />
+
+      <div className="flex-container">
+          <CreatedOngoing />
+          <PartOngoing />
       </div>
-      <div style={{ margin: "20px" }}>
-        <CreatedOngoing />
-      </div>
-      <div style={{ margin: "20px" }}>
-        <PartOngoing />
-      </div>
-      <div style={{ margin: "20px" }}>
+      <div className="flex-container">
         <PollToStart />
       </div>
     </div>

@@ -1,8 +1,8 @@
 import React from "react";
-
+import "../stylesheets/User.css"
 const ChartPoll = () => {
   return (
-    <div align="center" style={{ backgroundColor:"yellowgreen"}} >
+    <div className="chart-poll"  align="center" >
       <h1>ChartPoll</h1>
     </div>
   );
