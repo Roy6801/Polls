@@ -144,6 +144,19 @@ class Connection:
             return response
         else:
             return 0
+    
+    def getPollOptions(self, data):
+        self.query = "select * from information_schema.columns where table_name = N'"+data+"'"
+        flag = self.exec()
+        val = self.cur.fetchall()
+        if flag == 1 and val is not None:
+            options = {}
+            for i in val:
+                if i[3] != 'sr_no':
+                    options[i[4] - 1] = i[3]
+            return options
+        else:
+            return flag
 
     def userInPoll(self, data):
         self.query = "select * from registrant where poll_Id = BINARY %s and userName = BINARY %s"
@@ -175,3 +188,12 @@ class Connection:
 
     def getParticipantList(self, poll_Id):
         pass
+
+
+#conn = Connection()
+#pollForm = {"userName": "Roy", "pollName": "TrialReg", "verificationCriteria": "Aadhar", "ts": "1618334737", "deadline": "1616866213",
+#            "anonymity": 1, "scheduled": 1, "radio": 1, "optionsCount": 4, "options": ["Maths", "History", "Science", "Civics"]}
+
+#print(conn.createPoll(pollForm))
+
+#print(conn.getPollOptions("0iZe3V3nHPRo8BC8wLquNOx20AGm4WfSAInUeua3UKrtzCbt0h"))

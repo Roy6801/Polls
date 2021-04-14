@@ -38,6 +38,10 @@ const getPollInfo = async (url) => {
   return axios.get(API_BASE_URL + "PollInfo/" + url);
 };
 
+const getPollOptions = async (url) => {
+  return axios.get(API_BASE_URL + "PollOptions/" + url);
+};
+
 const userPresent = async (user) => {
   return axios.post(API_BASE_URL + "UserPresent", { ...user });
 };
@@ -101,6 +105,7 @@ export default {
   getPollListByAdmin,
   getAdminByPoll_Id,
   getPollInfo,
+  getPollOptions,
   getRegisteredUsers,
   getParticipatedUsers,
   getPollResults,
