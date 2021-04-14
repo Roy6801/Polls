@@ -43,7 +43,7 @@ def create():
     if request.method == "POST":
         userData = request.json
         response = conn.createPoll(userData)
-    return response
+    return {"response": response}
 
 
 @app.route("/PollInfo/<url>", methods=["GET"])
