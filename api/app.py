@@ -69,6 +69,8 @@ def create():
     global conn, response
     if request.method == "POST":
         userData = request.json
+        del userData['options'][0]
+        print(userData)
         response = conn.createPoll(userData)
     return {"response": response}
 

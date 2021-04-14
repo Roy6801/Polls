@@ -19,6 +19,7 @@ const CreateForm = () => {
     setval(e.target.value);
   };
 
+  console.log(startdate + starttime, enddate + endtime);
   const handleStartdate = (e) => {
     const begandate = new Date(e.target.value);
     storedate = begandate.getTime();
@@ -121,7 +122,10 @@ const CreateForm = () => {
       userName: window.localStorage.getItem("polls-manager-system-G22-user"),
       pollName: title,
       verificationCriteria: vCriteria,
-      ts: startdate + starttime,
+      ts:
+        startdate + starttime
+          ? startdate + starttime
+          : Math.floor(new Date().getTime() / 1000),
       deadline: enddate + endtime,
       anonymity: anon,
       scheduled: checked,
