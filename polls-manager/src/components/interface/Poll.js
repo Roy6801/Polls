@@ -12,7 +12,6 @@ const Poll = (props) => {
   const [reg, setReg] = useState("$$$NULL$$$");
   const [scheduled, setScheduled] = useState("$$$NULL$$$");
   const [anonymity, setAnonymity] = useState("$$$NULL$$$");
-  const [vCriteria, setVCriteria] = useState("$$$NULL$$$");
   const [pollInfo, setPollInfo] = useState("$$$NULL$$$");
   const url = props.match.params.pollURL;
   const user = {
@@ -22,7 +21,9 @@ const Poll = (props) => {
 
   if (pollInfo === "$$$NULL$$$") {
     Service.getPollInfo(url).then((resp) => {
-      setPollInfo(resp.data);
+      if (resp.data !== "0") {
+        setPollInfo(resp.data);
+      }
     });
   } else if (reg === "$$$NULL$$$") {
     Service.userPresent(user).then((resp) => {
@@ -33,31 +34,34 @@ const Poll = (props) => {
     });
   }
 
-  const time = new Date().getTime();
+  const time = Math.floor(new Date().getTime() / 1000);
 
-  if (setStarted === "$$$NULL$$$") {
+  if (started === "$$$NULL$$$") {
     if (time > Number(pollInfo.timestamp)) {
       setStarted(true);
+    } else if (time < Number(pollInfo.timestamp)) {
+      setStarted(false);
     }
   }
-  if (setEnded === "$$$NULL$$$") {
+  if (ended === "$$$NULL$$$") {
     if (time < Number(pollInfo.deadline)) {
       setEnded(true);
+    } else if (time > Number(pollInfo.deadline)) {
+      setEnded(false);
     }
   }
-  if (setScheduled === "$$$NULL$$$") {
+  if (scheduled === "$$$NULL$$$") {
     if (pollInfo.scheduled === 1) {
       setScheduled(true);
+    } else if (pollInfo.scheduled === 0) {
+      setScheduled(false);
     }
   }
-  if (setAnonymity === "$$$NULL$$$") {
-    if (pollInfo.anonymity === 0) {
+  if (anonymity === "$$$NULL$$$") {
+    if (pollInfo.anonymity === 1) {
+      setAnonymity(true);
+    } else if (pollInfo.anonymity === 0) {
       setAnonymity(false);
-    }
-  }
-  if (setVCriteria === "$$$NULL$$$") {
-    if (pollInfo.verificationCriteria !== "") {
-      setVCriteria(pollInfo.verificationCriteria);
     }
   }
 
@@ -73,7 +77,7 @@ const Poll = (props) => {
         if (!started) {
           return (
             <VerifyForPoll
-              vCriteria={vCriteria}
+              vCriteria={pollInfo.verificationCriteria}
               pollURL={pollInfo.poll_Id}
               scheduled={scheduled}
             />
@@ -95,7 +99,7 @@ const Poll = (props) => {
         } else {
           return (
             <VerifyForPoll
-              vCriteria={vCriteria}
+              vCriteria={pollInfo.verificationCriteria}
               pollURL={pollInfo.poll_Id}
               scheduled={scheduled}
             />

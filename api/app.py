@@ -77,7 +77,20 @@ def create():
 def PollInfo(url):
     global conn, response
     response = conn.getPollInfo(url)
-    return response
+    if response != 0:
+        return response
+    else:
+        return str(response)
+
+
+@app.route("/PollOptions/<url>", methods=["GET"])
+def PollOptions(url):
+    global conn, response
+    response = conn.getPollOptions(url)
+    if response != 0:
+        return response
+    else:
+        return str(response)
 
 
 @app.route("/UserPresent", methods=["GET", "POST"])
