@@ -2,9 +2,7 @@ import pymysql
 import random
 import time
 
-char = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-        'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+char = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
         'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
         '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
@@ -16,20 +14,20 @@ def userToken(userName):
     return userName + "_" + "".join(random.choices(char, k=50))
 
 
-def pollURL():
+def pollURL(conn):
     global char
     url = domain + "".join(random.choices(char, k=50))
     if conn.checkPollURL(url) == 1:
         return url
     else:
-        pollURL()
+        pollURL(conn)
 
 
-def pollCreate(ts=int(time.time()), deadline=int(time.time())+3600):
+def pollCreate(conn, ts=int(time.time()), deadline=int(time.time())+3600):
     global domain
     if int(deadline) < int(ts):
         deadline = int(ts) + 3600
-    pollurl = pollURL()
+    pollurl = pollURL(conn)
     pollid = pollurl.replace(domain, "")
     return (pollid, str(ts), pollurl, str(deadline))
 
@@ -116,7 +114,7 @@ class Connection:
             return 0
 
     def createPoll(self, data):
-        val = pollCreate(data['ts'], data['deadline'])
+        val = pollCreate(self, data['ts'], data['deadline'])
         pollData = {"poll_Id": val[0], "pollName": data['pollName'], "adminUserName": data['userName'], "verificationCriteria": data['verificationCriteria'], "pollURL": val[2],
                     "anonymity": data['anonymity'], "timestamp": val[1], "deadline": val[3], "scheduled": data['scheduled'], "radio": data['radio'], "optionsCount": data['optionsCount']}
         self.query = 'insert into poll values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
@@ -129,7 +127,7 @@ class Connection:
                     self.query = 'alter table ' + \
                         val[0]+' add '+data['options'][i]+' int(10)'
                     self.exec()
-                return 1
+                return val[2]
             else:
                 return 0
         return flag
