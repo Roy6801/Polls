@@ -71,7 +71,7 @@ const CreateForm = () => {
             <div key={i}>
               <input
                 type="text"
-                className="input-control"
+                className="input-control input-control-create"
                 required
                 placeholder={i + " : Choice"}
                 onChange={(e) => handleInputs(e, i)}
@@ -88,17 +88,19 @@ const CreateForm = () => {
       return (
         <div>
           <div>
+          <b>Schedule Date:</b>
             <input
               type="date"
-              className="input-control"
+              className="input-control input-control-create"
               required
               onChange={handleStartdate}
             />
           </div>
           <div>
+            <b>Schedule Time:</b>
             <input
               type="time"
-              className="input-control"
+              className="input-control input-control-create"
               required
               onChange={handleStarttime}
             />
@@ -115,7 +117,7 @@ const CreateForm = () => {
           <div>
             <input
               type="text"
-              className="input-control"
+              className="input-control input-control-create"
               placeholder="Enter the verfication type"
               required
               onChange={(e) => setVCriteria(e.target.value)}
@@ -126,11 +128,7 @@ const CreateForm = () => {
     }
   };
 
-  if (multicheck) {
-    radio = 0;
-  } else {
-    radio = 1;
-  }
+  
 
   const DisplayField = () => {
     var fieldArray = [];
@@ -138,7 +136,7 @@ const CreateForm = () => {
     for (var i = 1; i <= val; i++) {
       fieldArray.push(field[i]);
     }
-    if (radio === 0) {
+    if (multicheck) {
       type = "checkbox";
     } else {
       type = "radio";
@@ -184,7 +182,7 @@ const CreateForm = () => {
       deadline: enddate + endtime,
       anonymity: anon,
       scheduled: checked,
-      radio: radio,
+      radio: !multicheck,
       optionsCount: val,
       options: field,
     };
@@ -223,20 +221,22 @@ const CreateForm = () => {
             <div>
               <input
                 type="text"
-                className="input-control"
+                className="input-control input-control-create"
                 placeholder="Enter Poll Title"
                 required
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
 
-            <div>
+            <div style={{display:"flex", justifyContent:"space-evenly"}}>
+              <label>
               <input
                 type="checkbox"
                 defaultChecked={anon}
                 onChange={() => (anon ? setAnon(false) : setAnon(true))}
               />{" "}
-              Anonymity
+              <b>Anonymity</b></label>
+              <label>
               <input
                 type="checkbox"
                 defaultChecked={checked}
@@ -244,7 +244,7 @@ const CreateForm = () => {
                   checked ? setChecked(false) : setChecked(true)
                 }
               />{" "}
-              Scheduled
+              <b>Scheduled</b></label>
             </div>
 
             {HandleAnonmity()}
@@ -252,36 +252,40 @@ const CreateForm = () => {
             {HandleSchedule()}
 
             <div>
+              <b>End Date :</b>
               <input
                 type="date"
-                className="input-control"
+                className="input-control input-control-create"
                 onChange={handleEnddate}
                 required
+                
               />
             </div>
 
             <div>
+            <b>End Time : </b>
               <input
                 type="time"
-                className="input-control"
+                className="input-control input-control-create "
                 onChange={handleEndtime}
                 required
               />
             </div>
 
-            <div>
+            <div style={{display:"flex" , justifyContent:"space-evenly"}}>
+              <label>
               <input
                 type="checkbox"
                 defaultChecked={multicheck}
                 onChange={() =>
                   multicheck ? setMulticheck(false) : setMulticheck(true)
                 }
-              />
-              Multi-Candidate Selection
+              />{" "}
+              <b>Multi-Candidate Selection</b></label>
             </div>
 
-            <div>
-              <label> Value:{val}</label>
+            <div  style={{display:"flex" , justifyContent:"space-evenly"}}>
+              <label><b> Value: {val} </b> 
               <input
                 type="range"
                 min="2"
@@ -289,11 +293,11 @@ const CreateForm = () => {
                 id="myRange"
                 value={val}
                 onChange={sliderange}
-              />
+              /> </label>
             </div>
             {Handlefield()}
 
-            <div>
+            <div style={{display:"flex" , justifyContent:"space-evenly"}}>
               <button type="submit" className="btn btn-success">
                 Submit
               </button>

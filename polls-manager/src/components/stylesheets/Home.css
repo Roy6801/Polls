@@ -1,48 +1,15 @@
-.figure{
-   float: right;
-    margin-right: 30px;
-    margin-top:10px;
-    margin-left: 100px;
-    text-decoration-color: lightcoral;
-    
-    
-    
- }
-.media{
-   
-    margin-top: 50px;
-    margin-left: 300px;
-      
-  }
 
   .list{
     display:flex;
+    flex-direction: column-reverse;
     position:static;
     margin-top: 50px;
+    height: 300px;
     background: none;
-    justify-content: center;
-
+    overflow: auto;
 
   }
 
   
-
- .list {
-    overflow-y: scroll;
-    overflow-x: hidden;
-  /*white-space:normal;*/
- }
-    li {
-      display:table-cell;
-      
-    
-  }
 
  
-
-
-
-
-  
-  
-  
