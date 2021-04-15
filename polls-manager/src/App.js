@@ -7,16 +7,17 @@ import User from "./components/dashboardpages/User";
 import useToken from "./components/useToken";
 import Poll from "./components/interface/Poll";
 
+
 const App = () => {
   //window.localStorage.removeItem("polls-manager-system-G22");
-
+  
   const { token, setToken } = useToken("$$$NULL$$$");
 
   console.log(token);
 
   if (token === "$$$NULL$$$") {
     return (
-      <div>
+      <div className="Login-page" style={{display:"flex",justifyContent:"center",alignItems:"center", backgroundColor:"pink", height:"100vh" }}>
         <Login setToken={setToken} />
       </div>
     );

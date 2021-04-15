@@ -9,7 +9,7 @@ import Service from "../Service";
 
 const User = () => {
   return (
-    <div>
+    <div style={{background: "linear-gradient(293deg, rgba(235,144,110,1) 33%, rgba(255,216,177,1) 66%, rgba(255,229,180,1) 99%)",display:"flex" , flexDirection:"column"}}>
       <div className="flex-container">
         <ChartPoll />
       </div>

@@ -7,7 +7,7 @@
 
 .register-list{
     width: 40vw;
- background-color: brown; 
+ background-color: rgb(60, 102, 151); 
 }
 
 .chart-poll{
@@ -17,29 +17,32 @@
 
 .created-ongoing{
     width: 40vw;
-    background-color: green;
+    background-color: rgb(196, 84, 140);
 }
 
 .created-poll{
     width: 40vw;
-    background-color: blue;
+    background-color:rgb(231, 207, 66);
    
 }
 
+
+
+
 .part-ongoing{
     width: 40vw;
-    background-color: orange
+    background-color: rgb(107, 211, 116)
 }
 
 .poll-to-start{
       width: 40vw; 
-      background-color: yellow;
+      background-color: rgb(223, 100, 100);
 }
 
 
 .flex-container{
     display: flex;
-    /* background-color: blueviolet; */
+  
     flex-direction: row;
      justify-content: space-evenly;
     margin: 30px;

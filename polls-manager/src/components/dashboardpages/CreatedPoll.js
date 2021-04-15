@@ -5,7 +5,7 @@ import "../stylesheets/User.css";
 
 function CreatedPoll() {
   return (
-    <div className="mainDiv">
+    <div className="mainDiv" style={{backgroundColor:"rgb(226, 202, 61)"}}>
       <div className= "created-poll">
         <h4>Create Polls</h4>
         <ul className="list">

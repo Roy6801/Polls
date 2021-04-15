@@ -4,7 +4,7 @@ import "../stylesheets/User.css";
 
 function PollToStart() {
   return (
-    <div className="mainDiv">
+    <div className="mainDiv" style={{backgroundColor:"rgb(213, 90, 90)"}}>
         <div className="poll-to-start">
           <h4>Poll About To Start</h4>
           <ul className="list">
