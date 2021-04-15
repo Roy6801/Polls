@@ -65,7 +65,7 @@ const Poll = (props) => {
       setAnonymity(false);
     }
   }
-
+console.log(started, ended, scheduled, anonymity);
   if (reg === 1) {
     if (scheduled) {
       if (anonymity) {
@@ -98,7 +98,7 @@ const Poll = (props) => {
     }
   } else if (reg === 2) {
     if (!started) {
-      return <PollWait reg={true} />;
+      return <PollWait pollInfo={pollInfo} reg={true} />;
     } else if (started && !ended) {
       return <PollPart pollInfo={pollInfo} vC={""} />;
     } else {
@@ -108,7 +108,7 @@ const Poll = (props) => {
     if (ended) {
       return <PollResult pollInfo={pollInfo} />;
     } else {
-      return <PollWait reg={false} />;
+      return <PollWait pollInfo={pollInfo} reg={false} />;
     }
   } else {
     return <h1>Fetching Data!!</h1>;
