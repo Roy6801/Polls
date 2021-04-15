@@ -1,7 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./stylesheets/Register.css";
 
 const Success = ({ success }) => {
@@ -10,8 +9,7 @@ const Success = ({ success }) => {
   const handleClick = (e) => {
     if (success) {
       setHome(true);
-    }
-    else{
+    } else {
       window.location.reload();
     }
   };
@@ -33,7 +31,7 @@ const Success = ({ success }) => {
     return (
       <div className="mainDiv">
         <h1>Failed!!</h1>
-        <button type="submit" className="btn btn-fail" onClick={handleClick}>
+        <button type="submit" className="btn btn-danger" onClick={handleClick}>
           Reload
         </button>
       </div>

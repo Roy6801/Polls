@@ -2,10 +2,10 @@ import { useState } from "react";
 import Proptypes from "prop-types";
 import Service from "../Service";
 import Success from "../Success";
+import "../stylesheets/Register.css";
 
 const PollReg = ({ pollInfo, vC }) => {
   const userName = window.localStorage.getItem("polls-manager-system-G22-user");
-
   const [success, setSuccess] = useState();
 
   const handleClick = (e) => {
@@ -29,14 +29,14 @@ const PollReg = ({ pollInfo, vC }) => {
     return <Success success={success} />;
   } else {
     return (
-      <div>
+      <div className="mainDiv">
         <h1>Register for Poll</h1>
-        <label>
-          Register for this Poll? Your Username : {userName} will be registerd
-        </label>
+        <b>
+          Your Username : {userName} will be registerd
+        </b>
         <h3>Poll_ID : {pollInfo.poll_Id}</h3>
         <h4>Verification_ID : {vC}</h4>
-        <button type="submit" onClick={handleClick}>
+        <button type="submit" className="btn btn-success" onClick={handleClick}>
           Register
         </button>
       </div>

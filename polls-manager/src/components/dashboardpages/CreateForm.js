@@ -5,7 +5,6 @@ import "../stylesheets/Register.css";
 import "../stylesheets/CreateForm.css";
 
 const CreateForm = () => {
-  var radio;
   var storedate;
   const [anon, setAnon] = useState(true);
   const [checked, setChecked] = useState(false);
@@ -88,7 +87,7 @@ const CreateForm = () => {
       return (
         <div>
           <div>
-          <b>Schedule Date:</b>
+            <b>Schedule Date:</b>
             <input
               type="date"
               className="input-control input-control-create"
@@ -127,8 +126,6 @@ const CreateForm = () => {
       );
     }
   };
-
-  
 
   const DisplayField = () => {
     var fieldArray = [];
@@ -175,10 +172,9 @@ const CreateForm = () => {
       userName: window.localStorage.getItem("polls-manager-system-G22-user"),
       pollName: title,
       verificationCriteria: vCriteria,
-      ts:
-        checked
-          ? startdate + starttime
-          : Math.floor(new Date().getTime() / 1000),
+      ts: checked
+        ? startdate + starttime
+        : Math.floor(new Date().getTime() / 1000),
       deadline: enddate + endtime,
       anonymity: anon,
       scheduled: checked,
@@ -228,23 +224,25 @@ const CreateForm = () => {
               />
             </div>
 
-            <div style={{display:"flex", justifyContent:"space-evenly"}}>
+            <div style={{ display: "flex", justifyContent: "space-evenly" }}>
               <label>
-              <input
-                type="checkbox"
-                defaultChecked={anon}
-                onChange={() => (anon ? setAnon(false) : setAnon(true))}
-              />{" "}
-              <b>Anonymity</b></label>
+                <input
+                  type="checkbox"
+                  defaultChecked={anon}
+                  onChange={() => (anon ? setAnon(false) : setAnon(true))}
+                />{" "}
+                <b>Anonymity</b>
+              </label>
               <label>
-              <input
-                type="checkbox"
-                defaultChecked={checked}
-                onChange={() =>
-                  checked ? setChecked(false) : setChecked(true)
-                }
-              />{" "}
-              <b>Scheduled</b></label>
+                <input
+                  type="checkbox"
+                  defaultChecked={checked}
+                  onChange={() =>
+                    checked ? setChecked(false) : setChecked(true)
+                  }
+                />{" "}
+                <b>Scheduled</b>
+              </label>
             </div>
 
             {HandleAnonmity()}
@@ -258,12 +256,11 @@ const CreateForm = () => {
                 className="input-control input-control-create"
                 onChange={handleEnddate}
                 required
-                
               />
             </div>
 
             <div>
-            <b>End Time : </b>
+              <b>End Time : </b>
               <input
                 type="time"
                 className="input-control input-control-create "
@@ -272,32 +269,35 @@ const CreateForm = () => {
               />
             </div>
 
-            <div style={{display:"flex" , justifyContent:"space-evenly"}}>
+            <div style={{ display: "flex", justifyContent: "space-evenly" }}>
               <label>
-              <input
-                type="checkbox"
-                defaultChecked={multicheck}
-                onChange={() =>
-                  multicheck ? setMulticheck(false) : setMulticheck(true)
-                }
-              />{" "}
-              <b>Multi-Candidate Selection</b></label>
+                <input
+                  type="checkbox"
+                  defaultChecked={multicheck}
+                  onChange={() =>
+                    multicheck ? setMulticheck(false) : setMulticheck(true)
+                  }
+                />{" "}
+                <b>Multi-Candidate Selection</b>
+              </label>
             </div>
 
-            <div  style={{display:"flex" , justifyContent:"space-evenly"}}>
-              <label><b> Value: {val} </b> 
-              <input
-                type="range"
-                min="2"
-                max="8"
-                id="myRange"
-                value={val}
-                onChange={sliderange}
-              /> </label>
+            <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+              <label>
+                <b> Value: {val} </b>
+                <input
+                  type="range"
+                  min="2"
+                  max="8"
+                  id="myRange"
+                  value={val}
+                  onChange={sliderange}
+                />{" "}
+              </label>
             </div>
             {Handlefield()}
 
-            <div style={{display:"flex" , justifyContent:"space-evenly"}}>
+            <div style={{ display: "flex", justifyContent: "space-evenly" }}>
               <button type="submit" className="btn btn-success">
                 Submit
               </button>
