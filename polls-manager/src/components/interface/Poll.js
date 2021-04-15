@@ -35,6 +35,7 @@ const Poll = (props) => {
   }
 
   const time = Math.floor(new Date().getTime() / 1000);
+  console.log(pollInfo, time, started, ended);
 
   if (started === "$$$NULL$$$") {
     if (time > Number(pollInfo.timestamp)) {
@@ -44,9 +45,9 @@ const Poll = (props) => {
     }
   }
   if (ended === "$$$NULL$$$") {
-    if (time < Number(pollInfo.deadline)) {
+    if (time > Number(pollInfo.deadline)) {
       setEnded(true);
-    } else if (time > Number(pollInfo.deadline)) {
+    } else if (time < Number(pollInfo.deadline)) {
       setEnded(false);
     }
   }
@@ -69,19 +70,13 @@ const Poll = (props) => {
     if (scheduled) {
       if (anonymity) {
         if (!started) {
-          return <PollReg pollURL={pollInfo.poll_Id} vC={""} />;
+          return <PollReg pollInfo={pollInfo} vC={""} />;
         } else {
           return <h1>Registration Ended!!</h1>;
         }
       } else {
         if (!started) {
-          return (
-            <VerifyForPoll
-              vCriteria={pollInfo.verificationCriteria}
-              pollURL={pollInfo.poll_Id}
-              scheduled={scheduled}
-            />
-          );
+          return <VerifyForPoll pollInfo={pollInfo} />;
         } else {
           return <h1>Registration Ended!!</h1>;
         }
@@ -89,21 +84,15 @@ const Poll = (props) => {
     } else {
       if (anonymity) {
         if (ended) {
-          return <PollResult pollURL={pollInfo.poll_Id} />;
+          return <PollResult pollInfo={pollInfo} />;
         } else {
           return <PollPart pollInfo={pollInfo} vC={""} />;
         }
       } else {
         if (ended) {
-          return <PollResult pollURL={pollInfo.poll_Id} />;
+          return <PollResult pollInfo={pollInfo} />;
         } else {
-          return (
-            <VerifyForPoll
-              vCriteria={pollInfo.verificationCriteria}
-              pollURL={pollInfo.poll_Id}
-              scheduled={scheduled}
-            />
-          );
+          return <VerifyForPoll pollInfo={pollInfo} />;
         }
       }
     }
@@ -113,11 +102,11 @@ const Poll = (props) => {
     } else if (started && !ended) {
       return <PollPart pollInfo={pollInfo} vC={""} />;
     } else {
-      return <PollResult pollURL={pollInfo.poll_Id} />;
+      return <PollResult pollInfo={pollInfo} />;
     }
   } else if (reg === 3) {
     if (ended) {
-      return <PollResult pollURL={pollInfo.poll_Id} />;
+      return <PollResult pollInfo={pollInfo} />;
     } else {
       return <PollWait reg={false} />;
     }

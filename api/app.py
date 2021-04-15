@@ -70,7 +70,6 @@ def create():
     if request.method == "POST":
         userData = request.json
         del userData['options'][0]
-        print(userData)
         response = conn.createPoll(userData)
     return {"response": response}
 
@@ -112,6 +111,13 @@ def registerForPoll():
         response = conn.registerForPoll(userData)
     return {"response": response}
 
+
+@app.route("/Participate", methods=["GET", "POST"])
+def participate():
+    global conn, response
+    if request.method == "POST":
+        userData = request.json
+    return {"response": response}
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', threaded=True)

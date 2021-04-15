@@ -4,8 +4,8 @@ import PollReg from "./PollReg";
 import PollPart from "./PollPart";
 import PollWait from "./PollWait";
 
-const VerifyForPoll = ({ vCriteria, scheduled, pollURL }) => {
-  console.log(pollURL);
+const VerifyForPoll = ({ pollInfo }) => {
+  console.log(pollInfo.pollURL);
   const [vC, setVC] = useState("");
   const [proceed, setProceed] = useState(false);
 
@@ -23,10 +23,10 @@ const VerifyForPoll = ({ vCriteria, scheduled, pollURL }) => {
       <div>
         <form onSubmit={handleClick}>
           <h3>Enter Verification ID</h3>
-          <h1>Scheduled : {String(scheduled)}</h1>
+          <h1>Scheduled : {String(pollInfo.scheduled)}</h1>
           <input
             type="text"
-            placeholder={vCriteria}
+            placeholder={pollInfo.verificationCriteria}
             required
             onChange={handleChange}
           />
@@ -35,18 +35,16 @@ const VerifyForPoll = ({ vCriteria, scheduled, pollURL }) => {
       </div>
     );
   } else {
-    if (scheduled) {
+    if (pollInfo.scheduled) {
       return <PollWait />;
     } else {
-      return <PollPart pollURL={pollURL} vC={vC} />;
+      return <PollPart pollInfo={pollInfo} vC={vC} />;
     }
   }
 };
 
 VerifyForPoll.propTypes = {
-  vCriteria: PropTypes.string.isRequired,
-  scheduled: PropTypes.bool.isRequired,
-  pollURL: PropTypes.string.isRequired,
+  pollInfo: PropTypes.object.isRequired,
 };
 
 export default VerifyForPoll;

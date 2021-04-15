@@ -2,7 +2,6 @@ import { Route, Switch } from "react-router-dom";
 import Login from "./components/login/Login";
 import NavbarDash from "./components/dashboardpages/NavbarDash";
 import CreateForm from "./components/dashboardpages/CreateForm";
-import Contact from "./components/dashboardpages/Contact";
 import About from "./components/dashboardpages/About";
 import User from "./components/dashboardpages/User";
 import useToken from "./components/useToken";
@@ -30,9 +29,8 @@ const App = () => {
       </div>
       <div>
         <Switch>
-          <Route exact path="/createform" component={CreateForm} />
+          <Route exact path="/createpoll" component={CreateForm} />
           <Route exact path="/about" component={About} />
-          <Route exact path="/contact" component={Contact} />
           <Route exact path="/Poll/:pollURL" component={Poll} />
           <Route path="*" component={User} />
         </Switch>

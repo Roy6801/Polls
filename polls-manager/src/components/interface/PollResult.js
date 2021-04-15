@@ -1,15 +1,15 @@
 import PropTypes from "prop-types";
 
-const PollResult = ({ pollURL }) => {
+const PollResult = ({ pollInfo }) => {
   return (
     <div>
-      <h1>Poll Results : {pollURL}</h1>
+      <h1>Poll Results : {pollInfo.poll_Id}</h1>
     </div>
   );
 };
 
 PollResult.propTypes = {
-  pollURL: PropTypes.string.isRequired,
+  pollInfo: PropTypes.object.isRequired,
 };
 
 export default PollResult;

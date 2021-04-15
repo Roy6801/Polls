@@ -4,6 +4,7 @@ import * as BiIcon from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "../stylesheets/NavbarDash.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { IconContext } from "react-icons";
 import Service from "../Service";
 
@@ -24,7 +25,10 @@ const NavbarDash = ({ setToken }) => {
         <div className="navbar">
           <Link to="#" className="menu-bars">
             <BiIcon.BiLayer onClick={showSidebar} />
-            <h2 onClick={showSidebar} style={{color: "white"}}>
+            <h2
+              onClick={showSidebar}
+              style={{ color: "#f5f5f5", margin: "15px" }}
+            >
               {window.localStorage.getItem("polls-manager-system-G22-user")}
             </h2>
           </Link>
@@ -41,7 +45,11 @@ const NavbarDash = ({ setToken }) => {
                 </li>
               );
             })}
-            <button type="submit" onClick={handleClick}>
+            <button
+              type="submit"
+              className="btn btn-primary logout"
+              onClick={handleClick}
+            >
               LogOut
             </button>
           </ul>

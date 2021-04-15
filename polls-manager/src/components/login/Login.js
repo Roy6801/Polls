@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Service from "../Service";
 import Register from "./Register";
 import "../stylesheets/Register.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const Login = ({ setToken }) => {
   const [userName, setUserName] = useState("");
