@@ -8,29 +8,23 @@
     border-radius: 10px;
     box-shadow: 5px 10px grey;
   }
-}
 
-@media screen and (min-width: 480px) {
   .subDiv {
     width: 350px;
     display: flex;
     align-items: center;
   }
-}
 
-@media screen and (min-width: 480px) {
   .input-control {
     border-radius: 25px;
     border: 1px solid black;
     padding: 10px;
-    width: auto;
+    width: 100%;
     height: auto;
     outline: none;
     margin: 5px;
   }
-}
 
-@media screen and (min-width: 480px) {
   .label-control {
     width: auto;
     height: auto;

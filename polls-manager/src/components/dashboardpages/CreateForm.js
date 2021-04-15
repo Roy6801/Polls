@@ -1,8 +1,11 @@
 import { useState } from "react";
 import Service from "../Service";
+import Clipboard from "../Clipboard";
+import "../stylesheets/Register.css";
+import "../stylesheets/CreateForm.css";
 
 const CreateForm = () => {
-  var multi;
+  var radio;
   var storedate;
   const [anon, setAnon] = useState(true);
   const [checked, setChecked] = useState(false);
@@ -15,11 +18,11 @@ const CreateForm = () => {
   const [enddate, setEnddate] = useState();
   const [field, setField] = useState([{ value: null }]);
   const [val, setval] = useState(4);
+  const [text, setText] = useState("$$$NULL$$$");
   const sliderange = (e) => {
     setval(e.target.value);
   };
 
-  console.log(startdate + starttime, enddate + endtime);
   const handleStartdate = (e) => {
     const begandate = new Date(e.target.value);
     storedate = begandate.getTime();
@@ -54,10 +57,9 @@ const CreateForm = () => {
     const values = [...field];
     values[i] = e.target.value;
     setField(values);
-    console.log(values);
   };
 
-  const handlefield = () => {
+  const Handlefield = () => {
     var fieldArray = [];
     for (var i = 1; i <= val; i++) {
       fieldArray.push(i);
@@ -69,6 +71,7 @@ const CreateForm = () => {
             <div key={i}>
               <input
                 type="text"
+                className="input-control"
                 required
                 placeholder={i + " : Choice"}
                 onChange={(e) => handleInputs(e, i)}
@@ -79,29 +82,42 @@ const CreateForm = () => {
       </div>
     );
   };
-  const handleSchedule = () => {
+
+  const HandleSchedule = () => {
     if (checked) {
       return (
         <div>
-          <div className="date-in">
-            <input type="date" onChange={handleStartdate} />
+          <div>
+            <input
+              type="date"
+              className="input-control"
+              required
+              onChange={handleStartdate}
+            />
           </div>
-          <div className="time-in">
-            <input type="time" onChange={handleStarttime} />
+          <div>
+            <input
+              type="time"
+              className="input-control"
+              required
+              onChange={handleStarttime}
+            />
           </div>
         </div>
       );
     }
   };
 
-  const handleAnonmity = () => {
+  const HandleAnonmity = () => {
     if (!anon) {
       return (
         <div>
           <div>
             <input
               type="text"
+              className="input-control"
               placeholder="Enter the verfication type"
+              required
               onChange={(e) => setVCriteria(e.target.value)}
             />
           </div>
@@ -111,10 +127,49 @@ const CreateForm = () => {
   };
 
   if (multicheck) {
-    multi = 1;
+    radio = 0;
   } else {
-    multi = 0;
+    radio = 1;
   }
+
+  const DisplayField = () => {
+    var fieldArray = [];
+    var type;
+    for (var i = 1; i <= val; i++) {
+      fieldArray.push(field[i]);
+    }
+    if (radio === 0) {
+      type = "checkbox";
+    } else {
+      type = "radio";
+    }
+
+    return (
+      <div>
+        {fieldArray.map((i, count) => {
+          return (
+            <div key={count} className="formLabel">
+              <input type={type} disabled="disabled" />{" "}
+              <label className="formFont">{i}</label>
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+
+  const VerifyField = () => {
+    if (!anon) {
+      return (
+        <div>
+          <label className="formLabel">Verification Criteria</label>
+          {" : "}
+          <label className="formLabel">{vCriteria}</label>
+        </div>
+      );
+    }
+    return null;
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -123,96 +178,133 @@ const CreateForm = () => {
       pollName: title,
       verificationCriteria: vCriteria,
       ts:
-        startdate + starttime
+        checked
           ? startdate + starttime
           : Math.floor(new Date().getTime() / 1000),
       deadline: enddate + endtime,
       anonymity: anon,
       scheduled: checked,
-      radio: multi,
+      radio: radio,
       optionsCount: val,
       options: field,
     };
 
     Service.createPoll(user).then((resp) => {
-      console.log(resp);
+      if (resp.data.response !== 0) {
+        setText(resp.data.response);
+      } else {
+        alert("Poll Creation Failed!! Retry..");
+      }
     });
   };
 
-  return (
-    <div
-      className="createform"
-      style={{ height: "100%", backgroundColor: "green" }}
-    >
-      <form onSubmit={(e) => submitHandler(e)}>
-        <div className="titlepoll">
-          <h2>Title</h2>
-          <input
-            type="text"
-            placeholder="Enter the poll title"
-            required
-            onChange={(e) => setTitle(e.target.value)}
-          />
+  if (text === "$$$NULL$$$") {
+    return (
+      <div style={{ display: "flex" }}>
+        <div className="mainDiv formDisplay">
+          <h1 className="formLabel">{title}</h1>
+          <label className="formLabel">{DisplayField()}</label>
+          {VerifyField()}
+          <label className="formLabel">
+            Start Time :{" "}
+            {checked
+              ? String(new Date((startdate + starttime) * 1000))
+              : String(new Date())}
+          </label>
+          <label className="formLabel">
+            End Time :{" "}
+            {enddate + endtime
+              ? String(new Date((enddate + endtime) * 1000))
+              : String(new Date(new Date().getTime() + 3600000))}
+          </label>
         </div>
+        <div className="mainDiv formControl">
+          <form onSubmit={(e) => submitHandler(e)}>
+            <div>
+              <input
+                type="text"
+                className="input-control"
+                placeholder="Enter Poll Title"
+                required
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
 
-        <div className="checkbox-obuttons">
-          <input
-            type="checkbox"
-            defaultChecked={anon}
-            onChange={() => (anon ? setAnon(false) : setAnon(true))}
-          />{" "}
-          Anonymity
-          <input
-            type="checkbox"
-            defaultChecked={checked}
-            onChange={() => (checked ? setChecked(false) : setChecked(true))}
-          />{" "}
-          Scheduled
+            <div>
+              <input
+                type="checkbox"
+                defaultChecked={anon}
+                onChange={() => (anon ? setAnon(false) : setAnon(true))}
+              />{" "}
+              Anonymity
+              <input
+                type="checkbox"
+                defaultChecked={checked}
+                onChange={() =>
+                  checked ? setChecked(false) : setChecked(true)
+                }
+              />{" "}
+              Scheduled
+            </div>
+
+            {HandleAnonmity()}
+
+            {HandleSchedule()}
+
+            <div>
+              <input
+                type="date"
+                className="input-control"
+                onChange={handleEnddate}
+                required
+              />
+            </div>
+
+            <div>
+              <input
+                type="time"
+                className="input-control"
+                onChange={handleEndtime}
+                required
+              />
+            </div>
+
+            <div>
+              <input
+                type="checkbox"
+                defaultChecked={multicheck}
+                onChange={() =>
+                  multicheck ? setMulticheck(false) : setMulticheck(true)
+                }
+              />
+              Multi-Candidate Selection
+            </div>
+
+            <div>
+              <label> Value:{val}</label>
+              <input
+                type="range"
+                min="2"
+                max="8"
+                id="myRange"
+                value={val}
+                onChange={sliderange}
+              />
+            </div>
+            {Handlefield()}
+
+            <div>
+              <button type="submit" className="btn btn-success">
+                Submit
+              </button>
+            </div>
+          </form>
         </div>
-
-        {handleAnonmity()}
-
-        {handleSchedule()}
-
-        <div className="date-in">
-          <input type="date" onChange={handleEnddate} required />
-        </div>
-
-        <div className="time-in">
-          <input type="time" onChange={handleEndtime} required />
-        </div>
-
-        <div>
-          <input
-            type="checkbox"
-            defaultChecked={multicheck}
-            onChange={() =>
-              multicheck ? setMulticheck(false) : setMulticheck(true)
-            }
-          />
-          Multi-Candidate Selection
-        </div>
-
-        <div className="range-in">
-          <label> Value:{val}</label>
-          <input
-            type="range"
-            min="2"
-            max="8"
-            className="slider"
-            id="myRange"
-            value={val}
-            onChange={sliderange}
-          />
-        </div>
-        {handlefield()}
-
-        <div className="button-n">
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-    </div>
-  );
+      </div>
+    );
+  } else {
+    return <Clipboard text={text} />;
+  }
 };
 
 export default CreateForm;

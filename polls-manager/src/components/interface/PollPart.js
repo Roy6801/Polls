@@ -20,7 +20,7 @@ const PollPart = ({ pollInfo, vC }) => {
 
   return (
     <div>
-      <h1>{pollInfo.pollURL}</h1>
+      <h1>PollPart : {pollInfo.pollURL}</h1>
     </div>
   );
 };

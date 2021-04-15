@@ -3,7 +3,7 @@ import Proptypes from "prop-types";
 import Service from "../Service";
 import Success from "../Success";
 
-const PollReg = ({ pollURL, vC }) => {
+const PollReg = ({ pollInfo, vC }) => {
   const userName = window.localStorage.getItem("polls-manager-system-G22-user");
 
   const [success, setSuccess] = useState();
@@ -11,7 +11,7 @@ const PollReg = ({ pollURL, vC }) => {
   const handleClick = (e) => {
     const user = {
       userName: userName,
-      pollURL: pollURL,
+      pollURL: pollInfo.poll_Id,
       verificationId: vC,
     };
     Service.registerForPoll(user).then((resp) => {
@@ -34,7 +34,7 @@ const PollReg = ({ pollURL, vC }) => {
         <label>
           Register for this Poll? Your Username : {userName} will be registerd
         </label>
-        <h3>Poll_ID : {pollURL}</h3>
+        <h3>Poll_ID : {pollInfo.poll_Id}</h3>
         <h4>Verification_ID : {vC}</h4>
         <button type="submit" onClick={handleClick}>
           Register
@@ -45,7 +45,7 @@ const PollReg = ({ pollURL, vC }) => {
 };
 
 PollReg.propTypes = {
-  pollURL: Proptypes.string.isRequired,
+  pollInfo: Proptypes.object.isRequired,
   vC: Proptypes.string.isRequired,
 };
 

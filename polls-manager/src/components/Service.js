@@ -50,6 +50,10 @@ const registerForPoll = async (user) => {
   return axios.post(API_BASE_URL + "Poll", { ...user });
 };
 
+const participateInPoll = async (user) => {
+  return axios.post(API_BASE_URL + "Participate", { ...user });
+};
+
 const getRegisteredUsers = async (user) => {
   return axios.post(API_BASE_URL + "GetRegisteredUsers", { ...user });
 };
@@ -102,6 +106,7 @@ export default {
   createPoll,
   userPresent,
   registerForPoll,
+  participateInPoll,
   getPollListByAdmin,
   getAdminByPoll_Id,
   getPollInfo,

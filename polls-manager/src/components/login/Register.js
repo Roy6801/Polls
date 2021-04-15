@@ -2,7 +2,6 @@ import { useState } from "react";
 import Service from "../Service";
 import PropTypes from "prop-types";
 import "../stylesheets/Register.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const Register = ({ setToken }) => {
   const [userName, setUserName] = useState("");
