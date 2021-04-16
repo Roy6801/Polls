@@ -6,6 +6,7 @@ import "../stylesheets/CreateForm.css";
 
 const CreateForm = () => {
   var storedate;
+  const rectify = 19800;
   const [anon, setAnon] = useState(true);
   const [checked, setChecked] = useState(false);
   const [multicheck, setMulticheck] = useState(false);
@@ -41,7 +42,7 @@ const CreateForm = () => {
     const hrs = begantime.split(":")[0];
     const mins = begantime.split(":")[1];
     const starttime = Number(hrs) * 3600 + Number(mins) * 60;
-    setStarttime(starttime);
+    setStarttime(starttime - rectify);
   };
 
   const handleEndtime = (e) => {
@@ -49,7 +50,7 @@ const CreateForm = () => {
     const hrs = begantime.split(":")[0];
     const mins = begantime.split(":")[1];
     const endtime = Number(hrs) * 3600 + Number(mins) * 60;
-    setEndtime(endtime);
+    setEndtime(endtime - rectify);
   };
 
   const handleInputs = (e, i) => {

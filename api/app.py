@@ -42,6 +42,7 @@ def verifyToken():
     global conn, response
     if request.method == "POST":
         userData = request.json
+        print(userData)
         response = conn.token(userData)
     return {"response": response}
 
@@ -51,6 +52,7 @@ def login():
     global conn, response
     if request.method == "POST":
         userData = request.json
+        print(userData)
         response = conn.verifyUser(userData)
     return {"response": response}
 
@@ -60,6 +62,7 @@ def register():
     global conn, response
     if request.method == "POST":
         userData = request.json
+        print(userData)
         response = conn.createUser(userData)
     return {"response": response}
 
@@ -70,6 +73,7 @@ def create():
     if request.method == "POST":
         userData = request.json
         del userData['options'][0]
+        print(userData)
         response = conn.createPoll(userData)
     return {"response": response}
 
@@ -94,12 +98,12 @@ def PollOptions(url):
         return str(response)
 
 
-@app.route("/UserPresent", methods=["GET", "POST"])
-def userPresent():
+@app.route("/UserPresent/<url>/<user>", methods=["GET", "POST"])
+def userPresent(url, user):
     global conn, response
-    if request.method == "POST":
-        userData = request.json
-        response = conn.userInPoll(userData)
+    userData = {"poll_Id": url, "userName": user}
+    print(userData)
+    response = conn.userInPoll(userData)
     return {"response": response}
 
 
@@ -108,6 +112,7 @@ def registerForPoll():
     global conn, response
     if request.method == "POST":
         userData = request.json
+        print(userData)
         response = conn.registerForPoll(userData)
     return {"response": response}
 
@@ -117,6 +122,7 @@ def participate():
     global conn, response
     if request.method == "POST":
         userData = request.json
+        print(userData)
     return {"response": response}
 
 if __name__ == "__main__":
