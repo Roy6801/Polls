@@ -1,9 +1,12 @@
 @media screen and (min-width: 480px) {
 .formControl{
     width: 25%;
+    background-color: rgb(141, 233, 235);
+  
 }
 
 .formDisplay{
+    background-color: #abed95;
     width: 75%;
     overflow: auto;
     display: flex;
@@ -13,7 +16,7 @@
 }
 
 .formLabel{
-    background-color: rgb(255, 228, 186);
+    background-color: #92ed74;
     width: fit-content;
     height: fit-content;
     border-radius: 15px;
@@ -22,11 +25,13 @@
 }
 
 .formFont{
+    
     font-size: 25px;
     font-weight: bold;
 }
 
 .input-control-create{
+
     width: 100%;
 
 }

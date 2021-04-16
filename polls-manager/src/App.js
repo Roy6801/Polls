@@ -17,7 +17,19 @@ const App = () => {
 
   if (token === "$$$NULL$$$") {
     return (
-      <div className="Login-page" style={{display:"flex",justifyContent:"center",alignItems:"center", backgroundColor:"pink", height:"100vh" }}>
+      <div
+        className="Login-page"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundImage: `url("https://frepple.com/wp-content/uploads/business-poll-survey2-2401.jpg")`,
+          backgroundRepeat: "no-repeat",
+          height: "100vh",
+          backgroundColor: "lightblue",
+          backgroundSize: "100vw 100vh",
+        }}
+      >
         <Login setToken={setToken} />
       </div>
     );
