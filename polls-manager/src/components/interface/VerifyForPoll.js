@@ -18,8 +18,8 @@ const VerifyForPoll = ({ pollInfo }) => {
     return (
       <div className="mainDiv">
         <form onSubmit={handleClick}>
-          <h3>Enter Verification ID</h3>
-          <h1>Scheduled For : {String(pollInfo.timestamp)}</h1>
+          <h1>Enter Verification ID</h1>
+          <h3>Scheduled For : {String(new Date(pollInfo.timestamp * 1000))}</h3>
           <input
             type="text"
             className="input-control"

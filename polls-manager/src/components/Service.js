@@ -43,7 +43,9 @@ const getPollOptions = async (url) => {
 };
 
 const userPresent = async (user) => {
-  return axios.post(API_BASE_URL + "UserPresent", { ...user });
+  return axios.get(
+    API_BASE_URL + "UserPresent/" + user.poll_Id + "/" + user.userName
+  );
 };
 
 const registerForPoll = async (user) => {
