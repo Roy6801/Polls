@@ -17,6 +17,10 @@ const CountDown = ({ time }) => {
     }, 1000);
   });
 
+  if (rem === "000D 00H 00M 00S") {
+    window.location.reload();
+  }
+
   return (
     <div
       className="mainDiv"

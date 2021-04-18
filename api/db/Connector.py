@@ -71,7 +71,7 @@ class Connection:
             return 1
         else:
             return 0
-    
+
     def getUserInfo(self, userName):
         self.query = 'select * from user where userName = BINARY %s'
         flag = self.exec(userName)
@@ -125,9 +125,15 @@ class Connection:
             if self.exec() == 1:
                 for i in range(len(data['options'])):
                     self.query = 'alter table ' + \
-                        val[0]+' add '+data['options'][i]+' int(10)'
+                        val[0]+' add '+data['options'][i]+' int(10) default 0'
                     self.exec()
-                return val[2]
+                self.query = "insert into " + \
+                    val[0] + "(sr_no) values(1)"
+                flag = self.exec()
+                if flag == 1:
+                    return val[2]
+                else:
+                    return flag
             else:
                 return 0
         return flag
@@ -142,7 +148,7 @@ class Connection:
             return response
         else:
             return 0
-    
+
     def getPollOptions(self, data):
         self.query = "select * from information_schema.columns where table_name = N'"+data+"'"
         flag = self.exec()
@@ -175,6 +181,48 @@ class Connection:
         flag = self.exec(tuple(data.values()))
         return flag
 
+    def participateInPoll(self, registrant, ans, scheduled, radio):
+        if scheduled == 1:
+            self.query = "update registrant set participated = 1 where userName = %s and poll_Id = %s"
+            flag = self.exec(
+                tuple([registrant['userName'], registrant['poll_Id']]))
+            if flag == 1:
+                if radio == 1:
+                    self.query = "update " + \
+                        registrant['poll_Id']+" set " + \
+                        ans+" = "+ans+" + 1 where sr_no = 1"
+                    return self.exec()
+                else:
+                    for op in ans:
+                        if op is not None and op != "$$$NULL$$$":
+                            self.query = "update " + \
+                                registrant['poll_Id']+" set " + \
+                                op+" = "+op+" + 1 where sr_no = 1"
+                            self.exec()
+                    return 1
+            else:
+                return flag
+        else:
+            self.query = "insert into registrant(userName, poll_Id, verificationId, participated) values (%s, %s, %s, %s)"
+            flag = self.exec(tuple(registrant.values()))
+            if flag == 1:
+                print(type(radio))
+                if radio == 1:
+                    self.query = "update " + \
+                        registrant['poll_Id']+" set " + \
+                        ans+" = "+ans+" + 1 where sr_no = 1"
+                    return self.exec()
+                else:
+                    for op in ans:
+                        if op is not None and op != "$$$NULL$$$":
+                            self.query = "update " + \
+                                registrant['poll_Id']+" set " + \
+                                op+" = "+op+" + 1 where sr_no = 1"
+                            self.exec()
+                    return 1
+            else:
+                return flag
+
     def getPollListByAdmin(self, userName):
         pass
 
@@ -189,9 +237,9 @@ class Connection:
 
 
 #conn = Connection()
-#pollForm = {"userName": "Roy", "pollName": "TrialReg", "verificationCriteria": "Aadhar", "ts": "1618334737", "deadline": "1616866213",
+# pollForm = {"userName": "Roy", "pollName": "TrialReg", "verificationCriteria": "Aadhar", "ts": "1618334737", "deadline": "1616866213",
 #            "anonymity": 1, "scheduled": 1, "radio": 1, "optionsCount": 4, "options": ["Maths", "History", "Science", "Civics"]}
 
-#print(conn.createPoll(pollForm))
+# print(conn.createPoll(pollForm))
 
-#print(conn.getPollOptions("0iZe3V3nHPRo8BC8wLquNOx20AGm4WfSAInUeua3UKrtzCbt0h"))
+# print(conn.getPollOptions("0iZe3V3nHPRo8BC8wLquNOx20AGm4WfSAInUeua3UKrtzCbt0h"))

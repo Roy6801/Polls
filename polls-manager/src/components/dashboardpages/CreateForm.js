@@ -55,7 +55,7 @@ const CreateForm = () => {
 
   const handleInputs = (e, i) => {
     const values = [...field];
-    values[i] = e.target.value;
+    values[i] = e.target.value.replace(" ", "_");
     setField(values);
   };
 

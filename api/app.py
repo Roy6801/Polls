@@ -93,8 +93,10 @@ def PollOptions(url):
     global conn, response
     response = conn.getPollOptions(url)
     if response != 0:
+        print(response)
         return response
     else:
+        print(response)
         return str(response)
 
 
@@ -117,12 +119,16 @@ def registerForPoll():
     return {"response": response}
 
 
-@app.route("/Participate", methods=["GET", "POST"])
-def participate():
+@app.route("/Participate/<url>/<user>/<scheduled>/<radio>", methods=["GET", "POST"])
+def participate(url, user, scheduled, radio):
     global conn, response
     if request.method == "POST":
         userData = request.json
-        print(userData)
+        registrant = {"userName": user, "poll_Id": url,
+                      "verificationId": userData['verificationId'], "part": 1}
+        ans = userData['ans']
+        response = conn.participateInPoll(
+            registrant, ans, int(scheduled), int(radio))
     return {"response": response}
 
 if __name__ == "__main__":

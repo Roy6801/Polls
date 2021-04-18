@@ -35,7 +35,6 @@ const Poll = (props) => {
   }
 
   const time = Math.floor(new Date().getTime() / 1000);
-  console.log(pollInfo, time, started, ended);
 
   if (started === "$$$NULL$$$") {
     if (time > Number(pollInfo.timestamp)) {
@@ -65,7 +64,7 @@ const Poll = (props) => {
       setAnonymity(false);
     }
   }
-console.log(started, ended, scheduled, anonymity);
+
   if (reg === 1) {
     if (scheduled) {
       if (anonymity) {
