@@ -14,7 +14,7 @@ const Clipboard = ({ text }) => {
     setCopied(true);
     setTimeout(() => {
       setCopied(false);
-    }, 2000);
+    }, 1000);
   };
 
   const DisplayCopied = () => {

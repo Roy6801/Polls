@@ -52,8 +52,25 @@ const registerForPoll = async (user) => {
   return axios.post(API_BASE_URL + "Poll", { ...user });
 };
 
-const participateInPoll = async (user) => {
-  return axios.post(API_BASE_URL + "Participate", { ...user });
+const participateInPoll = async (
+  poll_Id,
+  userName,
+  scheduled,
+  radio,
+  answer
+) => {
+  return axios.post(
+    API_BASE_URL +
+      "Participate/" +
+      poll_Id +
+      "/" +
+      userName +
+      "/" +
+      scheduled +
+      "/" +
+      radio,
+    { ...answer }
+  );
 };
 
 const getRegisteredUsers = async (user) => {
