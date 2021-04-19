@@ -190,9 +190,19 @@ const Register = ({ setToken }) => {
         </div>
         <div className="subDiv">
           <button
+            type="button"
+            className="btn btn-success"
+            style={{ flexGrow: 1, margin: "20px" }}
+            onClick={(e) => {
+              window.location.reload();
+            }}
+          >
+            <b>Back</b>
+          </button>
+          <button
             type="submit"
             className="btn btn-success"
-            style={{ flexGrow: 1, margin: "30px" }}
+            style={{ flexGrow: 1, margin: "20px" }}
           >
             <b>Save</b>
           </button>

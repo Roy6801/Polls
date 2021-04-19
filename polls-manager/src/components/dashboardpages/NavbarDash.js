@@ -1,12 +1,11 @@
 import { useState } from "react";
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import * as BiIcon from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "../stylesheets/NavbarDash.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { IconContext } from "react-icons";
-import Service from "../Service";
 
 const NavbarDash = ({ setToken }) => {
   const [sidebar, setSidebar] = useState(false);
@@ -59,8 +58,8 @@ const NavbarDash = ({ setToken }) => {
   );
 };
 
-NavbarDash.protoTypes = {
-  setToken: propTypes.func.isRequired,
+NavbarDash.propTypes = {
+  setToken: PropTypes.func.isRequired,
 };
 
 export default NavbarDash;

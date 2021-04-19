@@ -73,7 +73,7 @@ const Login = ({ setToken }) => {
               className="btn btn-success"
               style={{ flexGrow: 1, margin: "30px", marginBottom: "5px" }}
             >
-              Login
+              <b>Login</b>
             </button>
           </div>
         </form>
@@ -83,7 +83,7 @@ const Login = ({ setToken }) => {
             className="btn btn-success"
             style={{ flexGrow: 1, margin: "30px", marginTop: "5px" }}
           >
-            Register
+            <b>Register</b>
           </button>
         </div>
       </div>

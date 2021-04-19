@@ -5,7 +5,6 @@ import CreatedPoll from "./CreatedPoll";
 import CreatedOngoing from "./CreatedOngoing";
 import PartOngoing from "./PartOngoing";
 import PollToStart from "./PollToStart";
-import Service from "../Service";
 
 const User = () => {
   return (

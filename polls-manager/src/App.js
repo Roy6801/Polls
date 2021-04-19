@@ -6,6 +6,7 @@ import About from "./components/dashboardpages/About";
 import User from "./components/dashboardpages/User";
 import useToken from "./components/useToken";
 import Poll from "./components/interface/Poll";
+import AdminPoll from "./components/userpages/AdminPoll";
 
 
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
           <Route exact path="/createpoll" component={CreateForm} />
           <Route exact path="/about" component={About} />
           <Route exact path="/Poll/:pollURL" component={Poll} />
+          <Route exact path="/PollInfo/create/:pollURL" component={AdminPoll} />
           <Route path="*" component={User} />
         </Switch>
       </div>

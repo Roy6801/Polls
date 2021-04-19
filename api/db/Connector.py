@@ -147,7 +147,7 @@ class Connection:
                         "anonymity": val[5], "timestamp": val[6], "deadline": val[7], "scheduled": val[8], "radio": val[9], "optionsCount": val[10]}
             return response
         else:
-            return 0
+            return str(flag)
 
     def getPollOptions(self, data):
         self.query = "select * from information_schema.columns where table_name = N'"+data+"'"
@@ -160,7 +160,22 @@ class Connection:
                     options[i[4] - 1] = i[3]
             return options
         else:
-            return flag
+            return str(flag)
+
+    def getPollResults(self, data):
+        self.query = "select * from "+data
+        flag = self.exec()
+        val = self.cur.fetchone()
+        val = list(val)
+        del val[0]
+        if flag == 1 and val is not None:
+            op = self.getPollOptions(data)
+            result = dict()
+            for i in range(1, len(val)+1):
+                result[op[i]] = val[i - 1]
+            return result
+        else:
+            return str(flag)
 
     def userInPoll(self, data):
         self.query = "select * from registrant where poll_Id = BINARY %s and userName = BINARY %s"
@@ -224,7 +239,13 @@ class Connection:
                 return flag
 
     def getPollListByAdmin(self, userName):
-        pass
+        self.query = "select registrant.poll_Id, poll.pollName from registrant inner join poll on registrant.poll_Id = poll.poll_Id where userName = %s order by poll.timestamp desc"
+        flag = self.exec(userName)
+        val = self.cur.fetchall()
+        if flag == 1 and val is not None:
+            return dict(val)
+        else:
+            return str(flag)
 
     def getAdminByPoll_Id(self, poll_Id):
         pass
@@ -237,9 +258,5 @@ class Connection:
 
 
 #conn = Connection()
-# pollForm = {"userName": "Roy", "pollName": "TrialReg", "verificationCriteria": "Aadhar", "ts": "1618334737", "deadline": "1616866213",
-#            "anonymity": 1, "scheduled": 1, "radio": 1, "optionsCount": 4, "options": ["Maths", "History", "Science", "Civics"]}
 
-# print(conn.createPoll(pollForm))
-
-# print(conn.getPollOptions("0iZe3V3nHPRo8BC8wLquNOx20AGm4WfSAInUeua3UKrtzCbt0h"))
+#print(conn.getPollResults("66nn48ythk80b6r3l6507p6svbfnxivmwytfccnzc5q64kglb7"))

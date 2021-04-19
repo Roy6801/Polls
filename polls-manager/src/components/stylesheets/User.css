@@ -1,49 +1,41 @@
-
-
-.figure{
-    position: relative;
-    float:left;
+.figure {
+  position: relative;
+  float: left;
 }
 
-.register-list{
-    width: 40vw;
- background-color: rgb(60, 102, 151); 
+.register-list {
+  width: 40vw;
+  background-color: rgb(60, 102, 151);
 }
 
-.chart-poll{
-     background-color:green; 
-     width: 100%;
+.chart-poll {
+  background-color: green;
+  width: 100%;
 }
 
-.created-ongoing{
-    width: 40vw;
-    background-color: rgb(196, 84, 140);
+.created-ongoing {
+  width: 40vw;
+  background-color: rgb(196, 84, 140);
 }
 
-.created-poll{
-    width: 40vw;
-    background-color:rgb(231, 207, 66);
-   
+.created-poll {
+  width: 40vw;
+  background-color: rgb(231, 207, 66);
 }
 
-
-
-
-.part-ongoing{
-    width: 40vw;
-    background-color: rgb(107, 211, 116)
+.part-ongoing {
+  width: 40vw;
+  background-color: rgb(107, 211, 116);
 }
 
-.poll-to-start{
-      width: 40vw; 
-      background-color: rgb(223, 100, 100);
+.poll-to-start {
+  width: 40vw;
+  background-color: rgb(223, 100, 100);
 }
 
-
-.flex-container{
-    display: flex;
-  
-    flex-direction: row;
-     justify-content: space-evenly;
-    margin: 30px;
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 30px;
 }
