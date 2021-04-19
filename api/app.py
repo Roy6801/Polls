@@ -82,22 +82,21 @@ def create():
 def PollInfo(url):
     global conn, response
     response = conn.getPollInfo(url)
-    if response != 0:
-        return response
-    else:
-        return str(response)
+    return response
 
 
 @app.route("/PollOptions/<url>", methods=["GET"])
 def PollOptions(url):
     global conn, response
     response = conn.getPollOptions(url)
-    if response != 0:
-        print(response)
-        return response
-    else:
-        print(response)
-        return str(response)
+    return response
+
+
+@app.route("/PollResults/<url>", methods=["GET"])
+def PollResults(url):
+    global conn, response
+    response = conn.getPollResults(url)
+    return response
 
 
 @app.route("/UserPresent/<url>/<user>", methods=["GET", "POST"])
@@ -130,6 +129,13 @@ def participate(url, user, scheduled, radio):
         response = conn.participateInPoll(
             registrant, ans, int(scheduled), int(radio))
     return {"response": response}
+
+
+@app.route("/GetPollListByAdmin/<admin>", methods=["GET"])
+def pollListByAdmin(admin):
+    global conn, response
+    response = conn.getPollListByAdmin(admin)
+    return response
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', threaded=True)

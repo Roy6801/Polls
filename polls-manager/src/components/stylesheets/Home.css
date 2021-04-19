@@ -1,7 +1,7 @@
 
   .list{
     display:flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     position:static;
     margin-top: 50px;
     height: 300px;

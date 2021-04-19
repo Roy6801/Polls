@@ -26,12 +26,8 @@ const createPoll = async (user) => {
   return axios.post(API_BASE_URL + "CreatePoll", { ...user });
 };
 
-const getPollListByAdmin = async (user) => {
-  return axios.post(API_BASE_URL + "GetPollListByAdmin", { ...user });
-};
-
-const getAdminByPoll_Id = async (user) => {
-  return axios.post(API_BASE_URL + "GetAdminByPoll_Id", { ...user });
+const getPollListByAdmin = async (admin) => {
+  return axios.get(API_BASE_URL + "GetPollListByAdmin/" + admin);
 };
 
 const getPollInfo = async (url) => {
@@ -81,8 +77,8 @@ const getParticipatedUsers = async (user) => {
   return axios.post(API_BASE_URL + "GetParticipatedUsers", { ...user });
 };
 
-const getPollResults = async (user) => {
-  return axios.post(API_BASE_URL + "GetPollResults", { ...user });
+const getPollResults = async (url) => {
+  return axios.get(API_BASE_URL + "PollResults/" + url);
 };
 
 const crypt = (str, flag) => {
@@ -127,7 +123,6 @@ export default {
   registerForPoll,
   participateInPoll,
   getPollListByAdmin,
-  getAdminByPoll_Id,
   getPollInfo,
   getPollOptions,
   getRegisteredUsers,
