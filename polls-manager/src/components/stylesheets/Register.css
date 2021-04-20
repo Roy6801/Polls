@@ -49,14 +49,15 @@
   }
 
   tr:last-child {
-    background-color: #e6c25a;
+    background-color: #629eb3;
   }
 
   tr:nth-child(even) {
-    background-color: #fcf0cc;
+    background-color: #8fc6d9;
   }
 
   tr:hover {
-    background-color: #e6c25a;
+    color: white;
+    background-color: #2f697d;
   }
 }

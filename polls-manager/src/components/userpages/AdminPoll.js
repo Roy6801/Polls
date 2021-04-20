@@ -6,7 +6,7 @@ const AdminPoll = (props) => {
   const [poll, setPoll] = useState("$$$NULL$$$");
   const [pollInfo, setPollInfo] = useState("$$$NULL$$$");
 
-    console.log(poll, pollInfo);
+  console.log(poll, pollInfo);
 
   if (poll === "$$$NULL$$$") {
     setPoll(props.match.params.pollURL);
@@ -22,10 +22,20 @@ const AdminPoll = (props) => {
 
   if (pollInfo !== "$$$NULL$$$") {
     return (
-      <div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          background:
+            "linear-gradient(293deg, rgba(235,144,110,1) 33%, rgba(255,216,177,1) 66%, rgba(255,229,180,1) 99%)",
+        }}
+      >
         <PollResult pollInfo={pollInfo} />
         <button
           type="button"
+          style={{ width: "25%" }}
+          className="btn btn-success"
           onClick={(e) => {
             window.location.replace("/");
           }}
