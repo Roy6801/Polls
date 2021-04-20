@@ -35,7 +35,7 @@ def pollCreate(conn, ts=int(time.time()), deadline=int(time.time())+3600):
 class Connection:
     def __init__(self):
         flag = False
-        conn = None
+        self.conn = None
         try:
             conn = pymysql.connect(user="root", password="", host="localhost",
                                    port=3306, database="polls_manager", autocommit=1)
@@ -55,11 +55,8 @@ class Connection:
     def token(self, data):
         self.query = 'select * from user where userToken = %s'
         flag = self.exec(data['userToken'])
-        try:
-            val = self.cur.fetchone()
-        except:
-            val = 0
-        if val != 0 and flag == 1:
+        val = self.cur.fetchone()
+        if val is not None and flag == 1:
             return {"userName": val[0], "password": val[1], "firstName": val[2], "lastName": val[3], "email": val[4], "mobileNo": val[5], "userToken": val[6]}
         else:
             return 0
@@ -141,46 +138,47 @@ class Connection:
     def getPollInfo(self, data):
         self.query = 'select * from poll where poll_Id = BINARY %s'
         flag = self.exec(data)
-        if flag == 1:
-            val = self.cur.fetchone()
+        val = self.cur.fetchone()
+        if flag == 1 and val is not None:
             response = {"poll_Id": val[0], "pollName": val[1], "adminUserName": val[2], "verificationCriteria": val[3], "pollURL": val[4],
                         "anonymity": val[5], "timestamp": val[6], "deadline": val[7], "scheduled": val[8], "radio": val[9], "optionsCount": val[10]}
             return response
         else:
-            return str(flag)
+            return "0"
 
     def getPollOptions(self, data):
         self.query = "select * from information_schema.columns where table_name = N'"+data+"'"
         flag = self.exec()
         val = self.cur.fetchall()
         if flag == 1 and val is not None:
-            options = {}
+            options = dict()
             for i in val:
                 if i[3] != 'sr_no':
                     options[i[4] - 1] = i[3]
             return options
         else:
-            return str(flag)
+            return "0"
 
     def getPollResults(self, data):
         self.query = "select * from "+data
         flag = self.exec()
         val = self.cur.fetchone()
-        val = list(val)
-        del val[0]
         if flag == 1 and val is not None:
+            val = list(val)
+            del val[0]
             op = self.getPollOptions(data)
             result = dict()
             for i in range(1, len(val)+1):
                 result[op[i]] = val[i - 1]
             return result
         else:
-            return str(flag)
+            return "0"
 
     def userInPoll(self, data):
         self.query = "select * from registrant where poll_Id = BINARY %s and userName = BINARY %s"
         flag = self.exec(tuple(data.values()))
         val = self.cur.fetchone()
+        print(val)
         if flag == 1 and val is None:
             return 1
         elif flag == 1 and val is not None:
@@ -245,18 +243,22 @@ class Connection:
         if flag == 1 and val is not None:
             return dict(val)
         else:
-            return str(flag)
-
-    def getAdminByPoll_Id(self, poll_Id):
-        pass
-
-    def getRegistrantList(self, poll_Id):
-        pass
+            return "0"
 
     def getParticipantList(self, poll_Id):
-        pass
+        self.query = "select userName, participated, verificationId from registrant where poll_Id = %s"
+        flag = self.exec(poll_Id)
+        val = self.cur.fetchall()
+        if flag == 1 and val is not None:
+            result = dict()
+            for i in val:
+                result[i[0]] = (i[1], i[2])
+            return result
+        else:
+            return "0"
 
 
 #conn = Connection()
 
-#print(conn.getPollResults("66nn48ythk80b6r3l6507p6svbfnxivmwytfccnzc5q64kglb7"))
+# print(conn.userInPoll(
+#    {"poll_Id": "mpetgr589esl4fuf64zv3aalidh9keq8nj6dvw4liitbdwkuoz", "userName": "Kai"}))

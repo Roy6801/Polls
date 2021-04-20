@@ -30,16 +30,13 @@ def crypt(text, flag):
         return val
 
 
-conn = Connection()
-response = 0
-
 app = Flask(__name__)
 CORS(app)
 
 
 @app.route("/VerifyToken", methods=["GET", "POST"])
 def verifyToken():
-    global conn, response
+    conn = Connection()
     if request.method == "POST":
         userData = request.json
         print(userData)
@@ -49,7 +46,7 @@ def verifyToken():
 
 @app.route("/LoginUser", methods=["GET", "POST"])
 def login():
-    global conn, response
+    conn = Connection()
     if request.method == "POST":
         userData = request.json
         print(userData)
@@ -59,7 +56,7 @@ def login():
 
 @app.route("/RegisterUser", methods=["GET", "POST"])
 def register():
-    global conn, response
+    conn = Connection()
     if request.method == "POST":
         userData = request.json
         print(userData)
@@ -69,7 +66,7 @@ def register():
 
 @app.route("/CreatePoll", methods=["GET", "POST"])
 def create():
-    global conn, response
+    conn = Connection()
     if request.method == "POST":
         userData = request.json
         del userData['options'][0]
@@ -78,30 +75,30 @@ def create():
     return {"response": response}
 
 
-@app.route("/PollInfo/<url>", methods=["GET"])
+@app.route("/PollInfo/<url>")
 def PollInfo(url):
-    global conn, response
+    conn = Connection()
     response = conn.getPollInfo(url)
     return response
 
 
-@app.route("/PollOptions/<url>", methods=["GET"])
+@app.route("/PollOptions/<url>")
 def PollOptions(url):
-    global conn, response
+    conn = Connection()
     response = conn.getPollOptions(url)
     return response
 
 
-@app.route("/PollResults/<url>", methods=["GET"])
+@app.route("/PollResults/<url>")
 def PollResults(url):
-    global conn, response
+    conn = Connection()
     response = conn.getPollResults(url)
     return response
 
 
 @app.route("/UserPresent/<url>/<user>", methods=["GET", "POST"])
 def userPresent(url, user):
-    global conn, response
+    conn = Connection()
     userData = {"poll_Id": url, "userName": user}
     print(userData)
     response = conn.userInPoll(userData)
@@ -110,7 +107,7 @@ def userPresent(url, user):
 
 @app.route("/Poll", methods=["GET", "POST"])
 def registerForPoll():
-    global conn, response
+    conn = Connection()
     if request.method == "POST":
         userData = request.json
         print(userData)
@@ -120,7 +117,7 @@ def registerForPoll():
 
 @app.route("/Participate/<url>/<user>/<scheduled>/<radio>", methods=["GET", "POST"])
 def participate(url, user, scheduled, radio):
-    global conn, response
+    conn = Connection()
     if request.method == "POST":
         userData = request.json
         registrant = {"userName": user, "poll_Id": url,
@@ -131,11 +128,19 @@ def participate(url, user, scheduled, radio):
     return {"response": response}
 
 
-@app.route("/GetPollListByAdmin/<admin>", methods=["GET"])
+@app.route("/GetPollListByAdmin/<admin>")
 def pollListByAdmin(admin):
-    global conn, response
+    conn = Connection()
     response = conn.getPollListByAdmin(admin)
     return response
+
+
+@app.route("/GetParticipants/<url>")
+def getParticipants(url):
+    conn = Connection()
+    response = conn.getParticipantList(url)
+    return response
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', threaded=True)
