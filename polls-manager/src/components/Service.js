@@ -69,12 +69,8 @@ const participateInPoll = async (
   );
 };
 
-const getRegisteredUsers = async (user) => {
-  return axios.post(API_BASE_URL + "GetRegisteredUsers", { ...user });
-};
-
-const getParticipatedUsers = async (user) => {
-  return axios.post(API_BASE_URL + "GetParticipatedUsers", { ...user });
+const getParticipants = async (url) => {
+  return axios.get(API_BASE_URL + "GetParticipants/" + url);
 };
 
 const getPollResults = async (url) => {
@@ -125,7 +121,6 @@ export default {
   getPollListByAdmin,
   getPollInfo,
   getPollOptions,
-  getRegisteredUsers,
-  getParticipatedUsers,
+  getParticipants,
   getPollResults,
 };

@@ -6,6 +6,8 @@ const AdminPoll = (props) => {
   const [poll, setPoll] = useState("$$$NULL$$$");
   const [pollInfo, setPollInfo] = useState("$$$NULL$$$");
 
+    console.log(poll, pollInfo);
+
   if (poll === "$$$NULL$$$") {
     setPoll(props.match.params.pollURL);
   }

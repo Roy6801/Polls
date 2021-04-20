@@ -10,7 +10,7 @@
     transition: 0.3s;
   }
 
-  .mainDiv:hover{
+  .mainDiv:hover {
     box-shadow: 2px 8px 13px 2px grey;
   }
 
@@ -19,8 +19,6 @@
     display: flex;
     align-items: center;
   }
-
-  
 
   .input-control {
     border-radius: 25px;
@@ -37,5 +35,28 @@
     height: auto;
     margin: 5px;
     flex-grow: 1;
+  }
+
+  table,
+  td {
+    width: auto;
+    text-align: center;
+    padding: 10px;
+  }
+
+  thead {
+    font-weight: bold;
+  }
+
+  tr:last-child {
+    background-color: #e6c25a;
+  }
+
+  tr:nth-child(even) {
+    background-color: #fcf0cc;
+  }
+
+  tr:hover {
+    background-color: #e6c25a;
   }
 }
