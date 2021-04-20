@@ -6,11 +6,10 @@ import "../stylesheets/User.css";
 
 const CreatedPoll = () => {
   const [list, setList] = useState("$$$NULL$$$");
+  const user = window.localStorage.getItem("polls-manager-system-G22-user");
 
   if (list === "$$$NULL$$$") {
-    Service.getPollListByAdmin(
-      window.localStorage.getItem("polls-manager-system-G22-user")
-    ).then((resp) => {
+    Service.getPollListByAdmin(user).then((resp) => {
       if (resp.data !== "0") {
         setList(resp.data);
       }
@@ -20,9 +19,7 @@ const CreatedPoll = () => {
   useEffect(() => {
     var mounted = true;
     setTimeout(() => {
-      Service.getPollListByAdmin(
-        window.localStorage.getItem("polls-manager-system-G22-user")
-      ).then((resp) => {
+      Service.getPollListByAdmin(user).then((resp) => {
         if (resp.data !== "0" && mounted) {
           setList(resp.data);
         }
@@ -43,7 +40,7 @@ const CreatedPoll = () => {
               <li
                 key={key}
                 onClick={(e) => {
-                  window.location.replace("/PollInfo/create/" + key);
+                  window.location.replace("/PollInfo/" + user + "/" + key);
                 }}
               >
                 {list[key]}

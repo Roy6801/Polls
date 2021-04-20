@@ -46,7 +46,11 @@ const App = () => {
           <Route exact path="/createpoll" component={CreateForm} />
           <Route exact path="/about" component={About} />
           <Route exact path="/Poll/:pollURL" component={Poll} />
-          <Route exact path="/PollInfo/create/:pollURL" component={AdminPoll} />
+          <Route
+            exact
+            path="/PollInfo/:userName/:pollURL"
+            component={AdminPoll}
+          />
           <Route path="*" component={User} />
         </Switch>
       </div>

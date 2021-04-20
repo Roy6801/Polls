@@ -65,53 +65,76 @@ const Poll = (props) => {
     }
   }
 
-  if (reg === 1) {
-    if (scheduled) {
-      if (anonymity) {
-        if (!started) {
-          return <PollReg pollInfo={pollInfo} vC={""} />;
+  const ConditionalPoll = () => {
+    if (reg === 1) {
+      if (scheduled) {
+        if (anonymity) {
+          if (!started) {
+            return <PollReg pollInfo={pollInfo} vC={""} />;
+          } else {
+            return <h1>Registration Ended!!</h1>;
+          }
         } else {
-          return <h1>Registration Ended!!</h1>;
+          if (!started) {
+            return <VerifyForPoll pollInfo={pollInfo} />;
+          } else {
+            return <h1>Registration Ended!!</h1>;
+          }
         }
       } else {
-        if (!started) {
-          return <VerifyForPoll pollInfo={pollInfo} />;
+        if (anonymity) {
+          if (ended) {
+            return <PollResult pollInfo={pollInfo} />;
+          } else {
+            return <PollPart pollInfo={pollInfo} vC={""} />;
+          }
         } else {
-          return <h1>Registration Ended!!</h1>;
+          if (ended) {
+            return <PollResult pollInfo={pollInfo} />;
+          } else {
+            return <VerifyForPoll pollInfo={pollInfo} />;
+          }
         }
       }
-    } else {
-      if (anonymity) {
-        if (ended) {
-          return <PollResult pollInfo={pollInfo} />;
-        } else {
-          return <PollPart pollInfo={pollInfo} vC={""} />;
-        }
+    } else if (reg === 2) {
+      if (!started) {
+        return <PollWait pollInfo={pollInfo} reg={true} />;
+      } else if (started && !ended) {
+        return <PollPart pollInfo={pollInfo} vC={""} />;
       } else {
-        if (ended) {
-          return <PollResult pollInfo={pollInfo} />;
-        } else {
-          return <VerifyForPoll pollInfo={pollInfo} />;
-        }
+        return <PollResult pollInfo={pollInfo} />;
       }
-    }
-  } else if (reg === 2) {
-    if (!started) {
-      return <PollWait pollInfo={pollInfo} reg={true} />;
-    } else if (started && !ended) {
-      return <PollPart pollInfo={pollInfo} vC={""} />;
+    } else if (reg === 3) {
+      if (ended) {
+        return <PollResult pollInfo={pollInfo} />;
+      } else {
+        return <PollWait pollInfo={pollInfo} reg={false} />;
+      }
     } else {
-      return <PollResult pollInfo={pollInfo} />;
+      return <h1>Fetching Data!!</h1>;
     }
-  } else if (reg === 3) {
-    if (ended) {
-      return <PollResult pollInfo={pollInfo} />;
-    } else {
-      return <PollWait pollInfo={pollInfo} reg={false} />;
-    }
-  } else {
-    return <h1>Fetching Data!!</h1>;
-  }
+  };
+
+  return (
+    <div
+      style={{
+        background:
+          "linear-gradient(293deg, rgba(235,144,110,1) 33%, rgba(255,216,177,1) 66%, rgba(255,229,180,1) 99%)",
+      }}
+    >
+      <ConditionalPoll />
+      <button
+        type="button"
+        style={{ width: "10vw" }}
+        className="btn btn-success"
+        onClick={(e) => {
+          window.location.replace("/");
+        }}
+      >
+        Home
+      </button>
+    </div>
+  );
 };
 
 export default Poll;
