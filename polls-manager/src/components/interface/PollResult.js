@@ -54,7 +54,7 @@ const PollResult = ({ pollInfo }) => {
     return (
       <div>
         <div style={{ display: "flex" }}>
-          <div className="mainDiv">
+          <div className="mainDiv" style={{ backgroundColor: "#ffcfbd" }}>
             <Chart
               width="50vw"
               height="50vh"
@@ -63,8 +63,8 @@ const PollResult = ({ pollInfo }) => {
               data={result}
               options={{
                 title: pollInfo.pollName,
-                backgroundColor: "#000000",
-                chartArea: { width: "50%" },
+                backgroundColor: "#ffcfbd",
+                chartArea: { width: "100%" },
                 hAxis: {
                   title: "Votes",
                   minValue: 0,
@@ -72,16 +72,20 @@ const PollResult = ({ pollInfo }) => {
               }}
             />
           </div>
-          <div className="mainDiv" style={{ flexGrow: "1" }}>
+          <div
+            className="mainDiv"
+            style={{ backgroundColor: "#cdf7db", flexGrow: "1" }}
+          >
             <Chart
               height="50vh"
               chartType="PieChart"
               loader={<div>Loading Chart</div>}
               data={part}
               options={{
-                title: pollInfo.pollName,
-                backgroundColor: "#000000",
-                chartArea: { width: "50%" },
+                title: "Participation %",
+                colors: ["#95deaf", "#5db078"],
+                backgroundColor: "#cdf7db",
+                chartArea: { width: "100%" },
                 hAxis: {
                   title: "Votes",
                   minValue: 0,
@@ -96,7 +100,7 @@ const PollResult = ({ pollInfo }) => {
             style={{
               height: "90vh",
               overflow: "auto",
-              backgroundColor: "#f2dc9b",
+              backgroundColor: "#d5edf5",
             }}
           >
             <table style={{ border: "10px" }}>
@@ -123,7 +127,7 @@ const PollResult = ({ pollInfo }) => {
 
           <div
             className="mainDiv"
-            style={{ flexGrow: "1", backgroundColor: "#fabfb1" }}
+            style={{ flexGrow: "1", backgroundColor: "#f2dc9b" }}
           >
             <Chart
               height="80vh"
@@ -132,9 +136,9 @@ const PollResult = ({ pollInfo }) => {
               data={result}
               options={{
                 title: pollInfo.pollName,
-                colors: ["#cdf7db"],
-                backgroundColor: "#fabfb1",
-                chartArea: { width: "50%" },
+                colors: ["#e6c25a"],
+                backgroundColor: "#f2dc9b",
+                chartArea: { width: "100%" },
                 hAxis: {
                   title: "Votes",
                   minValue: 0,
