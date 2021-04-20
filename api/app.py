@@ -142,5 +142,11 @@ def getParticipants(url):
     return response
 
 
+@app.route("/RegisteredInPolls/<user>")
+def RegisteredinPolls(user):
+    conn = Connection()
+    response = conn.getRegisteredInPolls(user)
+    return response
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', threaded=True)
