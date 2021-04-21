@@ -4,12 +4,14 @@ import "../stylesheets/Home.css";
 import "../stylesheets/Register.css";
 import "../stylesheets/User.css";
 
-const CreatedPoll = () => {
+const ParticipateList = () => {
   const [list, setList] = useState("$$$NULL$$$");
-  const user = window.localStorage.getItem("polls-manager-system-G22-user");
 
   if (list === "$$$NULL$$$") {
-    Service.getPollListByAdmin(user).then((resp) => {
+    Service.getRegisteredInPolls(
+      window.localStorage.getItem("polls-manager-system-G22-user"),
+      1
+    ).then((resp) => {
       if (resp.data !== "0") {
         setList(resp.data);
       }
@@ -19,7 +21,10 @@ const CreatedPoll = () => {
   useEffect(() => {
     var mounted = true;
     setTimeout(() => {
-      Service.getPollListByAdmin(user).then((resp) => {
+      Service.getRegisteredInPolls(
+        window.localStorage.getItem("polls-manager-system-G22-user"),
+        1
+      ).then((resp) => {
         if (resp.data !== "0" && mounted) {
           setList(resp.data);
         }
@@ -32,18 +37,19 @@ const CreatedPoll = () => {
 
   if (list !== "$$$NULL$$$") {
     return (
-      <div className="mainDiv" style={{ backgroundColor: "rgb(226, 202, 61)" }}>
-        <div className="created-poll">
-          <h4>Created Polls</h4>
+      <div
+        className="mainDiv"
+        style={{ backgroundColor: " rgb(99, 201, 106)" }}
+      >
+        <div className="part-list">
+          <h4>Participated In Polls</h4>
           <ul className="list">
             {Object.keys(list).map((i) => {
               return (
                 <li
                   key={list[i][0]}
                   onClick={(e) => {
-                    window.location.replace(
-                      "/PollInfo/" + user + "/" + list[i][0]
-                    );
+                    window.location.replace("/Poll/" + list[i][0]);
                   }}
                 >
                   {list[i][1]}
@@ -57,5 +63,4 @@ const CreatedPoll = () => {
   }
   return null;
 };
-
-export default CreatedPoll;
+export default ParticipateList;

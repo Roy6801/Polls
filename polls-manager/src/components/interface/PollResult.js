@@ -12,7 +12,7 @@ const PollResult = ({ pollInfo }) => {
   useEffect(() => {
     var mounted = true;
     setTimeout(() => {
-      if (mounted && list !== "$$$NULL$$$") {
+      if (list !== "$$$NULL$$$" && mounted) {
         setList("$$$NULL$$$");
         setResult("$$$NULL$$$");
         setPart("$$$NULL$$$");
@@ -60,122 +60,111 @@ const PollResult = ({ pollInfo }) => {
     ]);
   }
 
-  const ConditionalResult = () => {
-    if (
-      result !== "$$$NULL$$$" &&
-      part !== "$$$NULL$$$" &&
-      list !== "$$$NULL$$$"
-    ) {
-      return (
-        <div>
-          <div style={{ display: "flex" }}>
-            <div className="mainDiv" style={{ backgroundColor: "#ffcfbd" }}>
-              <Chart
-                width="50vw"
-                height="50vh"
-                chartType="PieChart"
-                loader={<div>Loading Chart</div>}
-                data={result}
-                options={{
-                  title: pollInfo.pollName,
-                  backgroundColor: "#ffcfbd",
-                  chartArea: { width: "100%" },
-                  hAxis: {
-                    title: "Votes",
-                    minValue: 0,
-                  },
-                }}
-              />
-            </div>
-            <div
-              className="mainDiv"
-              style={{ backgroundColor: "#cdf7db", flexGrow: "1" }}
-            >
-              <Chart
-                height="50vh"
-                chartType="PieChart"
-                loader={<div>Loading Chart</div>}
-                data={part}
-                options={{
-                  title: "Participation %",
-                  colors: ["#95deaf", "#5db078"],
-                  backgroundColor: "#cdf7db",
-                  chartArea: { width: "100%" },
-                  hAxis: {
-                    title: "Votes",
-                    minValue: 0,
-                  },
-                }}
-              />
-            </div>
-          </div>
-          <div style={{ display: "flex" }}>
-            <div
-              className="mainDiv"
-              style={{
-                height: "90vh",
-                overflow: "auto",
-                backgroundColor: "#d5edf5",
+  if (
+    result !== "$$$NULL$$$" &&
+    part !== "$$$NULL$$$" &&
+    list !== "$$$NULL$$$"
+  ) {
+    return (
+      <div>
+        <div style={{ display: "flex" }}>
+          <div className="mainDiv" style={{ backgroundColor: "#ffcfbd" }}>
+            <Chart
+              width="50vw"
+              height="50vh"
+              chartType="PieChart"
+              loader={<div>Loading Chart</div>}
+              data={result}
+              options={{
+                title: pollInfo.pollName,
+                backgroundColor: "#ffcfbd",
+                chartArea: { width: "100%" },
+                hAxis: {
+                  title: "Votes",
+                  minValue: 0,
+                },
               }}
-            >
-              <table style={{ border: "10px" }}>
-                <thead>
-                  <tr>
-                    <td>UserName</td>
-                    <td>Participated</td>
-                    <td>VerificationId</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(list).map((key) => {
-                    return (
-                      <tr key={key}>
-                        <td>{key}</td>
-                        <td>{list[key][0] === 1 ? "Yes" : "No"}</td>
-                        <td>
-                          {pollInfo.anonymity === 1 ? "NA" : list[key][1]}
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-
-            <div
-              className="mainDiv"
-              style={{ flexGrow: "1", backgroundColor: "#f2dc9b" }}
-            >
-              <Chart
-                height="80vh"
-                chartType="BarChart"
-                loader={<div>Loading Chart</div>}
-                data={result}
-                options={{
-                  title: pollInfo.pollName,
-                  colors: ["#e6c25a"],
-                  backgroundColor: "#f2dc9b",
-                  chartArea: { width: "80%" },
-                  hAxis: {
-                    title: "Votes",
-                    minValue: 0,
-                  },
-                }}
-              />
-            </div>
+            />
+          </div>
+          <div
+            className="mainDiv"
+            style={{ backgroundColor: "#cdf7db", flexGrow: "1" }}
+          >
+            <Chart
+              height="50vh"
+              chartType="PieChart"
+              loader={<div>Loading Chart</div>}
+              data={part}
+              options={{
+                title: "Participation %",
+                colors: ["#95deaf", "#5db078"],
+                backgroundColor: "#cdf7db",
+                chartArea: { width: "100%" },
+                hAxis: {
+                  title: "Votes",
+                  minValue: 0,
+                },
+              }}
+            />
           </div>
         </div>
-      );
-    } else {
-      return <h1>Fetching Data...</h1>;
-    }
-  };
+        <div style={{ display: "flex" }}>
+          <div
+            className="mainDiv"
+            style={{
+              height: "90vh",
+              overflow: "auto",
+              backgroundColor: "#d5edf5",
+            }}
+          >
+            <table style={{ border: "10px" }}>
+              <thead>
+                <tr>
+                  <td>UserName</td>
+                  <td>Participated</td>
+                  <td>VerificationId</td>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.keys(list).map((key) => {
+                  return (
+                    <tr key={key}>
+                      <td>{key}</td>
+                      <td>{list[key][0] === 1 ? "Yes" : "No"}</td>
+                      <td>{pollInfo.anonymity === 1 ? "NA" : list[key][1]}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
 
-  return (
-    <div>
-      <ConditionalResult />
-    </div>
-  );
+          <div
+            className="mainDiv"
+            style={{ flexGrow: "1", backgroundColor: "#f2dc9b" }}
+          >
+            <Chart
+              height="80vh"
+              chartType="BarChart"
+              loader={<div>Loading Chart</div>}
+              data={result}
+              options={{
+                title: pollInfo.pollName,
+                colors: ["#e6c25a"],
+                backgroundColor: "#f2dc9b",
+                chartArea: { width: "80%" },
+                hAxis: {
+                  title: "Votes",
+                  minValue: 0,
+                },
+              }}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+  return null;
 };
 
 PollResult.propTypes = {
