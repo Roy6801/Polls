@@ -142,10 +142,10 @@ def getParticipants(url):
     return response
 
 
-@app.route("/RegisteredInPolls/<user>")
-def RegisteredinPolls(user):
+@app.route("/RegisteredInPolls/<user>/<part>")
+def RegisteredinPolls(user, part):
     conn = Connection()
-    response = conn.getRegisteredInPolls(user)
+    response = conn.getRegisteredInPolls(user, int(part))
     return response
 
 if __name__ == "__main__":
