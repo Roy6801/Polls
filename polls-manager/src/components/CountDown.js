@@ -27,7 +27,7 @@ const CountDown = ({ time }) => {
       style={{
         color: "white",
         backgroundColor: "#23d100",
-        fontSize: "30px",
+        fontSize: "2vw",
         fontWeight: "bold",
       }}
     >

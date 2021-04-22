@@ -19,7 +19,7 @@ const Clipboard = ({ text }) => {
 
   const DisplayCopied = () => {
     if (copied) {
-      return <label>Copied!!</label>;
+      return <label style={{ color: "white" }}>Copied!!</label>;
     }
     return null;
   };
@@ -29,30 +29,35 @@ const Clipboard = ({ text }) => {
   }
 
   return (
-    <div className="mainDiv">
-      <div className="subDiv">
-        <input
-          type="text"
-          className="input-control"
-          value={text}
-          disabled="disabled"
-        />
-        <button
-          type="button"
-          className="btn btn-success"
-          onClick={(e) => handleCLick(e)}
-        >
-          <BiClipboard />
-        </button>
-        <DisplayCopied />
-      </div>
+    <div
+      className="mainDiv"
+      style={{
+        display: "flex",
+        width: "95%",
+        backgroundColor: "#0d2247",
+      }}
+    >
+      <input
+        type="text"
+        className="input-control"
+        style={{
+          flexGrow: "1",
+          backgroundColor: "#5a8ee8",
+          color: "white",
+          fontWeight: "bold",
+        }}
+        value={text}
+        disabled="disabled"
+      />
       <button
-        type="submit"
+        type="button"
         className="btn btn-success"
-        onClick={(e) => setHome(true)}
+        style={{ backgroundColor: "#5a8ee8" }}
+        onClick={(e) => handleCLick(e)}
       >
-        Home
+        <BiClipboard />
       </button>
+      <DisplayCopied />
     </div>
   );
 };

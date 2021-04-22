@@ -3,7 +3,7 @@ import ChartPoll from "./ChartPoll";
 import RegisterList from "./RegisterList";
 import CreatedPoll from "./CreatedPoll";
 import ParticipateList from "./ParticipateList";
-import PollToStart from "./PollToStart";
+import PollsToStart from "./PollsToStart";
 
 const User = () => {
   return (
@@ -25,7 +25,7 @@ const User = () => {
 
       <div className="flex-container">
         <ParticipateList />
-        <PollToStart />
+        <PollsToStart />
       </div>
     </div>
   );

@@ -3,13 +3,14 @@ import Service from "../Service";
 import "../stylesheets/Home.css";
 import "../stylesheets/Register.css";
 import "../stylesheets/User.css";
-const RegisterList = () => {
+
+function PollsToStart() {
   const [list, setList] = useState("$$$NULL$$$");
 
   if (list === "$$$NULL$$$") {
-    Service.getRegisteredInPolls(
+    Service.getPollsToStart(
       window.localStorage.getItem("polls-manager-system-G22-user"),
-      0
+      Math.floor(new Date().getTime() / 1000)
     ).then((resp) => {
       if (resp.data !== "0") {
         setList(resp.data);
@@ -20,9 +21,9 @@ const RegisterList = () => {
   useEffect(() => {
     var mounted = true;
     setTimeout(() => {
-      Service.getRegisteredInPolls(
+      Service.getPollsToStart(
         window.localStorage.getItem("polls-manager-system-G22-user"),
-        0
+        Math.floor(new Date().getTime() / 1000)
       ).then((resp) => {
         if (resp.data !== "0" && mounted) {
           setList(resp.data);
@@ -36,9 +37,9 @@ const RegisterList = () => {
 
   if (list !== "$$$NULL$$$") {
     return (
-      <div className="mainDiv" style={{ backgroundColor: "rgb(50, 92, 141)" }}>
-        <div className="register-list">
-          <h4>Registered For Polls (Not Participated)</h4>
+      <div className="mainDiv" style={{ backgroundColor: "rgb(213, 90, 90)" }}>
+        <div className="poll-to-start">
+          <h4>Polls About To Start (For Polls you Registered)</h4>
           <ul className="list">
             {Object.keys(list).map((i) => {
               return (
@@ -58,5 +59,5 @@ const RegisterList = () => {
     );
   }
   return null;
-};
-export default RegisterList;
+}
+export default PollsToStart;
