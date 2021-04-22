@@ -81,6 +81,10 @@ const getRegisteredInPolls = async (userName, part) => {
   return axios.get(API_BASE_URL + "RegisteredInPolls/" + userName + "/" + part);
 };
 
+const getPollsToStart = async (userName, time) => {
+  return axios.get(API_BASE_URL + "PollsToStart/" + userName + "/" + time);
+};
+
 const crypt = (str, flag) => {
   const len = str.length;
   var val = "";
@@ -128,4 +132,5 @@ export default {
   getParticipants,
   getPollResults,
   getRegisteredInPolls,
+  getPollsToStart,
 };

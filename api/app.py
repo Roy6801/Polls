@@ -39,7 +39,6 @@ def verifyToken():
     conn = Connection()
     if request.method == "POST":
         userData = request.json
-        print(userData)
         response = conn.token(userData)
     return {"response": response}
 
@@ -49,7 +48,6 @@ def login():
     conn = Connection()
     if request.method == "POST":
         userData = request.json
-        print(userData)
         response = conn.verifyUser(userData)
     return {"response": response}
 
@@ -59,7 +57,6 @@ def register():
     conn = Connection()
     if request.method == "POST":
         userData = request.json
-        print(userData)
         response = conn.createUser(userData)
     return {"response": response}
 
@@ -70,7 +67,6 @@ def create():
     if request.method == "POST":
         userData = request.json
         del userData['options'][0]
-        print(userData)
         response = conn.createPoll(userData)
     return {"response": response}
 
@@ -100,7 +96,6 @@ def PollResults(url):
 def userPresent(url, user):
     conn = Connection()
     userData = {"poll_Id": url, "userName": user}
-    print(userData)
     response = conn.userInPoll(userData)
     return {"response": response}
 
@@ -110,7 +105,6 @@ def registerForPoll():
     conn = Connection()
     if request.method == "POST":
         userData = request.json
-        print(userData)
         response = conn.registerForPoll(userData)
     return {"response": response}
 
@@ -143,9 +137,16 @@ def getParticipants(url):
 
 
 @app.route("/RegisteredInPolls/<user>/<part>")
-def RegisteredinPolls(user, part):
+def RegisteredInPolls(user, part):
     conn = Connection()
     response = conn.getRegisteredInPolls(user, int(part))
+    return response
+
+
+@app.route("/PollsToStart/<user>/<time>")
+def PollsToStart(user, time):
+    conn = Connection()
+    response = conn.getPollsToStart(user, int(time))
     return response
 
 if __name__ == "__main__":

@@ -272,9 +272,14 @@ class Connection:
         else:
             return "0"
 
-
-#conn = Connection()
-
-#print(conn.userInPoll({"poll_Id": "mpetgr589esl4fuf64zv3aalidh9keq8nj6dvw4liitbdwkuoz", "userName": "Kai"}))
-#print(conn.getRegisteredInPolls("Roy", 1))
-#print(conn.getPollListByAdmin("Roy"))
+    def getPollsToStart(self, userName, time):
+        self.query = "select registrant.poll_Id, poll.pollName from registrant inner join poll on registrant.poll_Id = poll.poll_Id where poll.timestamp > %s and registrant.userName = %s order by poll.timestamp asc"
+        flag = self.exec(tuple([time, userName]))
+        val = self.cur.fetchall()
+        if flag == 1 and val is not None:
+            result = dict()
+            for i, n in enumerate(val):
+                result[i] = n
+            return result
+        else:
+            return "0"

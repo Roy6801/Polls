@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Service from "../Service";
 import Clipboard from "../Clipboard";
+import HomeBtn from "../HomeBtn";
 import "../stylesheets/Register.css";
 import "../stylesheets/CreateForm.css";
 
@@ -195,7 +196,7 @@ const CreateForm = () => {
 
   if (text === "$$$NULL$$$") {
     return (
-      <div style={{ display: "flex", backgroundColor:"rgb(220,220,220)" }}>
+      <div style={{ display: "flex", backgroundColor: "rgb(220,220,220)" }}>
         <div className="mainDiv formDisplay">
           <h1 className="formLabel">{title}</h1>
           <label className="formLabel">{DisplayField()}</label>
@@ -299,7 +300,12 @@ const CreateForm = () => {
             {Handlefield()}
 
             <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-              <button type="submit" className="btn btn-success">
+              <HomeBtn />
+              <button
+                type="submit"
+                className="btn btn-success"
+                style={{ width: "10vw" }}
+              >
                 Submit
               </button>
             </div>
@@ -308,7 +314,12 @@ const CreateForm = () => {
       </div>
     );
   } else {
-    return <Clipboard text={text} />;
+    return (
+      <div>
+        <Clipboard text={text} />
+        <HomeBtn />
+      </div>
+    );
   }
 };
 

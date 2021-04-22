@@ -10,11 +10,8 @@ import AdminPoll from "./components/userpages/AdminPoll";
 
 
 const App = () => {
-  //window.localStorage.removeItem("polls-manager-system-G22");
   
   const { token, setToken } = useToken("$$$NULL$$$");
-
-  console.log(token);
 
   if (token === "$$$NULL$$$") {
     return (
