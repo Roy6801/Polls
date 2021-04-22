@@ -237,11 +237,14 @@ class Connection:
                 return flag
 
     def getPollListByAdmin(self, userName):
-        self.query = "select poll_Id, pollName from poll where adminUserName = %s order by timestamp desc"
+        self.query = "select poll_Id, pollName from poll where adminUserName = %s order by deadline desc"
         flag = self.exec(userName)
         val = self.cur.fetchall()
         if flag == 1 and val is not None:
-            return dict(val)
+            result = dict()
+            for i, n in enumerate(val):
+                result[i] = n
+            return result
         else:
             return "0"
 
@@ -257,17 +260,26 @@ class Connection:
         else:
             return "0"
 
-    def getRegisteredInPolls(self, userName):
-        self.query = "select registrant.poll_Id, poll.pollName from registrant inner join poll on registrant.poll_Id = poll.poll_Id where userName = %s"
-        flag = self.exec(userName)
+    def getRegisteredInPolls(self, userName, part):
+        self.query = "select registrant.poll_Id, poll.pollName from registrant inner join poll on registrant.poll_Id = poll.poll_Id where userName = %s and participated = %s order by poll.deadline desc"
+        flag = self.exec(tuple([userName, part]))
         val = self.cur.fetchall()
         if flag == 1 and val is not None:
-            return dict(val)
+            result = dict()
+            for i, n in enumerate(val):
+                result[i] = n
+            return result
         else:
             return "0"
 
-
-#conn = Connection()
-
-#print(conn.userInPoll({"poll_Id": "mpetgr589esl4fuf64zv3aalidh9keq8nj6dvw4liitbdwkuoz", "userName": "Kai"}))
-#print(conn.getRegisteredInPolls("Roy"))
+    def getPollsToStart(self, userName, time):
+        self.query = "select registrant.poll_Id, poll.pollName from registrant inner join poll on registrant.poll_Id = poll.poll_Id where poll.timestamp > %s and registrant.userName = %s order by poll.timestamp asc"
+        flag = self.exec(tuple([time, userName]))
+        val = self.cur.fetchall()
+        if flag == 1 and val is not None:
+            result = dict()
+            for i, n in enumerate(val):
+                result[i] = n
+            return result
+        else:
+            return "0"

@@ -60,4 +60,13 @@
     color: white;
     background-color: #2f697d;
   }
+
+  .blockDiv {
+    background-color: #f7e594;
+    color: #edae55;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

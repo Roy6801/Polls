@@ -22,9 +22,6 @@ const Success = ({ success }) => {
     return (
       <div className="mainDiv">
         <h1>Success!!</h1>
-        <button type="submit" className="btn btn-success" onClick={handleClick}>
-          Home
-        </button>
       </div>
     );
   } else {

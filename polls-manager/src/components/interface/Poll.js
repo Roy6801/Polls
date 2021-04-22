@@ -66,53 +66,66 @@ const Poll = (props) => {
   }
 
   const ConditionalPoll = () => {
-    if (reg === 1) {
-      if (scheduled) {
-        if (anonymity) {
-          if (!started) {
-            return <PollReg pollInfo={pollInfo} vC={""} />;
+    var set;
+    switch (reg) {
+      case 1:
+        {
+          if (scheduled) {
+            if (anonymity) {
+              if (!started) {
+                set = <PollReg pollInfo={pollInfo} vC={""} />;
+              } else {
+                set = <h1>Registration Ended!!</h1>;
+              }
+            } else {
+              if (!started) {
+                set = <VerifyForPoll pollInfo={pollInfo} />;
+              } else {
+                set = <h1>Registration Ended!!</h1>;
+              }
+            }
           } else {
-            return <h1>Registration Ended!!</h1>;
-          }
-        } else {
-          if (!started) {
-            return <VerifyForPoll pollInfo={pollInfo} />;
-          } else {
-            return <h1>Registration Ended!!</h1>;
+            if (anonymity) {
+              if (ended) {
+                set = <PollResult pollInfo={pollInfo} />;
+              } else {
+                set = <PollPart pollInfo={pollInfo} vC={""} />;
+              }
+            } else {
+              if (ended) {
+                set = <PollResult pollInfo={pollInfo} />;
+              } else {
+                set = <VerifyForPoll pollInfo={pollInfo} />;
+              }
+            }
           }
         }
-      } else {
-        if (anonymity) {
-          if (ended) {
-            return <PollResult pollInfo={pollInfo} />;
+        break;
+      case 2:
+        {
+          if (!started) {
+            set = <PollWait pollInfo={pollInfo} reg={true} />;
+          } else if (started && !ended) {
+            set = <PollPart pollInfo={pollInfo} vC={""} />;
           } else {
-            return <PollPart pollInfo={pollInfo} vC={""} />;
-          }
-        } else {
-          if (ended) {
-            return <PollResult pollInfo={pollInfo} />;
-          } else {
-            return <VerifyForPoll pollInfo={pollInfo} />;
+            set = <PollResult pollInfo={pollInfo} />;
           }
         }
-      }
-    } else if (reg === 2) {
-      if (!started) {
-        return <PollWait pollInfo={pollInfo} reg={true} />;
-      } else if (started && !ended) {
-        return <PollPart pollInfo={pollInfo} vC={""} />;
-      } else {
-        return <PollResult pollInfo={pollInfo} />;
-      }
-    } else if (reg === 3) {
-      if (ended) {
-        return <PollResult pollInfo={pollInfo} />;
-      } else {
-        return <PollWait pollInfo={pollInfo} reg={false} />;
-      }
-    } else {
-      return <h1>Fetching Data!!</h1>;
+        break;
+      case 3:
+        {
+          if (ended) {
+            set = <PollResult pollInfo={pollInfo} />;
+          } else {
+            set = <PollWait pollInfo={pollInfo} reg={false} />;
+          }
+        }
+        break;
+      default:
+        set = null;
+        break;
     }
+    return set;
   };
 
   return (
