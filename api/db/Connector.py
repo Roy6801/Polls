@@ -283,3 +283,17 @@ class Connection:
             return result
         else:
             return "0"
+
+    def SearchPolls(self, userName, pollName):
+        self.query = 'select distinct poll.poll_Id, poll.pollName from registrant right join poll on registrant.poll_Id = poll.poll_Id where ( poll.adminUserName = "' + \
+            userName+'" or registrant.userName = "'+userName + \
+            '" ) and poll.pollName like "%'+pollName+'%"'
+        flag = self.exec()
+        val = self.cur.fetchall()
+        if flag == 1 and val is not None:
+            result = dict()
+            for i in val:
+                result[i[0]] = i[1]
+            return result
+        else:
+            return "0"

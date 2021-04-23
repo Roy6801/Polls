@@ -4,6 +4,7 @@ import RegisterList from "./RegisterList";
 import CreatedPoll from "./CreatedPoll";
 import ParticipateList from "./ParticipateList";
 import PollsToStart from "./PollsToStart";
+import SearchPoll from "../SearchPoll";
 
 const User = () => {
   return (
@@ -17,6 +18,9 @@ const User = () => {
     >
       <div className="flex-container">
         <ChartPoll />
+      </div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <SearchPoll />
       </div>
       <div className="flex-container">
         <CreatedPoll />
