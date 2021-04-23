@@ -149,5 +149,12 @@ def PollsToStart(user, time):
     response = conn.getPollsToStart(user, int(time))
     return response
 
+
+@app.route("/SearchPolls/<user>/<pollName>")
+def PollSearch(user, pollName):
+    conn = Connection()
+    response = conn.SearchPolls(user, pollName)
+    return response
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', threaded=True)
