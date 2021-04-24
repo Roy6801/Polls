@@ -66,7 +66,12 @@ const PollResult = ({ pollInfo }) => {
     list !== "$$$NULL$$$"
   ) {
     return (
-      <div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <div style={{ display: "flex" }}>
           <div className="mainDiv" style={{ backgroundColor: "#ffcfbd" }}>
             <Chart
@@ -79,10 +84,6 @@ const PollResult = ({ pollInfo }) => {
                 title: pollInfo.pollName,
                 backgroundColor: "#ffcfbd",
                 chartArea: { width: "100%" },
-                hAxis: {
-                  title: "Votes",
-                  minValue: 0,
-                },
               }}
             />
           </div>
@@ -100,10 +101,6 @@ const PollResult = ({ pollInfo }) => {
                 colors: ["#95deaf", "#5db078"],
                 backgroundColor: "#cdf7db",
                 chartArea: { width: "100%" },
-                hAxis: {
-                  title: "Votes",
-                  minValue: 0,
-                },
               }}
             />
           </div>
@@ -122,7 +119,7 @@ const PollResult = ({ pollInfo }) => {
                 <tr>
                   <td>UserName</td>
                   <td>Participated</td>
-                  <td>VerificationId</td>
+                  <td>{pollInfo.verificationCriteria}</td>
                 </tr>
               </thead>
               <tbody>
@@ -143,6 +140,7 @@ const PollResult = ({ pollInfo }) => {
             className="mainDiv"
             style={{ flexGrow: "1", backgroundColor: "#f2dc9b" }}
           >
+            <h4>Multi-Selection : {pollInfo.radio === 1 ? "No" : "Yes"}</h4>
             <Chart
               height="80vh"
               chartType="BarChart"
@@ -159,6 +157,18 @@ const PollResult = ({ pollInfo }) => {
                 },
               }}
             />
+          </div>
+        </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div
+            className="mainDiv"
+            style={{ display: "flex", flexGrow: "1", alignItems: "center" }}
+          >
+            <h2>Admin : {pollInfo.adminUserName}</h2>
+          </div>
+          <div className="mainDiv">
+            <h4>Start Time : {String(new Date(pollInfo.timestamp * 1000))}</h4>
+            <h4>End Time: {String(new Date(pollInfo.deadline * 1000))}</h4>
           </div>
         </div>
       </div>

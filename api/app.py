@@ -156,5 +156,13 @@ def PollSearch(user, pollName):
     response = conn.SearchPolls(user, pollName)
     return response
 
+
+@app.route("/UserAnalysis/<user>")
+def UserAnalysis(user):
+    conn = Connection()
+    response = conn.UserAnalysis(user)
+    return response
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', threaded=True)
