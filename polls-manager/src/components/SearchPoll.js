@@ -59,7 +59,12 @@ const SearchPoll = () => {
   return (
     <div
       className="mainDiv"
-      style={{ display: "flex", flexDirection: "column", width: "40vw" }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "40vw",
+        backgroundColor: "#418991",
+      }}
     >
       <input
         type="text"

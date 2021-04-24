@@ -19,7 +19,12 @@ const User = () => {
       <div className="flex-container">
         <ChartPoll />
       </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <SearchPoll />
       </div>
       <div className="flex-container">

@@ -297,3 +297,25 @@ class Connection:
             return result
         else:
             return "0"
+
+    def UserAnalysis(self, userName):
+        result = dict()
+        self.query = "select count(*) from poll where adminUserName = %s"
+        f1 = self.exec(userName)
+        result["created"] = self.cur.fetchone()[0]
+        self.query = "select count(*) from registrant where userName = %s and participated = 0"
+        f2 = self.exec(userName)
+        result["reg"] = self.cur.fetchone()[0]
+        self.query = "select count(*) from registrant where userName = %s and participated = 1"
+        f3 = self.exec(userName)
+        result["part"] = self.cur.fetchone()[0]
+        self.query = "select count(*) from registrant inner join poll on registrant.poll_Id = poll.poll_Id where poll.adminUserName = %s and participated = 0 and poll.scheduled = 1"
+        f4 = self.exec(userName)
+        result["onReg"] = self.cur.fetchone()[0]
+        self.query = "select count(*) from registrant inner join poll on registrant.poll_Id = poll.poll_Id where poll.adminUserName = %s and participated = 1 and poll.scheduled = 1"
+        f5 = self.exec(userName)
+        result["acPart"] = self.cur.fetchone()[0]
+        if f1 == 1 and f2 == 1 and f3 == 1 and f4 == 1 and f5 == 1:
+            return result
+        else:
+            return "0"
