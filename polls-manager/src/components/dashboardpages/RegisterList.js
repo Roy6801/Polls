@@ -39,20 +39,21 @@ const RegisterList = () => {
       <div className="mainDiv" style={{ backgroundColor: "rgb(50, 92, 141)" }}>
         <div className="register-list">
           <h4>Registered For Polls (Not Participated)</h4>
-          <ul className="list">
+          <div className="list">
             {Object.keys(list).map((i) => {
               return (
-                <li
+                <button
+                  className="btn button-style"
                   key={list[i][0]}
                   onClick={(e) => {
                     window.location.replace("/Poll/" + list[i][0]);
                   }}
                 >
                   {list[i][1]}
-                </li>
+                </button>
               );
             })}
-          </ul>
+          </div>
         </div>
       </div>
     );

@@ -6,14 +6,32 @@ const PollWait = ({ pollInfo, reg }) => {
   const ConditionalWait = () => {
     if (reg) {
       return (
-        <div className="mainDiv">
+        <div
+          className="mainDiv"
+          style={{
+            backgroundColor: "#F98588",
+            color: "white",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <h1>You have Registered already. Wait for Poll to start</h1>
           <CountDown time={pollInfo.timestamp} />
         </div>
       );
     } else {
       return (
-        <div className="mainDiv">
+        <div
+          className="mainDiv"
+          style={{
+            backgroundColor: "#F98588",
+            color: "white",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <h1>
             You have Participated already. Come back when Poll ends for Results
           </h1>

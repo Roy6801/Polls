@@ -29,7 +29,13 @@ const PollReg = ({ pollInfo, vC }) => {
     return <Success success={success} />;
   } else {
     return (
-      <div className="mainDiv" style={{background: "linear-gradient(140deg, rgba(248,222,126,1) 44%, rgba(252,244,163,1) 83%)"}}>
+      <div
+        className="mainDiv"
+        style={{
+          background:
+            "linear-gradient(140deg, rgba(248,222,126,1) 44%, rgba(252,244,163,1) 83%)",
+        }}
+      >
         <h1>Register for Poll</h1>
         <h3>Your,</h3>
         <h2>Username : {userName}</h2>

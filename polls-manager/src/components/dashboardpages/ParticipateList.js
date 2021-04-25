@@ -42,21 +42,24 @@ const ParticipateList = () => {
         style={{ backgroundColor: " rgb(99, 201, 106)" }}
       >
         <div className="part-list">
-          <h4>Participated In Polls</h4>
-          <ul className="list">
+          <h4 style={{ fontFamily: "Verdana", textAlign: "center" }}>
+            Participated In Polls
+          </h4>
+          <div className="list">
             {Object.keys(list).map((i) => {
               return (
-                <li
+                <button
+                  className="btn  button-style"
                   key={list[i][0]}
                   onClick={(e) => {
                     window.location.replace("/Poll/" + list[i][0]);
                   }}
                 >
                   {list[i][1]}
-                </li>
+                </button>
               );
             })}
-          </ul>
+          </div>
         </div>
       </div>
     );

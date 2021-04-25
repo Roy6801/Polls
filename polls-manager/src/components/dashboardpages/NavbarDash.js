@@ -6,6 +6,8 @@ import { SidebarData } from "./SidebarData";
 import "../stylesheets/NavbarDash.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { IconContext } from "react-icons";
+import * as VscIcon from "react-icons/vsc";
+import logo from "../Logo.png";
 
 const NavbarDash = ({ setToken }) => {
   const [sidebar, setSidebar] = useState(false);
@@ -22,6 +24,13 @@ const NavbarDash = ({ setToken }) => {
     <>
       <IconContext.Provider value={{ color: "#fff" }}>
         <div className="navbar">
+          <img
+            src={logo}
+            width="180vw"
+            height="100%"
+            style={{ position: "absolute", left: "0px", top: "0px" }}
+          />
+
           <Link to="#" className="menu-bars">
             <BiIcon.BiLayer onClick={showSidebar} />
             <h2

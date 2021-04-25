@@ -39,21 +39,24 @@ function PollsToStart() {
     return (
       <div className="mainDiv" style={{ backgroundColor: "rgb(213, 90, 90)" }}>
         <div className="poll-to-start">
-          <h4>Polls About To Start (For Polls you Registered)</h4>
-          <ul className="list">
+          <h4 style={{ fontFamily: "Verdana", textAlign: "center" }}>
+            Polls About To Start (For Polls you Registered)
+          </h4>
+          <div className="list">
             {Object.keys(list).map((i) => {
               return (
-                <li
+                <button
+                  className="btn button-style"
                   key={list[i][0]}
                   onClick={(e) => {
                     window.location.replace("/Poll/" + list[i][0]);
                   }}
                 >
                   {list[i][1]}
-                </li>
+                </button>
               );
             })}
-          </ul>
+          </div>
         </div>
       </div>
     );

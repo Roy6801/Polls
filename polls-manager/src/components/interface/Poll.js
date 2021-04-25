@@ -136,9 +136,20 @@ const Poll = (props) => {
         alignItems: "center",
         background:
           "linear-gradient(293deg, rgba(235,144,110,1) 33%, rgba(255,216,177,1) 66%, rgba(255,229,180,1) 99%)",
+        width: "100%",
+        height: "100vh",
       }}
     >
-      <h1 className="mainDiv">{pollInfo.pollName}</h1>
+      <h1
+        className="mainDiv"
+        style={{
+          backgroundColor: "#57c2be",
+          color: "white",
+          fontWeight: "bolder",
+        }}
+      >
+        {pollInfo.pollName}
+      </h1>
       <ConditionalPoll />
       <button
         type="button"
