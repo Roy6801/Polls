@@ -196,7 +196,13 @@ const CreateForm = () => {
 
   if (text === "$$$NULL$$$") {
     return (
-      <div style={{ display: "flex", backgroundColor: "rgb(220,220,220)" }}>
+      <div
+        style={{
+          display: "flex",
+          background:
+            "linear-gradient(293deg, rgba(235,144,110,1) 33%, rgba(255,216,177,1) 66%, rgba(255,229,180,1) 99%)",
+        }}
+      >
         <div className="mainDiv formDisplay">
           <h1 className="formLabel">{title}</h1>
           <label className="formLabel">{DisplayField()}</label>
