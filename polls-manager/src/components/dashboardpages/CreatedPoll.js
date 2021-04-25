@@ -34,11 +34,14 @@ const CreatedPoll = () => {
     return (
       <div className="mainDiv" style={{ backgroundColor: "rgb(226, 202, 61)" }}>
         <div className="created-poll">
-          <h4>Created Polls</h4>
-          <ul className="list">
+          <h4 style={{ fontFamily: "Verdana", textAlign: "center" }}>
+            Created Polls
+          </h4>
+          <div className="list">
             {Object.keys(list).map((i) => {
               return (
-                <li
+                <button
+                  className="btn button-style"
                   key={list[i][0]}
                   onClick={(e) => {
                     window.location.replace(
@@ -47,10 +50,10 @@ const CreatedPoll = () => {
                   }}
                 >
                   {list[i][1]}
-                </li>
+                </button>
               );
             })}
-          </ul>
+          </div>
         </div>
       </div>
     );

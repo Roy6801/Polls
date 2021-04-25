@@ -59,7 +59,7 @@ const PollPart = ({ pollInfo, vC }) => {
   const DisplayOptions = () => {
     if (options !== "$$$NULL$$$") {
       return (
-        <div>
+        <div style={{ fontFamily: "Gerogia", fontSize: "1.5rem" }}>
           {Object.keys(options).map((i) => {
             return (
               <div key={options[i]}>
@@ -92,14 +92,32 @@ const PollPart = ({ pollInfo, vC }) => {
   }
 
   return (
-    <div>
-      <h1>Poll : {pollInfo.pollName}</h1>
+    <div
+      className="mainDiv"
+      style={{
+        background:
+          "linear-gradient(140deg, rgba(248,222,126,1) 39%, rgba(255,253,208,1) 100%)",
+      }}
+    >
+      <h1 style={{ fontFamily: "Verdana" }}>Poll : {pollInfo.pollName}</h1>
       <DisplayOptions />
-      <h1>{pollInfo.anonymity === 1 ? "Anonymous" : "Non-Anonymous"}</h1>
-      <h1>{vC === null ? "Verification ID : " + vC : ""}</h1>
-      <h1>Poll Admin : {pollInfo.adminUserName}</h1>
+      <h4 style={{ fontFamily: "Lucida Console" }}>
+        {pollInfo.anonymity === 1 ? "Anonymous" : "Non-Anonymous"}
+      </h4>
+      <h5 style={{ fontFamily: "Lucida Console" }}>
+        {vC === null ? "Verification ID : " + vC : ""}
+      </h5>
+      <h4 style={{ fontFamily: "Lucida Console" }}>
+        Poll Admin : {pollInfo.adminUserName}
+      </h4>
       <button
         type="click"
+        className="btn button-style"
+        style={{
+          backgroundColor: "green",
+          color: "white",
+          textAlign: "center",
+        }}
         onClick={(e) => {
           handleSubmit(e);
         }}

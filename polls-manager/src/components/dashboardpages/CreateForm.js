@@ -321,7 +321,16 @@ const CreateForm = () => {
     );
   } else {
     return (
-      <div>
+      <div
+        style={{
+          background:
+            "linear-gradient(293deg, rgba(235,144,110,1) 33%, rgba(255,216,177,1) 66%, rgba(255,229,180,1) 99%)",
+          display: "flex",
+          flexDirection: "column",
+          width: "100%",
+          height: "100vh",
+        }}
+      >
         <Clipboard text={text} />
         <HomeBtn />
       </div>

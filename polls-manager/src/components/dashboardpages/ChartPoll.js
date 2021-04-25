@@ -45,6 +45,7 @@ const ChartPoll = () => {
       mounted = false;
     };
   });
+  console.log(list, bar, pie);
 
   if (list !== "$$$NULL$$$" && bar !== "$$$NULL$$$" && pie !== "$$$NULL$$$") {
     return (
