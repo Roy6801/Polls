@@ -5,7 +5,7 @@ import "./stylesheets/Register.css";
 
 const Success = ({ success }) => {
   const [home, setHome] = useState(false);
-  success = false;
+
   const handleClick = (e) => {
     if (success) {
       setHome(true);
