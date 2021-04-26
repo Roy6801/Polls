@@ -41,9 +41,9 @@ const VerifyForPoll = ({ pollInfo }) => {
     );
   } else {
     if (pollInfo.scheduled === 1) {
-      return <PollReg pollInfo={pollInfo} vC={vC} />;
+      return <PollReg pollInfo={pollInfo} vC={Service.crypt(vC, true)} />;
     } else {
-      return <PollPart pollInfo={pollInfo} vC={vC} />;
+      return <PollPart pollInfo={pollInfo} vC={Service.crypt(vC, true)} />;
     }
   }
 };

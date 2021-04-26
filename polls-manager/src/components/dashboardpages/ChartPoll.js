@@ -94,7 +94,7 @@ const ChartPoll = () => {
             data={pie}
             options={{
               title: "Avg. Audience Engagement",
-              colors: ["#d95069", "#f55d79"],
+              colors: ["#f55d79", "#d95069"],
               backgroundColor: "#ff7a93",
               chartArea: { width: "80%" },
             }}

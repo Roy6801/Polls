@@ -106,12 +106,20 @@ const AdminPoll = (props) => {
   return (
     <div
       style={{
+        minHeight: "90vh",
         background:
           "linear-gradient(293deg, rgba(235,144,110,1) 33%, rgba(255,216,177,1) 66%, rgba(255,229,180,1) 99%)",
       }}
     >
       {ConditionalPollInfo()}
-      <HomeBtn />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <HomeBtn />
+      </div>
     </div>
   );
 };

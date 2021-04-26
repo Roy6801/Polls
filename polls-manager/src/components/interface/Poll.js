@@ -133,34 +133,47 @@ const Poll = (props) => {
       style={{
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
         background:
           "linear-gradient(293deg, rgba(235,144,110,1) 33%, rgba(255,216,177,1) 66%, rgba(255,229,180,1) 99%)",
         width: "100%",
-        height: "100vh",
+        minHeight: "100vh",
       }}
     >
-      <h1
-        className="mainDiv"
+      <div
         style={{
-          backgroundColor: "#57c2be",
-          color: "white",
-          fontWeight: "bolder",
+          display: "flex",
+          justifyContent: "center",
         }}
       >
-        {pollInfo.pollName}
-      </h1>
+        <h1
+          className="mainDiv"
+          style={{
+            backgroundColor: "#57c2be",
+            color: "white",
+            fontWeight: "bolder",
+          }}
+        >
+          {pollInfo.pollName}
+        </h1>
+      </div>
       <ConditionalPoll />
-      <button
-        type="button"
-        style={{ width: "10vw" }}
-        className="btn btn-success"
-        onClick={(e) => {
-          window.location.replace("/");
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
         }}
       >
-        Home
-      </button>
+        <button
+          type="button"
+          style={{ width: "10vw" }}
+          className="btn btn-success"
+          onClick={(e) => {
+            window.location.replace("/");
+          }}
+        >
+          Home
+        </button>
+      </div>
     </div>
   );
 };
