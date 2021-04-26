@@ -8,9 +8,7 @@ import useToken from "./components/useToken";
 import Poll from "./components/interface/Poll";
 import AdminPoll from "./components/userpages/AdminPoll";
 
-
 const App = () => {
-  
   const { token, setToken } = useToken("$$$NULL$$$");
 
   if (token === "$$$NULL$$$") {
@@ -50,6 +48,21 @@ const App = () => {
           />
           <Route path="*" component={User} />
         </Switch>
+      </div>
+      <div
+        style={{
+          height: "10vh",
+          color: "white",
+          backgroundColor: "#172542",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          fontSize: "30px",
+          fontFamily: "monospace",
+          fontWeight: "bolder",
+        }}
+      >
+        © G22
       </div>
     </div>
   );

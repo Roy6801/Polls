@@ -39,6 +39,12 @@ const PollResult = ({ pollInfo }) => {
   if (list === "$$$NULL$$$") {
     Service.getParticipants(pollInfo.poll_Id).then((resp) => {
       if (resp.data !== "0") {
+        Object.keys(resp.data).map((key) => {
+          if (pollInfo.anonymity === 0) {
+            resp.data[key][1] = Service.crypt(resp.data[key][1], false);
+          }
+          return null;
+        });
         setList(resp.data);
       }
     });
@@ -119,7 +125,11 @@ const PollResult = ({ pollInfo }) => {
                 <tr>
                   <td>UserName</td>
                   <td>Participated</td>
-                  <td>{pollInfo.verificationCriteria}</td>
+                  <td>
+                    {pollInfo.verificationCriteria.length === 0
+                      ? "Verification Id"
+                      : pollInfo.verificationCriteria}
+                  </td>
                 </tr>
               </thead>
               <tbody>

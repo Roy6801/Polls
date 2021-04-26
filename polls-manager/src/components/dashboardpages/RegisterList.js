@@ -38,7 +38,9 @@ const RegisterList = () => {
     return (
       <div className="mainDiv" style={{ backgroundColor: "rgb(50, 92, 141)" }}>
         <div className="register-list">
-          <h4>Registered For Polls (Not Participated)</h4>
+          <h4 style={{ fontFamily: "Verdana", textAlign: "center" }}>
+            Registered For Polls (Not Participated)
+          </h4>
           <div className="list">
             {Object.keys(list).map((i) => {
               return (

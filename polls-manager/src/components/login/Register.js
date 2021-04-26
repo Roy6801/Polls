@@ -59,7 +59,6 @@ const Register = ({ setToken }) => {
         mobileNo: Service.crypt(mobileNo, true),
         userToken: null,
       };
-      console.log(user);
 
       Service.register(user).then((resp) => {
         if (resp.data.response === 1) {

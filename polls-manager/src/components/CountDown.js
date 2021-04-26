@@ -26,7 +26,7 @@ const CountDown = ({ time }) => {
       className="mainDiv"
       style={{
         color: "white",
-        backgroundColor: "#49f2b7F",
+        backgroundColor: "#52e3c3",
         fontSize: "2vw",
         fontWeight: "bold",
       }}

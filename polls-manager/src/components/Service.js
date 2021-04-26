@@ -94,33 +94,32 @@ const userAnalysis = async (userName) => {
 };
 
 const crypt = (str, flag) => {
-  const len = str.length;
-  var val = "";
-
   if (flag) {
-    str = str.split("").reverse().join("");
-    for (var i = 0; i < len; i++) {
-      var temp = str.charCodeAt(i);
+    str = str.split("").reverse();
+    const len = str.join(".").length;
+    for (var i = 0; i < str.length; i++) {
+      var temp = str[i].charCodeAt(0);
       if (i % 2 === 0) {
-        temp = temp + len;
+        str[i] = temp + len;
       } else {
-        temp = temp - len;
+        str[i] = temp - len;
       }
-      val = val + String.fromCharCode(temp);
     }
+    return str.join(".");
   } else {
-    for (var i = 0; i < len; i++) {
-      var temp = str.charCodeAt(i);
+    var len = str.length;
+    len -= str.split(".").length;
+    str = str.split(".");
+    for (var i = 0; i < str.length; i++) {
       if (i % 2 === 0) {
-        temp = temp - len;
+        str[i] = Number(str[i]) - len;
       } else {
-        temp = temp + len;
+        str[i] = Number(str[i]) + len;
       }
-      val = val + String.fromCharCode(temp);
+      str[i] = String.fromCharCode(str[i]);
     }
-    val = val.split("").reverse().join("");
+    return str.reverse().join("");
   }
-  return val;
 };
 
 export default {
