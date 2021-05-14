@@ -39,7 +39,7 @@ const PollReg = ({ pollInfo, vC }) => {
         <h1>Register for Poll</h1>
         <h3>Your,</h3>
         <h2>Username : {userName}</h2>
-        <h2>Verification_ID : {vC}</h2>
+        <h2>Verification_ID : {Service.crypt(vC, false)}</h2>
         <h3>Will be Registered</h3>
         <h5>Poll_ID : {pollInfo.poll_Id}</h5>
         <button type="submit" className="btn btn-success" onClick={handleClick}>

@@ -55,9 +55,15 @@ const CreateForm = () => {
   };
 
   const handleInputs = (e, i) => {
-    const values = [...field];
-    values[i] = e.target.value.replaceAll(" ", "_");
-    setField(values);
+    const noSpecial = /[^a-zA-Z0-9 ]/;
+    if (noSpecial.test(e.target.value)) {
+      alert("Special Characters Not Allowed!!");
+      e.target.value = e.target.value.slice(0, -1);
+    } else {
+      const values = [...field];
+      values[i] = e.target.value.replaceAll(" ", "_");
+      setField(values);
+    }
   };
 
   const Handlefield = () => {
