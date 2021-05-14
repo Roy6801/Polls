@@ -159,7 +159,7 @@ class Connection:
             return "0"
 
     def getPollResults(self, data):
-        self.query = "select * from "+data
+        self.query = "select * from " + data
         flag = self.exec()
         val = self.cur.fetchone()
         if flag == 1 and val is not None:
