@@ -34,7 +34,6 @@ def pollCreate(conn, ts=int(time.time()), deadline=int(time.time())+3600):
 
 class Connection:
     def __init__(self):
-        flag = False
         self.conn = None
         try:
             conn = pymysql.connect(user="root", password="", host="localhost",
@@ -160,7 +159,7 @@ class Connection:
             return "0"
 
     def getPollResults(self, data):
-        self.query = "select * from "+data
+        self.query = "select * from " + data
         flag = self.exec()
         val = self.cur.fetchone()
         if flag == 1 and val is not None:
