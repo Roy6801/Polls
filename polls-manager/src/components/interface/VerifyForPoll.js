@@ -16,38 +16,43 @@ const VerifyForPoll = ({ pollInfo }) => {
 
   if (!proceed) {
     return (
-      <div style={{justifyContent:"center",
-      display:"flex",
-      }}>
-      <div
-        className="mainDiv"
-        style={{
-          background:
-            "linear-gradient(140deg, rgba(248,222,126,1) 39%, rgba(255,253,208,1) 100%)",
-            
-        
-        }}
-      >
-        <form onSubmit={handleClick} >
-          <h1>Enter Verification ID</h1>
-          <h3>Scheduled For : {String(new Date(pollInfo.timestamp * 1000))}</h3>
-         <div style={{alignItems:"center",
-      display:"flex", flexDirection:"column"
-      }}>
-          <input
-            type="text"
-            className="input-control"
-            placeholder={pollInfo.verificationCriteria}
-            required
-            
-            onChange={(e) => setVC(e.target.value)}
-          />
-          <button type="submit" className="btn btn-success" style={{width:"15%"}}>
-            Proceed
-          </button>
-          </div>
-        </form>
-      </div>
+      <div style={{ justifyContent: "center", display: "flex" }}>
+        <div
+          className="mainDiv"
+          style={{
+            background:
+              "linear-gradient(140deg, rgba(248,222,126,1) 39%, rgba(255,253,208,1) 100%)",
+          }}
+        >
+          <form onSubmit={handleClick}>
+            <h1>Enter Verification ID</h1>
+            <h3>
+              Scheduled For : {String(new Date(pollInfo.timestamp * 1000))}
+            </h3>
+            <div
+              style={{
+                alignItems: "center",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <input
+                type="text"
+                className="input-control"
+                placeholder={pollInfo.verificationCriteria}
+                required
+                onChange={(e) => setVC(e.target.value)}
+              />
+              <button
+                type="submit"
+                className="btn btn-success"
+                style={{ width: "15%" }}
+              >
+                Proceed
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   } else {

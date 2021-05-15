@@ -94,8 +94,11 @@ const AdminPoll = (props) => {
       );
     } else if (pollInfo !== "$$$NULL$$$" && admin !== pollInfo.adminUserName) {
       return (
-        <div className="mainDiv">
+        <div style={{display:"flex",justifyContent:"center"}}>
+        <div className="mainDiv" style={{background:
+              "linear-gradient(140deg, rgba(248,222,126,1) 39%, rgba(255,253,208,1) 100%)"}}>
           <h1>Restricted Access!!</h1>
+        </div>
         </div>
       );
     } else {
