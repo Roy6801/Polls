@@ -88,10 +88,15 @@ const PollPart = ({ pollInfo, vC }) => {
   };
 
   if (submit) {
-    return <Success success={true} />;
+    return (
+    <div style={{display:"flex",justifyContent:"center"}}>
+    <Success success={true} />;
+    </div>
+    )
   }
 
   return (
+    <div style={{display:"flex",justifyContent:"center"}}>
     <div
       className="mainDiv"
       style={{
@@ -124,6 +129,7 @@ const PollPart = ({ pollInfo, vC }) => {
       >
         Submit
       </button>
+    </div>
     </div>
   );
 };

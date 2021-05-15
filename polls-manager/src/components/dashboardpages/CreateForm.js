@@ -336,10 +336,14 @@ const CreateForm = () => {
           flexDirection: "column",
           width: "100%",
           height: "100vh",
+          alignItems:"center"
         }}
       >
+        <div style={{width:"50%"}}>
         <Clipboard text={text} />
+        </div>
         <HomeBtn />
+        
       </div>
     );
   }
