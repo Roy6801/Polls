@@ -40,7 +40,7 @@ function PollsToStart() {
       <div className="mainDiv" style={{ backgroundColor: "rgb(213, 90, 90)" }}>
         <div className="poll-to-start">
           <h4 style={{ fontFamily: "Verdana", textAlign: "center" }}>
-            Polls About To Start (For Polls you Registered)
+            Polls About To Start
           </h4>
           <div className="list">
             {Object.keys(list).map((i) => {
