@@ -24,16 +24,18 @@ const PollReg = ({ pollInfo, vC }) => {
   };
 
   if (success === true) {
-    return <Success success={success} />;
+    return <div style={{justifyContent:"center",display:"flex"}}><Success success={success} /></div>;
   } else if (success === false) {
-    return <Success success={success} />;
+    return <div style={{justifyContent:"center",display:"flex"}}><Success success={success} /></div>;
   } else {
     return (
+      <div style={{justifyContent:"center",display:"flex"}}>
       <div
         className="mainDiv"
         style={{
           background:
             "linear-gradient(140deg, rgba(248,222,126,1) 44%, rgba(252,244,163,1) 83%)",
+            
         }}
       >
         <h1>Register for Poll</h1>
@@ -45,6 +47,7 @@ const PollReg = ({ pollInfo, vC }) => {
         <button type="submit" className="btn btn-success" onClick={handleClick}>
           Register
         </button>
+      </div>
       </div>
     );
   }

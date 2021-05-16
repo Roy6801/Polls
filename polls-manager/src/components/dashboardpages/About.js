@@ -6,35 +6,28 @@ function About() {
   return (
     <div
       style={{
-        backgroundImage: `url("https://png.pngtree.com/thumb_back/fw800/back_our/20190620/ourmid/pngtree-business-finance-hd-background-image_145887.jpg")`,
+        backgroundImage: `url("https://cdn3.vectorstock.com/i/thumb-large/55/77/dark-blue-background-vector-22385577.jpg")`,
         background_position: "center",
-        background_repeat: "no_repeat"
+       background_repeat: "no_repeat",
+        minHeight:"80vh",
+        display:"flex",
+        justifyContent:"center",
+        flexDirection:"column",
+        alignItems:"center"
       }}
     >
-      <h1 style={{ color: "white" }} align="center">
+      <h1 style={{ color: "white" , top:"20vh" , position:"absolute"}} >
         About Us
       </h1>
       <br/>
-      <i style={{ color: "white", padding:"20px"}}>
+      <i style={{ color: "white", padding:"20px", top:"30vh" , position:"absolute"}}>
         The Polls Management System is a python-based web-application. This can
         be used for holding Elections and collecting users’valuable opinion.
         This can be really helpful for giving a direction to a particular
         subject depending on public opinion.
       </i>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div style={{ color: "white" }} align="center">
+     
+      <div style={{ color: "white", bottom:"6vh",position:"absolute", textAlign:"center"}} >
         <br />
         <br />
         <h5>For more information, please visit</h5>

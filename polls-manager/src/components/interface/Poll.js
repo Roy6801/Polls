@@ -75,13 +75,13 @@ const Poll = (props) => {
               if (!started) {
                 set = <PollReg pollInfo={pollInfo} vC={""} />;
               } else {
-                set = <h1>Registration Ended!!</h1>;
+                set =<div style={{display:"flex", justifyContent:"center"}}> <h1>Registration Ended!!</h1></div>;
               }
             } else {
               if (!started) {
                 set = <VerifyForPoll pollInfo={pollInfo} />;
               } else {
-                set = <h1>Registration Ended!!</h1>;
+                set =<div style={{display:"flex", justifyContent:"center"}}> <h1>Registration Ended!!</h1></div>;
               }
             }
           } else {
@@ -156,7 +156,9 @@ const Poll = (props) => {
           {pollInfo.pollName}
         </h1>
       </div>
+      <div style={{justifyContent:"center",display:"flex"}}>
       <ConditionalPoll />
+      </div>
       <div
         style={{
           display: "flex",
