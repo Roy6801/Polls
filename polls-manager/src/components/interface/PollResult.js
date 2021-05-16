@@ -172,11 +172,21 @@ const PollResult = ({ pollInfo }) => {
         <div style={{ display: "flex", justifyContent: "center" }}>
           <div
             className="mainDiv"
-            style={{ display: "flex", flexGrow: "1", alignItems: "center" }}
+            style={{
+              display: "flex",
+              flexGrow: "1",
+              alignItems: "center",
+              backgroundColor: "#ea8825",
+              color: "#ac5330",
+              fontFamily:"monospace",
+              fontWeight:"bolder",
+              fontSize:"3rem"
+            }}
           >
-            <h2>Admin : {pollInfo.adminUserName}</h2>
+            <label>Admin : {pollInfo.adminUserName}</label>
           </div>
-          <div className="mainDiv">
+          <div className="mainDiv" style={{ backgroundColor: "#72286f",
+              color: "#dfa8e4",}}>
             <h4>Start Time : {String(new Date(pollInfo.timestamp * 1000))}</h4>
             <h4>End Time: {String(new Date(pollInfo.deadline * 1000))}</h4>
           </div>
